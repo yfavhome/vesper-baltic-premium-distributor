@@ -244,7 +244,7 @@ const ProductCategoryPage = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                               {brand.products.map((product) => (
                                 <div
-                                  key={product.name}
+                                  key={product.name + (product.volume || '')}
                                   className="p-4 bg-secondary/50 border border-border/50 hover:border-primary/20 transition-all"
                                 >
                                   <h4 className="font-body text-sm font-medium text-foreground leading-tight">{product.name}</h4>
