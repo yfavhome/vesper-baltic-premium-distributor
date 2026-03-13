@@ -49,23 +49,36 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-xs font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary ${
-                  location.pathname === link.path
-                    ? "text-primary"
-                    : scrolled
-                    ? "text-foreground/70"
-                    : "text-primary-foreground/80"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => 
+              'external' in link && link.external ? (
+                <a
+                  key={link.path}
+                  href={link.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-xs font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary ${
+                    scrolled ? "text-foreground/70" : "text-primary-foreground/80"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-xs font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary ${
+                    location.pathname === link.path
+                      ? "text-primary"
+                      : scrolled
+                      ? "text-foreground/70"
+                      : "text-primary-foreground/80"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Mobile Toggle */}
