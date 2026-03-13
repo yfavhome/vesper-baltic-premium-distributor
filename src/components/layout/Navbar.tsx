@@ -10,9 +10,9 @@ const navLinks = [
   { label: "Products", path: "/products" },
   { label: "Distribution", path: "/distribution" },
   { label: "Partners", path: "/partners" },
-  { label: "Why Vesper", path: "/why-vesper" },
   { label: "News", path: "/news" },
   { label: "Contact", path: "/contact" },
+  { label: "Shop", path: "https://www.alko.lv/", external: true },
 ];
 
 const Navbar = () => {
