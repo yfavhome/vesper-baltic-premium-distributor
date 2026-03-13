@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import ProductsPage from "./pages/ProductsPage";
+import ProductCategoryPage from "./pages/ProductCategoryPage";
 import DistributionPage from "./pages/DistributionPage";
 import PartnersPage from "./pages/PartnersPage";
 import WhyVesperPage from "./pages/WhyVesperPage";
