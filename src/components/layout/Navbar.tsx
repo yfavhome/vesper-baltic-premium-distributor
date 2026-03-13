@@ -110,16 +110,27 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <Link
-                    to={link.path}
-                    className={`text-lg font-display font-semibold tracking-wide transition-colors hover:text-primary ${
-                      location.pathname === link.path
-                        ? "text-primary"
-                        : "text-foreground/70"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
+                  {'external' in link && link.external ? (
+                    <a
+                      href={link.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-lg font-display font-semibold tracking-wide transition-colors hover:text-primary text-foreground/70"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className={`text-lg font-display font-semibold tracking-wide transition-colors hover:text-primary ${
+                        location.pathname === link.path
+                          ? "text-primary"
+                          : "text-foreground/70"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </motion.div>
               ))}
             </div>
