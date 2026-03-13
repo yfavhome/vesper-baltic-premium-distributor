@@ -62,7 +62,7 @@ const ContactPage = () => {
                 </div>
               </div>
               <div>
-                <label className="text-label text-muted-foreground block mb-2">Company</label>
+                <label className="text-label text-muted-foreground block mb-2">Subject</label>
                 <input
                   type="text"
                   value={form.company}

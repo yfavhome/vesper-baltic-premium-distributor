@@ -5,7 +5,7 @@ import AnimatedCounter from "@/components/shared/AnimatedCounter";
 import distributionHero from "@/assets/distribution-hero.jpg";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Truck, Warehouse, BarChart3, ShoppingCart, UtensilsCrossed, MapPin, ThermometerSnowflake, Clock } from "lucide-react";
+import { Truck, Warehouse, ShoppingCart, UtensilsCrossed, MapPin, Globe, Store, Package } from "lucide-react";
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
   const ref = useRef(null);
@@ -18,18 +18,19 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 };
 
 const services = [
-  { icon: Truck, title: "Distribution Network", desc: "Comprehensive fleet covering all three Baltic states with daily delivery routes to major cities and regions." },
-  { icon: Warehouse, title: "Warehouse Operations", desc: "Modern, temperature-controlled warehouse facilities with advanced inventory management systems." },
-  { icon: BarChart3, title: "Supply Chain Management", desc: "End-to-end supply chain visibility from producer shipment to retail shelf placement." },
-  { icon: ShoppingCart, title: "Retail Distribution", desc: "Direct relationships with major retail chains and independent stores across the Baltics." },
-  { icon: UtensilsCrossed, title: "HoReCa Supply", desc: "Dedicated service for hotels, restaurants, and bars with tailored delivery schedules." },
+  { icon: ShoppingCart, title: "Wholesale Trade", desc: "Comprehensive wholesale distribution covering the entire Baltic market with reliable supply chains." },
+  { icon: Store, title: "Retail Trade", desc: "Carefully selected retail partners ensuring premium products reach the right consumers." },
+  { icon: Truck, title: "Logistics Services", desc: "Full logistics coverage across Europe, Baltic States, and third countries with professional handling." },
+  { icon: Package, title: "Brand Distribution", desc: "Dedicated brand distribution services focused on increasing sales and market presence of distributed brands." },
+  { icon: Globe, title: "Online Platform", desc: "E-commerce through our online shop at alko.lv, providing convenient access to our full product range." },
+  { icon: UtensilsCrossed, title: "Showroom", desc: "Visit our Vesper shop and showroom in Tīraine, Latvia for a curated tasting and selection experience." },
 ];
 
 const features = [
   { icon: MapPin, title: "3 Countries", desc: "Latvia, Lithuania, Estonia" },
-  { icon: ThermometerSnowflake, title: "Climate Control", desc: "Temperature-regulated storage" },
-  { icon: Clock, title: "Next-Day Delivery", desc: "To all major Baltic cities" },
-  { icon: Truck, title: "Modern Fleet", desc: "GPS-tracked delivery vehicles" },
+  { icon: Globe, title: "International", desc: "Europe & 3rd country logistics" },
+  { icon: Store, title: "Showroom", desc: "Vesper shop in Tīraine" },
+  { icon: Truck, title: "Full Coverage", desc: "Wholesale & retail channels" },
 ];
 
 const DistributionPage = () => {
@@ -38,7 +39,7 @@ const DistributionPage = () => {
       <PageHero
         label="Distribution & Logistics"
         title="Reliable Infrastructure, Exceptional Service"
-        subtitle="Our state-of-the-art logistics network ensures premium products reach every corner of the Baltic region."
+        subtitle="Our logistics network covers Europe, Baltic States, and third countries — ensuring products reach every destination."
         image={distributionHero}
       />
 
@@ -46,9 +47,9 @@ const DistributionPage = () => {
       <section className="vesper-gradient section-padding py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <AnimatedCounter end={3} label="Countries Served" light />
-          <AnimatedCounter end={500} suffix="+" label="Delivery Points" light />
-          <AnimatedCounter end={98} suffix="%" label="On-Time Delivery" light />
-          <AnimatedCounter end={24} suffix="/7" label="Order Support" light />
+          <AnimatedCounter end={6} label="Core Services" light />
+          <AnimatedCounter end={37} suffix="+" label="Brands Distributed" light />
+          <AnimatedCounter end={16} label="Product Categories" light />
         </div>
       </section>
 
