@@ -62,7 +62,7 @@ const ContactPage = () => {
                 </div>
               </div>
               <div>
-                <label className="text-label text-muted-foreground block mb-2">Company</label>
+                <label className="text-label text-muted-foreground block mb-2">Subject</label>
                 <input
                   type="text"
                   value={form.company}
@@ -91,7 +91,7 @@ const ContactPage = () => {
             </form>
           </div>
 
-          {/* Info */}
+           {/* Info */}
           <div>
             <SectionHeading label="Contact Information" title="Reach Us Directly" />
             <div className="space-y-8 mb-12">
@@ -99,14 +99,24 @@ const ContactPage = () => {
                 <Mail className="w-5 h-5 text-primary mt-1" />
                 <div>
                   <p className="font-body font-semibold text-foreground">Email</p>
-                  <p className="text-body text-muted-foreground">info@vespergroup.com</p>
+                  <p className="text-body text-muted-foreground">
+                    <a href="mailto:info@vesper.group" className="hover:text-primary transition-colors">info@vesper.group</a>
+                  </p>
+                  <p className="text-body text-muted-foreground">
+                    <a href="mailto:horeca@vesper.group" className="hover:text-primary transition-colors">horeca@vesper.group</a>
+                  </p>
                 </div>
               </div>
               <div className="flex gap-4">
                 <Phone className="w-5 h-5 text-primary mt-1" />
                 <div>
                   <p className="font-body font-semibold text-foreground">Phone</p>
-                  <p className="text-body text-muted-foreground">+371 2000 0000</p>
+                  <p className="text-body text-muted-foreground">
+                    <a href="tel:+37122100200" className="hover:text-primary transition-colors">+371 22100200</a>
+                  </p>
+                  <p className="text-body text-muted-foreground">
+                    <a href="tel:+37167630724" className="hover:text-primary transition-colors">+371 67630724</a>
+                  </p>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -114,9 +124,9 @@ const ContactPage = () => {
                 <div>
                   <p className="font-body font-semibold text-foreground">Address</p>
                   <p className="text-body text-muted-foreground">
-                    Brīvības iela 100<br />
-                    Riga, LV-1001<br />
-                    Latvia
+                    Jelgavas ceļš 20, Tīraine<br />
+                    Mārupes pagasts, Mārupes novads<br />
+                    LV-2167, Latvia
                   </p>
                 </div>
               </div>

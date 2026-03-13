@@ -15,15 +15,21 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const categories = [
-  { name: "Wine", image: catWine, desc: "From Old World classics to New World discoveries" },
-  { name: "Champagne", image: catChampagne, desc: "Prestige cuvées and grower champagnes" },
   { name: "Whisky", image: catWhisky, desc: "Single malts, blends, and rare expressions" },
   { name: "Vodka", image: catVodka, desc: "Ultra-premium vodkas from around the world" },
-  { name: "Gin", image: catGin, desc: "Craft and classic London dry gins" },
-  { name: "Rum", image: catRum, desc: "Aged, dark, and premium white rums" },
+  { name: "Rum", image: catRum, desc: "Aged, dark, spiced and premium white rums" },
+  { name: "Gin", image: catGin, desc: "Craft and classic dry gins" },
   { name: "Tequila", image: catTequila, desc: "Artisanal and premium Mexican spirits" },
+  { name: "Sake", image: catMixers, desc: "Premium Japanese rice wine including Dassai" },
+  { name: "Red Wine", image: catWine, desc: "From Old World classics to New World discoveries" },
+  { name: "White Wine", image: catChampagne, desc: "Crisp and aromatic white wines from top producers" },
+  { name: "Rosé Wine", image: catWine, desc: "Elegant rosé wines from leading regions" },
+  { name: "Champagne", image: catChampagne, desc: "Prestige cuvées and grower champagnes" },
+  { name: "Prosecco", image: catChampagne, desc: "Italian sparkling wines from Veneto and Trentino" },
+  { name: "Sparkling Wine", image: catChampagne, desc: "Sparkling wines from around the globe" },
+  { name: "Brandy", image: catWhisky, desc: "Premium brandies including Armenian classics" },
+  { name: "Cognac", image: catWhisky, desc: "Fine French cognacs and aged eaux-de-vie" },
   { name: "Liqueurs", image: catLiqueurs, desc: "Classic and contemporary liqueurs" },
-  { name: "Mixers", image: catMixers, desc: "Premium tonics, sodas, and cocktail mixers" },
 ];
 
 const ProductsPage = () => {
@@ -32,7 +38,7 @@ const ProductsPage = () => {
       <PageHero
         label="Product Categories"
         title="A Curated Selection of Fine Beverages"
-        subtitle="Explore our comprehensive range of premium spirits, wines, and mixers."
+        subtitle="Explore our comprehensive range of premium spirits, wines, and more — 16 categories covering every taste."
         image={productsHero}
       />
 
@@ -49,7 +55,7 @@ const ProductsPage = () => {
                 key={cat.name}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
                 className="group relative overflow-hidden cursor-pointer hover-lift"
               >
                 <div className="aspect-[4/5] overflow-hidden">

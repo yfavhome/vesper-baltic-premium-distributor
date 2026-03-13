@@ -15,12 +15,12 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 };
 
 const articles = [
-  { title: "Vesper Group Expands Distribution Network to Estonia", date: "March 10, 2026", category: "Company News", excerpt: "Building on our strong presence in Latvia and Lithuania, Vesper Group is pleased to announce the expansion of our distribution operations into Estonia." },
-  { title: "New Partnership with Château Margaux", date: "February 22, 2026", category: "Partnerships", excerpt: "We are honored to announce our exclusive distribution partnership with Château Margaux, one of Bordeaux's most prestigious estates." },
-  { title: "Baltic Spirits Market: Trends & Outlook for 2026", date: "January 15, 2026", category: "Industry Insights", excerpt: "An in-depth analysis of the premium spirits market across the Baltic states, highlighting key trends and growth opportunities." },
-  { title: "Vesper Group Named Baltic Distributor of the Year", date: "December 5, 2025", category: "Awards", excerpt: "Vesper Group has been recognized as the Baltic Distributor of the Year at the European Beverage Distribution Awards." },
-  { title: "Sustainability in Beverage Distribution", date: "November 18, 2025", category: "Industry Insights", excerpt: "How Vesper Group is reducing its environmental footprint through sustainable logistics and packaging initiatives." },
-  { title: "Premium Vodka Category Shows Strong Baltic Growth", date: "October 30, 2025", category: "Market Updates", excerpt: "The premium vodka segment continues to show robust growth across Baltic markets, driven by consumer preferences for quality spirits." },
+  { title: "Events with Vesper Catering", date: "September 4, 2025", category: "Events", excerpt: "Vesper Group strengthens partnerships in the Baltic market. Our team took part in a business networking event bringing together leading companies and professionals from Latvia and beyond, focused on strengthening cooperation and discovering new opportunities." },
+  { title: "Vesper Group Strengthens Baltic Market Partnerships", date: "2025", category: "Company News", excerpt: "This week, our team participated in a networking event bringing together leading companies and professionals from Latvia and beyond, discussing market trends and new opportunities for premium beverage distribution." },
+  { title: "New Premium Brand Partnerships Announced", date: "2025", category: "Partnerships", excerpt: "Vesper Group continues to expand its portfolio with new exclusive brand partnerships, bringing world-class beverages to Baltic consumers." },
+  { title: "Dassai Sake Now Available in the Baltics", date: "2025", category: "Product Launch", excerpt: "We are proud to introduce Dassai, one of Japan's most renowned sake brands, to the Baltic market through our distribution network." },
+  { title: "Black Tears Dry Spiced Rum Arrives", date: "2025", category: "Product Launch", excerpt: "Cuban-crafted Black Tears Dry Spiced Rum is now available through Vesper Group's Baltic distribution channels." },
+  { title: "Vesper Online Shop alko.lv Expands Range", date: "2025", category: "Company News", excerpt: "Our e-commerce platform alko.lv continues to grow with an expanded selection of premium beverages available for convenient online ordering." },
 ];
 
 const NewsPage = () => {

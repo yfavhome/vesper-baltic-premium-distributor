@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight, Truck, Wine, Users, ShieldCheck } from "lucide-react";
+import { ArrowRight, Truck, Wine, Users, ShieldCheck, ShoppingCart, Package, Globe, Store } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
 import AnimatedCounter from "@/components/shared/AnimatedCounter";
@@ -27,19 +27,19 @@ const FadeInSection = ({ children, className = "", delay = 0 }: { children: Reac
   );
 };
 
-const categories = [
-  { name: "Wine", icon: Wine },
-  { name: "Champagne", icon: Wine },
-  { name: "Whisky", icon: Wine },
-  { name: "Vodka", icon: Wine },
-  { name: "Gin", icon: Wine },
-  { name: "Rum", icon: Wine },
+const services = [
+  { icon: ShoppingCart, name: "Wholesale Trade", desc: "Covering Baltic market" },
+  { icon: Store, name: "Retail Trade", desc: "Carefully selected partners" },
+  { icon: Truck, name: "Logistics Services", desc: "Europe, Baltic States, 3rd countries" },
+  { icon: Package, name: "Brand Distribution", desc: "Increase in sales of distributed brands" },
+  { icon: Globe, name: "Online Platform", desc: "E-shop www.alko.lv" },
+  { icon: Wine, name: "Showroom", desc: "Vesper shop in Tīraine, Latvia" },
 ];
 
 const newsItems = [
-  { title: "Vesper Group Expands Baltic Distribution Network", date: "March 2026", category: "Company News" },
-  { title: "New Premium Brand Partnership Announced", date: "February 2026", category: "Partnerships" },
-  { title: "Baltic Spirits Market Report 2026", date: "January 2026", category: "Industry Insights" },
+  { title: "Events with Vesper Catering", date: "September 2025", category: "Events" },
+  { title: "Vesper Group Strengthens Baltic Partnerships", date: "2025", category: "Company News" },
+  { title: "New Premium Brand Partnerships Announced", date: "2025", category: "Partnerships" },
 ];
 
 const Index = () => {
@@ -66,7 +66,7 @@ const Index = () => {
               Premium Beverage Distribution in the Baltics
             </h1>
             <p className="text-body-lg text-primary-foreground/70 mt-8 max-w-2xl">
-              We distribute premium alcohol brands across retail and HoReCa channels throughout the Baltic region, connecting world-class producers with discerning markets.
+              Vesper Group is an alcohol distributor based in Latvia, working across the Baltic region. We offer a wide range of beverages — from everyday drinks to exclusive premium brands — making sure that everyone can find the right choice.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
               <Link
@@ -81,6 +81,14 @@ const Index = () => {
               >
                 Become a Partner
               </Link>
+              <a
+                href="https://www.alko.lv/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/10 transition-colors"
+              >
+                Shop Online <ArrowRight size={16} />
+              </a>
             </div>
           </motion.div>
         </div>
@@ -101,8 +109,8 @@ const Index = () => {
           <div>
             <SectionHeading
               label="About Vesper"
-              title="The Leading Premium Beverage Distributor in the Baltic Region"
-              subtitle="With decades of expertise in the beverage industry, Vesper Group has established itself as the trusted partner for premium brands seeking access to Baltic markets."
+              title="Your Trusted Alcohol Distributor in the Baltic Region"
+              subtitle="Vesper Group is an alcohol distributor based in Latvia, working across the Baltic region. We offer a wide range of beverages — from everyday drinks to exclusive premium brands."
             />
             <Link
               to="/about"
@@ -112,11 +120,31 @@ const Index = () => {
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-6">
-            <AnimatedCounter end={85} suffix="+" label="Premium Brands" />
-            <AnimatedCounter end={2500} suffix="+" label="Products" />
-            <AnimatedCounter end={500} suffix="+" label="Retail Partners" />
+            <AnimatedCounter end={37} suffix="+" label="Brands" />
+            <AnimatedCounter end={16} label="Product Categories" />
             <AnimatedCounter end={3} label="Baltic Markets" />
+            <AnimatedCounter end={6} label="Services" />
           </div>
+        </div>
+      </section>
+
+      {/* Our Services */}
+      <section className="section-padding section-spacing bg-secondary">
+        <SectionHeading
+          label="Our Services"
+          title="Comprehensive Beverage Solutions"
+          align="center"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, i) => (
+            <FadeInSection key={service.name} delay={i * 0.1}>
+              <div className="group flex flex-col items-center gap-4 p-10 bg-background hover-lift text-center">
+                <service.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
+                <h3 className="font-display text-lg font-semibold text-foreground">{service.name}</h3>
+                <p className="text-sm text-muted-foreground">{service.desc}</p>
+              </div>
+            </FadeInSection>
+          ))}
         </div>
       </section>
 
@@ -127,8 +155,8 @@ const Index = () => {
         <div className="relative z-10 section-padding">
           <SectionHeading
             label="Our Portfolio"
-            title="World-Class Brands, Expertly Distributed"
-            subtitle="We partner with the finest producers from around the globe to bring exceptional beverages to the Baltic market."
+            title="37+ Brands From Around the World"
+            subtitle="We partner with the finest producers from Argentina to Japan, bringing exceptional beverages to the Baltic market."
             light
           />
           <Link
@@ -137,28 +165,6 @@ const Index = () => {
           >
             View Full Portfolio <ArrowRight size={16} />
           </Link>
-        </div>
-      </section>
-
-      {/* Product Categories */}
-      <section className="section-padding section-spacing bg-secondary">
-        <SectionHeading
-          label="Product Categories"
-          title="A Curated Selection of Fine Beverages"
-          align="center"
-        />
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {categories.map((cat, i) => (
-            <FadeInSection key={cat.name} delay={i * 0.1}>
-              <Link
-                to="/products"
-                className="group flex flex-col items-center gap-4 p-8 bg-background hover-lift"
-              >
-                <cat.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
-                <span className="text-label text-foreground">{cat.name}</span>
-              </Link>
-            </FadeInSection>
-          ))}
         </div>
       </section>
 
@@ -172,11 +178,11 @@ const Index = () => {
             <SectionHeading
               label="Distribution & Logistics"
               title="Reliable Infrastructure Across the Baltics"
-              subtitle="Our state-of-the-art logistics network ensures premium products reach every corner of the Baltic region efficiently and safely."
+              subtitle="Our logistics network covers Europe, Baltic States, and third countries — ensuring products reach every destination efficiently and safely."
             />
             <div className="grid grid-cols-2 gap-6">
               {[
-                { icon: Truck, label: "Modern Fleet" },
+                { icon: Truck, label: "Europe-wide Logistics" },
                 { icon: ShieldCheck, label: "Quality Assured" },
                 { icon: Wine, label: "Temperature Controlled" },
                 { icon: Users, label: "Expert Team" },
@@ -218,19 +224,18 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Vesper */}
+      {/* Values */}
       <section className="section-padding section-spacing">
         <SectionHeading
           label="Why Vesper"
-          title="Your Trusted Distribution Partner"
+          title="Our Values"
           align="center"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { title: "Premium Portfolio", desc: "Access to 85+ world-class beverage brands" },
-            { title: "Reliable Logistics", desc: "Efficient distribution across all Baltic states" },
-            { title: "Expert Service", desc: "Dedicated account management and support" },
-            { title: "Long-term Vision", desc: "Building lasting partnerships for mutual growth" },
+            { title: "Diversity", desc: "Our portfolio lists the best brands on the market, ranging from loved and respected names with preserved heritage to modern newcomers. We continually increase the range of offered products across the Baltic States." },
+            { title: "Values", desc: "We strive to create mutually fulfilling care for our brands, customers, and employees. Being a highly professional, passionate team, we value relationships founded on mutual trust, transparency, and respect for craftsmanship." },
+            { title: "Ambition", desc: "We seek to improve our results, relationships and product range. Our ambition is to become the leading company in the Baltic States, satisfy consumer needs for beverage diversity, and elevate the experience of beverage appreciation." },
           ].map((item, i) => (
             <FadeInSection key={item.title} delay={i * 0.1}>
               <div className="p-8 border border-border hover:border-primary/30 transition-colors group hover-lift">
@@ -246,7 +251,7 @@ const Index = () => {
       {/* News Preview */}
       <section className="section-padding section-spacing bg-secondary">
         <SectionHeading
-          label="Latest News"
+          label="Vesper News"
           title="Insights & Updates"
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -283,12 +288,22 @@ const Index = () => {
           <h2 className="text-display-md text-primary-foreground max-w-2xl mx-auto mb-8">
             Ready to Partner with Vesper Group?
           </h2>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 px-10 py-5 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
-          >
-            Contact Us <ArrowRight size={16} />
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-10 py-5 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
+            >
+              Contact Us <ArrowRight size={16} />
+            </Link>
+            <a
+              href="https://wa.me/37122100200"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-10 py-5 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/10 transition-colors"
+            >
+              WhatsApp Us
+            </a>
+          </div>
         </motion.div>
       </section>
     </Layout>

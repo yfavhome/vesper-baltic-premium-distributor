@@ -10,9 +10,9 @@ const navLinks = [
   { label: "Products", path: "/products" },
   { label: "Distribution", path: "/distribution" },
   { label: "Partners", path: "/partners" },
-  { label: "Why Vesper", path: "/why-vesper" },
   { label: "News", path: "/news" },
   { label: "Contact", path: "/contact" },
+  { label: "Shop", path: "https://www.alko.lv/", external: true },
 ];
 
 const Navbar = () => {
@@ -49,23 +49,36 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-xs font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary ${
-                  location.pathname === link.path
-                    ? "text-primary"
-                    : scrolled
-                    ? "text-foreground/70"
-                    : "text-primary-foreground/80"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => 
+              'external' in link && link.external ? (
+                <a
+                  key={link.path}
+                  href={link.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-xs font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary ${
+                    scrolled ? "text-foreground/70" : "text-primary-foreground/80"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-xs font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary ${
+                    location.pathname === link.path
+                      ? "text-primary"
+                      : scrolled
+                      ? "text-foreground/70"
+                      : "text-primary-foreground/80"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Mobile Toggle */}
@@ -97,16 +110,27 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <Link
-                    to={link.path}
-                    className={`text-lg font-display font-semibold tracking-wide transition-colors hover:text-primary ${
-                      location.pathname === link.path
-                        ? "text-primary"
-                        : "text-foreground/70"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
+                  {'external' in link && link.external ? (
+                    <a
+                      href={link.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-lg font-display font-semibold tracking-wide transition-colors hover:text-primary text-foreground/70"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className={`text-lg font-display font-semibold tracking-wide transition-colors hover:text-primary ${
+                        location.pathname === link.path
+                          ? "text-primary"
+                          : "text-foreground/70"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </motion.div>
               ))}
             </div>

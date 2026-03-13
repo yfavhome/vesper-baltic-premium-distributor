@@ -53,18 +53,26 @@ const Footer = () => {
           <div>
             <h4 className="text-label text-primary-foreground/40 mb-6">Contact</h4>
             <ul className="space-y-3 text-body text-primary-foreground/60">
-              <li>info@vespergroup.com</li>
-              <li>+371 2000 0000</li>
-              <li>Riga, Latvia</li>
+              <li><a href="mailto:info@vesper.group" className="hover:text-primary transition-colors">info@vesper.group</a></li>
+              <li><a href="mailto:horeca@vesper.group" className="hover:text-primary transition-colors">horeca@vesper.group</a></li>
+              <li><a href="tel:+37122100200" className="hover:text-primary transition-colors">+371 22100200</a></li>
+              <li><a href="tel:+37167630724" className="hover:text-primary transition-colors">+371 67630724</a></li>
+              <li>Jelgavas ceļš 20, Tīraine,<br />Mārupes novads, LV-2167, Latvia</li>
             </ul>
             <div className="flex gap-4 mt-6">
-              {["LinkedIn", "Instagram", "Facebook"].map((s) => (
+              {[
+                { label: "Ig", href: "https://www.instagram.com/vespergroup/" },
+                { label: "Fb", href: "https://www.facebook.com/vespergroup/" },
+                { label: "Wa", href: "https://wa.me/37122100200" },
+              ].map((s) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs font-semibold uppercase tracking-widest text-primary-foreground/40 hover:text-primary transition-colors"
                 >
-                  {s.slice(0, 2)}
+                  {s.label}
                 </a>
               ))}
             </div>
