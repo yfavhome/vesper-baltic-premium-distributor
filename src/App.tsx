@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import ProductsPage from "./pages/ProductsPage";
+import ProductCategoryPage from "./pages/ProductCategoryPage";
 import DistributionPage from "./pages/DistributionPage";
 import PartnersPage from "./pages/PartnersPage";
 import WhyVesperPage from "./pages/WhyVesperPage";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/about" element={<AboutPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:category" element={<ProductCategoryPage />} />
           <Route path="/distribution" element={<DistributionPage />} />
           <Route path="/partners" element={<PartnersPage />} />
           <Route path="/why-vesper" element={<WhyVesperPage />} />
