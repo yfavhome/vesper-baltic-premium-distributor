@@ -37,6 +37,7 @@ const App = () => (
           <Route path="/about" element={<AboutPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:category" element={<ProductCategoryPage />} />
           <Route path="/distribution" element={<DistributionPage />} />
           <Route path="/partners" element={<PartnersPage />} />
           <Route path="/why-vesper" element={<WhyVesperPage />} />
