@@ -256,6 +256,11 @@ const ProductCategoryPage = () => {
                                     {product.abv && (
                                       <span className="text-[10px] text-muted-foreground">{product.abv} ABV</span>
                                     )}
+                                    {product.shopUrl && (
+                                      <a href={product.shopUrl} target="_blank" rel="noopener noreferrer" className="text-[10px] text-primary hover:underline font-semibold ml-auto">
+                                        Buy on alko.lv →
+                                      </a>
+                                    )}
                                   </div>
                                 </div>
                               ))}
