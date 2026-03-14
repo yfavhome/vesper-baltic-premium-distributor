@@ -41,7 +41,7 @@ const Navbar = () => {
       >
         <div className="section-padding flex items-center justify-between h-20 lg:h-24">
           <Link to="/" className="flex items-center gap-2">
-            <span className="font-display text-2xl lg:text-3xl font-bold tracking-tight">
+            <span className="font-display text-2xl lg:text-3xl font-bold tracking-tight leading-none">
               <span className="text-primary">VESPER</span>
               <span className={`${scrolled ? "text-foreground" : "text-primary-foreground"} transition-colors duration-500`}>
                 {" "}GROUP
