@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, forwardRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useInView } from "framer-motion";
 
 interface AnimatedCounterProps {
@@ -8,7 +8,7 @@ interface AnimatedCounterProps {
   light?: boolean;
 }
 
-const AnimatedCounter = forwardRef<HTMLDivElement, AnimatedCounterProps>(({ end, suffix = "", label, light = false }, _ref) => {
+const AnimatedCounter = ({ end, suffix = "", label, light = false }: AnimatedCounterProps) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -41,8 +41,6 @@ const AnimatedCounter = forwardRef<HTMLDivElement, AnimatedCounterProps>(({ end,
       </p>
     </div>
   );
-});
-
-AnimatedCounter.displayName = "AnimatedCounter";
+};
 
 export default AnimatedCounter;
