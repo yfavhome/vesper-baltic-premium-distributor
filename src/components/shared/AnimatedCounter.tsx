@@ -41,6 +41,8 @@ const AnimatedCounter = forwardRef<HTMLDivElement, AnimatedCounterProps>(({ end,
       </p>
     </div>
   );
-};
+});
+
+AnimatedCounter.displayName = "AnimatedCounter";
 
 export default AnimatedCounter;
