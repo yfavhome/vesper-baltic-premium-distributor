@@ -44,6 +44,55 @@ const categoryDescriptions: Record<string, string> = {
   Liqueurs: "Classic and contemporary liqueurs",
 };
 
+interface CategoryData {
+  name: string;
+  image: string;
+  desc: string;
+  brandCount: number;
+  productCount: number;
+}
+
+const CategoryCard = ({ cat, index }: { cat: CategoryData; index: number }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: index * 0.06 }}
+    >
+      <Link
+        to={`/products/${encodeURIComponent(cat.name)}`}
+        className="group relative block overflow-hidden cursor-pointer hover-lift"
+      >
+        <div className="aspect-[4/5] overflow-hidden">
+          <img
+            src={cat.image}
+            alt={cat.name}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--vesper-dark))]/90 via-[hsl(var(--vesper-dark))]/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-8">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-[10px] uppercase tracking-widest text-primary font-semibold">
+              {cat.brandCount} {cat.brandCount === 1 ? "brand" : "brands"} · {cat.productCount} products
+            </span>
+          </div>
+          <h3 className="font-display text-2xl font-bold text-primary-foreground mb-2">{cat.name}</h3>
+          <p className="text-sm text-primary-foreground/60">{cat.desc}</p>
+          <div className="flex items-center gap-2 mt-4">
+            <div className="w-8 h-[2px] bg-primary group-hover:w-16 transition-all duration-500" />
+            <ArrowRight size={14} className="text-primary opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-500" />
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+};
+
 const ProductsPage = () => {
   const [search, setSearch] = useState("");
 
@@ -121,46 +170,9 @@ const ProductsPage = () => {
         <SectionHeading label="Categories" title="Discover Our Range" align="center" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((cat, i) => {
-            const ref = useRef(null);
-            const inView = useInView(ref, { once: true, margin: "-50px" });
-            return (
-              <motion.div
-                ref={ref}
-                key={cat.name}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.06 }}
-              >
-                <Link
-                  to={`/products/${encodeURIComponent(cat.name)}`}
-                  className="group relative block overflow-hidden cursor-pointer hover-lift"
-                >
-                  <div className="aspect-[4/5] overflow-hidden">
-                    <img
-                      src={cat.image}
-                      alt={cat.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--vesper-dark))]/90 via-[hsl(var(--vesper-dark))]/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-[10px] uppercase tracking-widest text-primary font-semibold">
-                        {cat.brandCount} {cat.brandCount === 1 ? "brand" : "brands"} · {cat.productCount} products
-                      </span>
-                    </div>
-                    <h3 className="font-display text-2xl font-bold text-primary-foreground mb-2">{cat.name}</h3>
-                    <p className="text-sm text-primary-foreground/60">{cat.desc}</p>
-                    <div className="flex items-center gap-2 mt-4">
-                      <div className="w-8 h-[2px] bg-primary group-hover:w-16 transition-all duration-500" />
-                      <ArrowRight size={14} className="text-primary opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-500" />
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            );
-          })}
+          {filtered.map((cat, i) => (
+            <CategoryCard key={cat.name} cat={cat} index={i} />
+          ))}
         </div>
 
         {filtered.length === 0 && (

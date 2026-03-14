@@ -1,10 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { brands, getBrandsByCategory, productCategories } from "@/data/brands";
+import { brands, getBrandsByCategory, productCategories, Brand } from "@/data/brands";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useMemo } from "react";
-import { ArrowLeft, Search, Wine, X, MapPin, Calendar, ChevronRight, SlidersHorizontal } from "lucide-react";
+import { ArrowLeft, Search, Wine, MapPin, Calendar, ChevronRight, SlidersHorizontal } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
@@ -26,6 +26,105 @@ const categoryImages: Record<string, string> = {
   "White Wine": catChampagne, "Rosé Wine": catWine, Champagne: catChampagne,
   Prosecco: catChampagne, "Sparkling Wine": catChampagne, Brandy: catWhisky,
   Cognac: catWhisky, Liqueurs: catLiqueurs,
+};
+
+const BrandCard = ({
+  brand,
+  index,
+  isExpanded,
+  onToggle,
+}: {
+  brand: Brand;
+  index: number;
+  isExpanded: boolean;
+  onToggle: () => void;
+}) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-30px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: index * 0.05 }}
+      className="border border-border hover:border-primary/30 transition-all bg-card overflow-hidden"
+    >
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center gap-6 p-6 md:p-8 text-left group"
+      >
+        <div className="w-14 h-14 rounded-full bg-secondary flex items-center justify-center shrink-0">
+          <span className="font-display text-xl font-bold text-primary">{brand.name[0]}</span>
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+            {brand.name}
+          </h3>
+          <div className="flex items-center gap-3 mt-1 flex-wrap">
+            <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+              <MapPin size={10} /> {brand.country}
+            </span>
+            {brand.est && (
+              <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+                <Calendar size={10} /> Est. {brand.est}
+              </span>
+            )}
+            <span className="text-xs text-primary/70">
+              {brand.products?.length || 0} products
+            </span>
+          </div>
+          <p className="text-sm text-muted-foreground mt-2 line-clamp-1 md:line-clamp-none">{brand.desc}</p>
+        </div>
+        <ChevronRight
+          size={20}
+          className={`text-muted-foreground shrink-0 transition-transform duration-300 ${isExpanded ? "rotate-90" : ""}`}
+        />
+      </button>
+
+      <AnimatePresence>
+        {isExpanded && brand.products && brand.products.length > 0 && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0">
+              <div className="border-t border-border pt-6">
+                <p className="text-label text-primary mb-4">Available Products</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {brand.products.map((product) => (
+                    <div
+                      key={product.name + (product.volume || '')}
+                      className="p-4 bg-secondary/50 border border-border/50 hover:border-primary/20 transition-all"
+                    >
+                      <h4 className="font-body text-sm font-medium text-foreground leading-tight">{product.name}</h4>
+                      <div className="flex items-center gap-3 mt-2 flex-wrap">
+                        <span className="text-[10px] uppercase tracking-widest text-primary/80 font-semibold">{product.type}</span>
+                        {product.volume && (
+                          <span className="text-[10px] text-muted-foreground">{product.volume}</span>
+                        )}
+                        {product.abv && (
+                          <span className="text-[10px] text-muted-foreground">{product.abv} ABV</span>
+                        )}
+                        {product.shopUrl && (
+                          <a href={product.shopUrl} target="_blank" rel="noopener noreferrer" className="text-[10px] text-primary hover:underline font-semibold ml-auto">
+                            Buy on alko.lv →
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
 };
 
 const ProductCategoryPage = () => {
@@ -181,98 +280,15 @@ const ProductCategoryPage = () => {
           </div>
         ) : (
           <div className="space-y-4">
-            {filteredBrands.map((brand, i) => {
-              const ref = useRef(null);
-              const inView = useInView(ref, { once: true, margin: "-30px" });
-              const isExpanded = selectedBrand === brand.name;
-
-              return (
-                <motion.div
-                  ref={ref}
-                  key={brand.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: i * 0.05 }}
-                  className="border border-border hover:border-primary/30 transition-all bg-card overflow-hidden"
-                >
-                  {/* Brand Header */}
-                  <button
-                    onClick={() => setSelectedBrand(isExpanded ? null : brand.name)}
-                    className="w-full flex items-center gap-6 p-6 md:p-8 text-left group"
-                  >
-                    <div className="w-14 h-14 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                      <span className="font-display text-xl font-bold text-primary">{brand.name[0]}</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {brand.name}
-                      </h3>
-                      <div className="flex items-center gap-3 mt-1 flex-wrap">
-                        <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                          <MapPin size={10} /> {brand.country}
-                        </span>
-                        {brand.est && (
-                          <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                            <Calendar size={10} /> Est. {brand.est}
-                          </span>
-                        )}
-                        <span className="text-xs text-primary/70">
-                          {brand.products?.length || 0} products
-                        </span>
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-2 line-clamp-1 md:line-clamp-none">{brand.desc}</p>
-                    </div>
-                    <ChevronRight
-                      size={20}
-                      className={`text-muted-foreground shrink-0 transition-transform duration-300 ${isExpanded ? "rotate-90" : ""}`}
-                    />
-                  </button>
-
-                  {/* Expanded Products */}
-                  <AnimatePresence>
-                    {isExpanded && brand.products && brand.products.length > 0 && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0">
-                          <div className="border-t border-border pt-6">
-                            <p className="text-label text-primary mb-4">Available Products</p>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                              {brand.products.map((product) => (
-                                <div
-                                  key={product.name + (product.volume || '')}
-                                  className="p-4 bg-secondary/50 border border-border/50 hover:border-primary/20 transition-all"
-                                >
-                                  <h4 className="font-body text-sm font-medium text-foreground leading-tight">{product.name}</h4>
-                                  <div className="flex items-center gap-3 mt-2 flex-wrap">
-                                    <span className="text-[10px] uppercase tracking-widest text-primary/80 font-semibold">{product.type}</span>
-                                    {product.volume && (
-                                      <span className="text-[10px] text-muted-foreground">{product.volume}</span>
-                                    )}
-                                    {product.abv && (
-                                      <span className="text-[10px] text-muted-foreground">{product.abv} ABV</span>
-                                    )}
-                                    {product.shopUrl && (
-                                      <a href={product.shopUrl} target="_blank" rel="noopener noreferrer" className="text-[10px] text-primary hover:underline font-semibold ml-auto">
-                                        Buy on alko.lv →
-                                      </a>
-                                    )}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
+            {filteredBrands.map((brand, i) => (
+              <BrandCard
+                key={brand.name}
+                brand={brand}
+                index={i}
+                isExpanded={selectedBrand === brand.name}
+                onToggle={() => setSelectedBrand(selectedBrand === brand.name ? null : brand.name)}
+              />
+            ))}
           </div>
         )}
       </section>
