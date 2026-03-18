@@ -9,9 +9,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-6">
-              <img src={logoIcon} alt="Vesper" className="h-14 w-auto" />
-              <img src={logoText} alt="Vesper" className="h-5 w-auto brightness-0 invert" />
+            <div className="flex items-center gap-3 mb-6">
+              <img src={logoIcon} alt="Vesper" className="h-12 w-auto" />
+              <img src={logoText} alt="Vesper" className="h-4 w-auto brightness-0 invert" />
             </div>
             <p className="text-body text-primary-foreground/60 max-w-xs">
               Premium beverage distribution across the Baltic region. Connecting world-class brands with discerning markets.

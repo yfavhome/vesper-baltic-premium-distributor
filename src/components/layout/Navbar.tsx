@@ -48,12 +48,12 @@ const Navbar = () => {
         }`}
       >
         <div className="section-padding flex items-center justify-between h-20 lg:h-24">
-          <Link to="/" className="flex items-center gap-2 relative z-50">
-            <img src={logoIcon} alt="Vesper" className="h-12 lg:h-14 w-auto" />
+          <Link to="/" className="flex items-center gap-3 relative z-50">
+            <img src={logoIcon} alt="Vesper" className="h-10 lg:h-12 w-auto" />
             <img
               src={logoText}
               alt="Vesper"
-              className={`h-5 lg:h-6 w-auto transition-all duration-500 ${
+              className={`h-4 lg:h-5 w-auto transition-all duration-500 ${
                 scrolled ? "brightness-0" : "brightness-0 invert"
               }`}
             />
