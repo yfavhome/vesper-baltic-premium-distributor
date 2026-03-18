@@ -32,36 +32,42 @@ const Navbar = () => {
     setMobileOpen(false);
   }, [location]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-background/95 backdrop-blur-md shadow-sm"
+            ? "bg-background/95 backdrop-blur-md shadow-[0_1px_0_hsl(var(--border))]"
             : "bg-transparent"
         }`}
       >
         <div className="section-padding flex items-center justify-between h-20 lg:h-24">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logoIcon} alt="Vesper" className="h-10 lg:h-12 w-auto" />
+          <Link to="/" className="flex items-center gap-3 relative z-50">
+            <img src={logoIcon} alt="Vesper" className="h-9 lg:h-11 w-auto" />
             <img
               src={logoText}
               alt="Vesper"
-              className={`h-4 lg:h-5 w-auto transition-all duration-500 ${
+              className={`h-3.5 lg:h-4 w-auto transition-all duration-500 ${
                 scrolled ? "brightness-0" : "brightness-0 invert"
               }`}
             />
           </Link>
 
-          <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => 
+          <div className="hidden lg:flex items-center gap-7 xl:gap-8">
+            {navLinks.map((link) =>
               'external' in link && link.external ? (
                 <a
                   key={link.path}
                   href={link.path}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-xs font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary ${
+                  className={`text-[11px] font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary ${
                     scrolled ? "text-foreground/70" : "text-primary-foreground/80"
                   }`}
                 >
@@ -71,7 +77,7 @@ const Navbar = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-xs font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary ${
+                  className={`text-[11px] font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary relative ${
                     location.pathname === link.path
                       ? "text-primary"
                       : scrolled
@@ -80,6 +86,13 @@ const Navbar = () => {
                   }`}
                 >
                   {link.label}
+                  {location.pathname === link.path && (
+                    <motion.div
+                      layoutId="nav-indicator"
+                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-primary"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
                 </Link>
               )
             )}
@@ -88,8 +101,8 @@ const Navbar = () => {
           {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className={`lg:hidden p-2 transition-colors ${
-              scrolled ? "text-foreground" : "text-primary-foreground"
+            className={`lg:hidden p-2 transition-colors relative z-50 ${
+              mobileOpen ? "text-foreground" : scrolled ? "text-foreground" : "text-primary-foreground"
             }`}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -101,18 +114,19 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-background pt-24"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-background"
           >
-            <div className="flex flex-col items-center gap-6 py-12">
+            <div className="flex flex-col items-center justify-center h-full gap-6">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.path}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 }}
+                  transition={{ delay: 0.1 + i * 0.04 }}
                 >
                   {'external' in link && link.external ? (
                     <a
@@ -126,7 +140,7 @@ const Navbar = () => {
                   ) : (
                     <Link
                       to={link.path}
-                      className={`text-lg font-display font-semibold tracking-wide transition-colors hover:text-primary ${
+                      className={`text-xl font-display font-semibold tracking-wide transition-colors hover:text-primary ${
                         location.pathname === link.path
                           ? "text-primary"
                           : "text-foreground/70"
