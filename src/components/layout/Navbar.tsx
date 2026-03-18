@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoIcon from "@/assets/logo-icon.png";
+import logoText from "@/assets/logo-text.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -40,13 +42,15 @@ const Navbar = () => {
         }`}
       >
         <div className="section-padding flex items-center justify-between h-20 lg:h-24">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="font-display text-2xl lg:text-3xl font-bold tracking-tight leading-none">
-              <span className="text-primary">VESPER</span>
-              <span className={`${scrolled ? "text-foreground" : "text-primary-foreground"} transition-colors duration-500`}>
-                {" "}GROUP
-              </span>
-            </span>
+          <Link to="/" className="flex items-center gap-3">
+            <img src={logoIcon} alt="Vesper" className="h-10 lg:h-12 w-auto" />
+            <img
+              src={logoText}
+              alt="Vesper"
+              className={`h-4 lg:h-5 w-auto transition-all duration-500 ${
+                scrolled ? "brightness-0" : "brightness-0 invert"
+              }`}
+            />
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
