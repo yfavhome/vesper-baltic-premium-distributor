@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logoIcon from "@/assets/logo-icon.png";
-import logoText from "@/assets/logo-text.png";
+// Logo rendered as styled text to avoid image transparency issues
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -48,15 +47,14 @@ const Navbar = () => {
         }`}
       >
         <div className="section-padding flex items-center justify-between h-20 lg:h-24">
-          <Link to="/" className="flex items-center gap-3 relative z-50">
-            <img src={logoIcon} alt="Vesper" className="h-9 lg:h-11 w-auto" />
-            <img
-              src={logoText}
-              alt="Vesper"
-              className={`h-3.5 lg:h-4 w-auto transition-all duration-500 ${
-                scrolled ? "brightness-0" : "brightness-0 invert"
-              }`}
-            />
+          <Link to="/" className="flex items-center gap-1 relative z-50">
+            <span className="font-display text-3xl lg:text-4xl font-bold text-primary leading-none">V</span>
+            <span className="text-primary text-[8px] lg:text-[9px] -ml-0.5 -mt-3 leading-none">★</span>
+            <span className={`font-body text-[15px] lg:text-[17px] font-bold tracking-[0.25em] uppercase transition-colors duration-500 ml-1.5 ${
+              scrolled ? "text-foreground" : "text-primary-foreground"
+            }`}>
+              VESPER
+            </span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-7 xl:gap-8">
