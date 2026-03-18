@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logoIcon from "@/assets/logo-v.png";
-import logoText from "@/assets/logo-vesper.png";
+// Logo rendered as styled text to avoid image transparency issues
 
 const navLinks = [
   { label: "Home", path: "/" },
