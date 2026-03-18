@@ -43,6 +43,8 @@ const categoryDescriptions: Record<string, string> = {
   Brandy: "Premium brandies including Armenian classics",
   Cognac: "Fine French cognacs and aged eaux-de-vie",
   Liqueurs: "Classic and contemporary liqueurs",
+  Vermouth: "Italian vermouths and bitters for cocktails",
+  Mixers: "Premium tonics, sodas, and cocktail syrups",
 };
 
 interface CategoryData {
