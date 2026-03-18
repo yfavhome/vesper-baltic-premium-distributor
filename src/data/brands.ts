@@ -217,6 +217,7 @@ export const brands: Brand[] = [
     products: [
       { name: "Wolfgang Pfaffmann Riesling vom Löss QbA trocken", type: "White Wine", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/wolfgang-pfaffmann-riesling-trocken" },
       { name: "Wolfgang Pfaffmann Weissburgunder Kalkstein QbA trocken", type: "White Wine", volume: "0.75L", abv: "13%", shopUrl: "https://www.alko.lv/products/wolfgang-pfaffmann-weissburgunder-kalkstein-trocken-pinot-blanc" },
+      { name: "Wolfgang Pfaffmann Grauer Burgunder Kalkmergel Pinot Gris", type: "White Wine", volume: "0.75L", abv: "13.5%", shopUrl: "https://www.alko.lv/products/wolfgang-pfaffmann-grauer-burgunder-kalkmergel-pinot-gris" },
     ],
   },
   {
@@ -742,12 +743,170 @@ export const brands: Brand[] = [
       { name: "Passoa The Passion Drink", type: "Passion Fruit Liqueur", volume: "0.7L", abv: "17%", shopUrl: "https://www.alko.lv/products/passoa-the-passion-drink-17-0-7l" },
     ],
   },
+
+  // ── ROSÉ WINE ──
+  {
+    name: "Feudo Arancio (Rosé)", category: "Rosé Wine", country: "Italy", est: "",
+    desc: "Sicilian rosé from Frappato grapes — fresh and aromatic.",
+    products: [
+      { name: "Feudo Arancio Tinchité Frappato Rosé Terre Siciliane IGT", type: "Rosé Wine", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/feudo-arancio-tinchite-frappato-rose-terre-siciliane-igt" },
+    ],
+  },
+  {
+    name: "Forte Alto (Rosé)", category: "Rosé Wine", country: "Italy", est: "1999",
+    desc: "Pinot Grigio Rosé from the Dolomites — elegant and refreshing.",
+    products: [
+      { name: "Forte Alto Rosé Pinot Grigio Vigneti Delle Dolomiti IGT", type: "Rosé Wine", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/forte-alto-pinot-grigio-rose" },
+    ],
+  },
+  {
+    name: "Castillo De La Victoria", category: "White Wine", country: "Spain", est: "",
+    desc: "Affordable Spanish white wine — Blanco Dulce from La Mancha.",
+    products: [
+      { name: "Castillo De La Victoria Blanco Dulce", type: "White Wine", volume: "0.75L", abv: "10.5%", shopUrl: "https://www.alko.lv/products/castillo-de-la-victoria-blanco-semi-dulce-10-5-0-75l" },
+    ],
+  },
+
+  // ── VERMOUTH & BITTERS ──
+  {
+    name: "Mulassano", category: "Vermouth", country: "Italy", est: "1907",
+    desc: "Historic Italian vermouth house from Turin — creators of the original tramezzino.",
+    products: [
+      { name: "Mulassano Vermouth Extra Dry", type: "Vermouth", volume: "0.75L", abv: "18%", shopUrl: "https://www.alko.lv/products/mulassano-vermouth-extra-dry" },
+      { name: "Mulassano Vermouth Bianco", type: "Vermouth", volume: "0.75L", abv: "18%", shopUrl: "https://www.alko.lv/products/mulassano-vermouth-bianco" },
+      { name: "Mulassano Vermouth Rosso", type: "Vermouth", volume: "0.75L", abv: "18%", shopUrl: "https://www.alko.lv/products/mulassano-vermouth-rouge" },
+    ],
+  },
+  {
+    name: "Martini", category: "Vermouth", country: "Italy", est: "1863",
+    desc: "The world's most iconic vermouth brand — essential for classic cocktails.",
+    products: [
+      { name: "Martini Rosso", type: "Vermouth", volume: "1L", abv: "15%", shopUrl: "https://www.alko.lv/products/martini-rosso" },
+      { name: "Martini Extra Dry", type: "Vermouth", volume: "1L", abv: "15%", shopUrl: "https://www.alko.lv/products/martini-extra-dry" },
+      { name: "Martini Extra Dry", type: "Vermouth", volume: "0.75L", abv: "15%", shopUrl: "https://www.alko.lv/products/martini-extra-dry-15-0-75l" },
+      { name: "Martini Bianco", type: "Vermouth", volume: "1L", abv: "15%", shopUrl: "https://www.alko.lv/products/martini-bianco-15-1l" },
+      { name: "Martini Riserva Rubino", type: "Premium Vermouth", volume: "0.75L", abv: "18%", shopUrl: "https://www.alko.lv/products/martini-riserva-rubino-18-0-75l" },
+    ],
+  },
+  {
+    name: "Campari", category: "Vermouth", country: "Italy", est: "1860",
+    desc: "The iconic Italian bitter — cornerstone of Negroni and Americano cocktails.",
+    products: [
+      { name: "Campari Bitter", type: "Bitter", volume: "1L", abv: "25%", shopUrl: "https://www.alko.lv/products/campari-bitter-25-1l" },
+    ],
+  },
+  {
+    name: "Sip & Roll", category: "Vermouth", country: "Latvia", est: "",
+    desc: "Latvian-crafted bitter aperitivo — bold and aromatic.",
+    products: [
+      { name: "Sip & Roll Bitter", type: "Bitter", volume: "0.7L", abv: "11%", shopUrl: "https://www.alko.lv/products/sip-roll-bitter-11-0-7l" },
+    ],
+  },
+
+  // ── RUM (additional) ──
+  {
+    name: "Colonist", category: "Rum", country: "Ukraine", est: "",
+    desc: "Premium Ukrainian rum — Spiced Black and Dark expressions.",
+    products: [
+      { name: "Colonist Premium Rum Spiced Black", type: "Spiced Rum", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/colonist-premium-rum-spiced-black" },
+      { name: "Colonist Premium Rum Dark", type: "Dark Rum", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/colonist-premium-rum-dark" },
+    ],
+  },
+
+  // ── SPARKLING WINE (additional) ──
+  {
+    name: "Bella Conchi", category: "Sparkling Wine", country: "Spain", est: "",
+    desc: "Spanish Cava from Penedès — Brut and Rosé expressions.",
+    products: [
+      { name: "Bella Conchi Brut Rosé", type: "Cava Rosé", volume: "0.75L", abv: "11.5%", shopUrl: "https://www.alko.lv/products/bella-conchi-brut-rose" },
+      { name: "Bella Conchi Brut Selection", type: "Cava", volume: "0.75L", abv: "11.5%", shopUrl: "https://www.alko.lv/products/bella-conchi-brut" },
+    ],
+  },
+
+  // ── INFUSIONS & SPIRITS ──
+  {
+    name: "Glabātājs", category: "Liqueurs", country: "Latvia", est: "",
+    desc: "Latvian craft infusions — Rhubarb, Oak-aged Grāls, and Watermelon.",
+    products: [
+      { name: "Glabātājs Rabarberu", type: "Infusion", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/glabatajs-rabarberu-40-0-5l" },
+      { name: "Glabātājs Grāls (Oak-aged)", type: "Infusion", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/glabatajs-grals-uz-ozoliem-40-0-5l" },
+      { name: "Glabātājs Arbūzu (Watermelon)", type: "Infusion", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/glabatajs-arbuzu-40-0-5l" },
+    ],
+  },
+  {
+    name: "Abavas", category: "Brandy", country: "Latvia", est: "",
+    desc: "Latvian artisan berry distillate from the Abava valley.",
+    products: [
+      { name: "Abavas Ogu Destilāts (Berry Distillate)", type: "Fruit Brandy", volume: "0.7L", abv: "42%", shopUrl: "https://www.alko.lv/products/abavas-ogu-destilats" },
+      { name: "Upenu Brandvīns (Blackcurrant Brandy)", type: "Fruit Brandy", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/destilats-upenu-brandvins" },
+      { name: "Bumbieru Brandvīns LE (Pear Brandy)", type: "Fruit Brandy", volume: "0.25L", abv: "40%", shopUrl: "https://www.alko.lv/products/destilats-le-bumbieru-brandvins" },
+    ],
+  },
+  {
+    name: "Akmenlauzis", category: "Liqueurs", country: "Latvia", est: "",
+    desc: "Latvian traditional spirit infusions — Baltais and Smiltsērkšķis.",
+    products: [
+      { name: "Akmenlauzis Baltais", type: "Spirit", volume: "1L", abv: "40%", shopUrl: "https://www.alko.lv/products/akmenlauzis-baltais" },
+      { name: "Akmenlauzis Smiltsērkšķis (Sea Buckthorn)", type: "Spirit", volume: "1L", abv: "36%", shopUrl: "https://www.alko.lv/products/akmenlauzis-smiltserkskis" },
+    ],
+  },
+  {
+    name: "Pampelle", category: "Liqueurs", country: "France", est: "",
+    desc: "Ruby Red Grapefruit aperitif — perfect for spritzes.",
+    products: [
+      { name: "Pampelle Ruby L'Apéro", type: "Aperitif", volume: "0.7L", abv: "15%", shopUrl: "https://www.alko.lv/products/liqueur-pampelle-15-0-7l" },
+    ],
+  },
+  {
+    name: "Waqar", category: "Brandy", country: "Chile", est: "",
+    desc: "Premium Chilean Pisco — handcrafted from Muscat grapes.",
+    products: [
+      { name: "Waqar Pisco", type: "Pisco", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/waqar-pisco-40-0-7l" },
+    ],
+  },
+
+  // ── MIXERS & SYRUPS ──
+  {
+    name: "Malafemmina", category: "Mixers", country: "Italy", est: "",
+    desc: "Italian craft mixers — premium tonics, sodas, and lemonades for cocktails.",
+    products: [
+      { name: "Malafemmina Rose Lemonade", type: "Mixer", volume: "200ml", abv: "0%", shopUrl: "https://www.alko.lv/products/malafemmina-rose-lemonade-200ml" },
+      { name: "Malafemmina Grapefruit Soda", type: "Mixer", volume: "200ml", abv: "0%", shopUrl: "https://www.alko.lv/products/malafemmina-grapefruit-soda-200ml" },
+      { name: "Malafemmina Ginger Beer", type: "Mixer", volume: "200ml", abv: "0%", shopUrl: "https://www.alko.lv/products/malafemmina-ginger-beer-200-ml" },
+      { name: "Malafemmina Tonic Water", type: "Mixer", volume: "200ml", abv: "0%", shopUrl: "https://www.alko.lv/products/malafemmina-tonic-water-20ml" },
+    ],
+  },
+  {
+    name: "Orsadrinks", category: "Mixers", country: "Italy", est: "",
+    desc: "Professional Italian cocktail syrups — gluten-free, bar-quality range.",
+    products: [
+      { name: "Orsadrinks Iced Tea Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-iced-tea-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Iced Tea Peach Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-iced-tea-peach-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Banana Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-banana-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Premium Sour Lemon", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-premium-sour-lemon-100-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Premium Sour Lime", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-premium-sour-lime-100-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Hibiscus Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-hibiscus-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Lavender Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-lavender-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Elderflower Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-elderflower-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Italian Spritz Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-italian-spritz-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks White Sugar Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-white-sugar-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Popcorn Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-popcorn-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Agave Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-agave-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Rhubarb Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-rhubarb-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Pink Grapefruit Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-pink-grapefruit-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks White Mint Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-white-mint-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Chai Tea Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-chai-tea-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Grenadine Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-grenadine-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Black Currant Cassis Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-black-currant-cassis-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Strawberry Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-strawberry-syrup-gluten-free-tara-0-75l" },
+    ],
+  },
 ];
 
 export const productCategories = [
   "Whisky", "Vodka", "Rum", "Gin", "Tequila", "Sake",
   "Red Wine", "White Wine", "Rosé Wine", "Champagne", "Prosecco",
-  "Sparkling Wine", "Brandy", "Cognac", "Liqueurs",
+  "Sparkling Wine", "Brandy", "Cognac", "Liqueurs", "Vermouth", "Mixers",
 ] as const;
 
 export const countries = [
