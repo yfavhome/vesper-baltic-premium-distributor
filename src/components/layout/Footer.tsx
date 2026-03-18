@@ -8,9 +8,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-6">
-              <img src={logoIcon} alt="Vesper" className="h-11 w-auto mix-blend-screen" />
-              <span className="font-body text-[17px] font-bold tracking-[0.25em] uppercase text-primary-foreground">
+            <div className="flex items-center gap-1 mb-6">
+              <span className="font-display text-4xl font-bold text-primary leading-none">V</span>
+              <span className="text-primary text-[9px] -ml-0.5 -mt-3 leading-none">★</span>
+              <span className="font-body text-[17px] font-bold tracking-[0.25em] uppercase text-primary-foreground ml-1.5">
                 VESPER
               </span>
             </div>
