@@ -49,7 +49,7 @@ const Navbar = () => {
       >
         <div className="section-padding flex items-center justify-between h-20 lg:h-24">
           <Link to="/" className="flex items-center gap-2.5 relative z-50">
-            <img src={logoIcon} alt="Vesper" className="h-10 lg:h-11 w-auto" />
+            <img src={logoIcon} alt="Vesper" className="h-10 lg:h-11 w-auto mix-blend-multiply dark:mix-blend-screen" />
             <span className={`font-body text-[15px] lg:text-[17px] font-bold tracking-[0.25em] uppercase transition-colors duration-500 ${
               scrolled ? "text-foreground" : "text-primary-foreground"
             }`}>

@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-6">
-              <img src={logoIcon} alt="Vesper" className="h-11 w-auto" />
+              <img src={logoIcon} alt="Vesper" className="h-11 w-auto mix-blend-screen" />
               <span className="font-body text-[17px] font-bold tracking-[0.25em] uppercase text-primary-foreground">
                 VESPER
               </span>
