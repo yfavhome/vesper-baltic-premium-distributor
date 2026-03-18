@@ -1,22 +1,12 @@
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
+import FadeIn from "@/components/shared/FadeIn";
 import newsPlaceholder from "@/assets/news-placeholder.jpg";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-
-const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay }}>
-      {children}
-    </motion.div>
-  );
-};
+import { motion } from "framer-motion";
 
 const articles = [
-  { title: "Events with Vesper Catering", date: "September 4, 2025", category: "Events", excerpt: "Vesper Group strengthens partnerships in the Baltic market. Our team took part in a business networking event bringing together leading companies and professionals from Latvia and beyond, focused on strengthening cooperation and discovering new opportunities." },
-  { title: "Vesper Group Strengthens Baltic Market Partnerships", date: "2025", category: "Company News", excerpt: "This week, our team participated in a networking event bringing together leading companies and professionals from Latvia and beyond, discussing market trends and new opportunities for premium beverage distribution." },
+  { title: "Events with Vesper Catering", date: "September 4, 2025", category: "Events", excerpt: "Vesper Group strengthens partnerships in the Baltic market. Our team took part in a business networking event bringing together leading companies and professionals from Latvia and beyond." },
+  { title: "Vesper Group Strengthens Baltic Market Partnerships", date: "2025", category: "Company News", excerpt: "This week, our team participated in a networking event bringing together leading companies and professionals from Latvia and beyond, discussing market trends and new opportunities." },
   { title: "New Premium Brand Partnerships Announced", date: "2025", category: "Partnerships", excerpt: "Vesper Group continues to expand its portfolio with new exclusive brand partnerships, bringing world-class beverages to Baltic consumers." },
   { title: "Dassai Sake Now Available in the Baltics", date: "2025", category: "Product Launch", excerpt: "We are proud to introduce Dassai, one of Japan's most renowned sake brands, to the Baltic market through our distribution network." },
   { title: "Black Tears Dry Spiced Rum Arrives", date: "2025", category: "Product Launch", excerpt: "Cuban-crafted Black Tears Dry Spiced Rum is now available through Vesper Group's Baltic distribution channels." },
@@ -27,12 +17,12 @@ const NewsPage = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="bg-secondary pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="vesper-gradient pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="section-padding">
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-label text-primary mb-4">
             News & Insights
           </motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-display-lg text-foreground max-w-3xl">
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-display-lg text-primary-foreground max-w-3xl">
             Latest from Vesper Group
           </motion.h1>
         </div>
@@ -43,7 +33,7 @@ const NewsPage = () => {
         <FadeIn>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             <div className="overflow-hidden">
-              <img src={newsPlaceholder} alt="Featured" className="w-full h-full object-cover min-h-[300px]" />
+              <img src={newsPlaceholder} alt="Featured" className="w-full h-full object-cover min-h-[300px] hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="flex flex-col justify-center">
               <p className="text-label text-primary mb-3">{articles[0].category}</p>
@@ -58,7 +48,7 @@ const NewsPage = () => {
         <SectionHeading label="All Articles" title="Stay Informed" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.slice(1).map((article, i) => (
-            <FadeIn key={article.title} delay={i * 0.1}>
+            <FadeIn key={article.title} delay={i * 0.08}>
               <div className="group cursor-pointer hover-lift">
                 <div className="overflow-hidden mb-6">
                   <img src={newsPlaceholder} alt={article.title} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-700" />

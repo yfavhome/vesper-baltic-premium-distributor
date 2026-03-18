@@ -2,7 +2,7 @@ import { useState } from "react";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 
 const ContactPage = () => {
@@ -45,7 +45,7 @@ const ContactPage = () => {
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-border bg-background text-foreground font-body focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-4 py-3.5 border border-border bg-background text-foreground font-body focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
                     placeholder="Your name"
                   />
                 </div>
@@ -56,7 +56,7 @@ const ContactPage = () => {
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full px-4 py-3 border border-border bg-background text-foreground font-body focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-4 py-3.5 border border-border bg-background text-foreground font-body focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -67,8 +67,8 @@ const ContactPage = () => {
                   type="text"
                   value={form.company}
                   onChange={(e) => setForm({ ...form, company: e.target.value })}
-                  className="w-full px-4 py-3 border border-border bg-background text-foreground font-body focus:outline-none focus:border-primary transition-colors"
-                  placeholder="Company name"
+                  className="w-full px-4 py-3.5 border border-border bg-background text-foreground font-body focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
+                  placeholder="Company name or subject"
                 />
               </div>
               <div>
@@ -78,51 +78,53 @@ const ContactPage = () => {
                   rows={6}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full px-4 py-3 border border-border bg-background text-foreground font-body focus:outline-none focus:border-primary transition-colors resize-none"
+                  className="w-full px-4 py-3.5 border border-border bg-background text-foreground font-body focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all resize-none"
                   placeholder="How can we help?"
                 />
               </div>
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all hover:gap-3"
               >
                 Send Message <Send size={16} />
               </button>
             </form>
           </div>
 
-           {/* Info */}
+          {/* Info */}
           <div>
             <SectionHeading label="Contact Information" title="Reach Us Directly" />
-            <div className="space-y-8 mb-12">
-              <div className="flex gap-4">
-                <Mail className="w-5 h-5 text-primary mt-1" />
-                <div>
-                  <p className="font-body font-semibold text-foreground">Email</p>
-                  <p className="text-body text-muted-foreground">
-                    <a href="mailto:info@vesper.group" className="hover:text-primary transition-colors">info@vesper.group</a>
-                  </p>
-                  <p className="text-body text-muted-foreground">
-                    <a href="mailto:horeca@vesper.group" className="hover:text-primary transition-colors">horeca@vesper.group</a>
-                  </p>
+            <div className="space-y-6 mb-12">
+              {[
+                { icon: Mail, label: "Email", items: [
+                  { text: "info@vesper.group", href: "mailto:info@vesper.group" },
+                  { text: "horeca@vesper.group", href: "mailto:horeca@vesper.group" },
+                ]},
+                { icon: Phone, label: "Phone", items: [
+                  { text: "+371 22100200", href: "tel:+37122100200" },
+                  { text: "+371 67630724", href: "tel:+37167630724" },
+                ]},
+              ].map((section) => (
+                <div key={section.label} className="flex gap-4 p-5 border border-border hover:border-primary/20 transition-colors">
+                  <div className="w-10 h-10 flex items-center justify-center bg-primary/5 shrink-0">
+                    <section.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-body font-semibold text-foreground mb-1">{section.label}</p>
+                    {section.items.map((item) => (
+                      <p key={item.text} className="text-body text-muted-foreground">
+                        <a href={item.href} className="hover:text-primary transition-colors">{item.text}</a>
+                      </p>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div className="flex gap-4">
-                <Phone className="w-5 h-5 text-primary mt-1" />
-                <div>
-                  <p className="font-body font-semibold text-foreground">Phone</p>
-                  <p className="text-body text-muted-foreground">
-                    <a href="tel:+37122100200" className="hover:text-primary transition-colors">+371 22100200</a>
-                  </p>
-                  <p className="text-body text-muted-foreground">
-                    <a href="tel:+37167630724" className="hover:text-primary transition-colors">+371 67630724</a>
-                  </p>
+              ))}
+              <div className="flex gap-4 p-5 border border-border hover:border-primary/20 transition-colors">
+                <div className="w-10 h-10 flex items-center justify-center bg-primary/5 shrink-0">
+                  <MapPin className="w-5 h-5 text-primary" />
                 </div>
-              </div>
-              <div className="flex gap-4">
-                <MapPin className="w-5 h-5 text-primary mt-1" />
                 <div>
-                  <p className="font-body font-semibold text-foreground">Address</p>
+                  <p className="font-body font-semibold text-foreground mb-1">Address</p>
                   <p className="text-body text-muted-foreground">
                     Jelgavas ceļš 20, Tīraine<br />
                     Mārupes pagasts, Mārupes novads<br />
@@ -132,8 +134,8 @@ const ContactPage = () => {
               </div>
             </div>
 
-            {/* Map placeholder */}
-            <div className="w-full h-64 bg-secondary flex items-center justify-center">
+            {/* Map */}
+            <div className="w-full h-72 border border-border overflow-hidden">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2175.5!2d24.1!3d56.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTbCsDU3JzAwLjAiTiAyNMKwMDYnMDAuMCJF!5e0!3m2!1sen!2slv!4v1600000000000!5m2!1sen!2slv"
                 width="100%"

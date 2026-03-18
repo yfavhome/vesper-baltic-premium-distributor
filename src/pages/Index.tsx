@@ -1,37 +1,21 @@
 import { Link } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { ArrowRight, Truck, Wine, Users, ShieldCheck, ShoppingCart, Package, Globe, Store } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
 import AnimatedCounter from "@/components/shared/AnimatedCounter";
+import FadeIn from "@/components/shared/FadeIn";
 import heroBg from "@/assets/hero-bg.jpg";
 import portfolioHero from "@/assets/portfolio-hero.jpg";
 import distributionHero from "@/assets/distribution-hero.jpg";
 import partnersHero from "@/assets/partners-hero.jpg";
 import newsPlaceholder from "@/assets/news-placeholder.jpg";
 
-const FadeInSection = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
 const services = [
-  { icon: ShoppingCart, name: "Wholesale Trade", desc: "Covering Baltic market" },
-  { icon: Store, name: "Retail Trade", desc: "Carefully selected partners" },
+  { icon: ShoppingCart, name: "Wholesale Trade", desc: "Covering Baltic market with reliable supply chains" },
+  { icon: Store, name: "Retail Trade", desc: "Carefully selected premium retail partners" },
   { icon: Truck, name: "Logistics Services", desc: "Europe, Baltic States, 3rd countries" },
-  { icon: Package, name: "Brand Distribution", desc: "Increase in sales of distributed brands" },
+  { icon: Package, name: "Brand Distribution", desc: "Increasing sales of distributed brands" },
   { icon: Globe, name: "Online Platform", desc: "E-shop www.alko.lv" },
   { icon: Wine, name: "Showroom", desc: "Vesper shop in Tīraine, Latvia" },
 ];
@@ -66,12 +50,12 @@ const Index = () => {
               Premium Beverage Distribution in the Baltics
             </h1>
             <p className="text-body-lg text-primary-foreground/70 mt-8 max-w-2xl">
-              Vesper Group is an alcohol distributor based in Latvia, working across the Baltic region. We offer a wide range of beverages — from everyday drinks to exclusive premium brands — making sure that everyone can find the right choice.
+              Vesper Group is an alcohol distributor based in Latvia, working across the Baltic region. We offer a wide range of beverages — from everyday drinks to exclusive premium brands.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
               <Link
                 to="/portfolio"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all hover:gap-3"
               >
                 Explore Portfolio <ArrowRight size={16} />
               </Link>
@@ -85,7 +69,7 @@ const Index = () => {
                 href="https://www.alko.lv/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/10 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/10 transition-all hover:gap-3"
               >
                 Shop Online <ArrowRight size={16} />
               </a>
@@ -95,11 +79,12 @@ const Index = () => {
 
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="w-[1px] h-12 bg-primary-foreground/30" />
+          <span className="text-[9px] uppercase tracking-[0.3em] text-primary-foreground/40 font-body">Scroll</span>
+          <div className="w-[1px] h-10 bg-gradient-to-b from-primary-foreground/40 to-transparent" />
         </motion.div>
       </section>
 
@@ -114,12 +99,12 @@ const Index = () => {
             />
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 text-primary font-body font-semibold text-sm uppercase tracking-widest hover:gap-3 transition-all"
+              className="inline-flex items-center gap-2 text-primary font-body font-semibold text-sm uppercase tracking-widest hover:gap-3 transition-all group"
             >
-              Learn More <ArrowRight size={16} />
+              Learn More <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-8">
             <AnimatedCounter end={37} suffix="+" label="Brands" />
             <AnimatedCounter end={16} label="Product Categories" />
             <AnimatedCounter end={3} label="Baltic Markets" />
@@ -129,7 +114,7 @@ const Index = () => {
       </section>
 
       {/* Our Services */}
-      <section className="section-padding section-spacing bg-secondary">
+      <section className="section-padding section-spacing bg-secondary/50">
         <SectionHeading
           label="Our Services"
           title="Comprehensive Beverage Solutions"
@@ -137,13 +122,15 @@ const Index = () => {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
-            <FadeInSection key={service.name} delay={i * 0.1}>
-              <div className="group flex flex-col items-center gap-4 p-10 bg-background hover-lift text-center">
-                <service.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
+            <FadeIn key={service.name} delay={i * 0.08}>
+              <div className="group flex flex-col items-center gap-5 p-10 bg-background border border-border hover:border-primary/30 hover-lift text-center transition-all">
+                <div className="w-14 h-14 flex items-center justify-center bg-primary/5 group-hover:bg-primary/10 transition-colors">
+                  <service.icon className="w-7 h-7 text-primary" />
+                </div>
                 <h3 className="font-display text-lg font-semibold text-foreground">{service.name}</h3>
-                <p className="text-sm text-muted-foreground">{service.desc}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{service.desc}</p>
               </div>
-            </FadeInSection>
+            </FadeIn>
           ))}
         </div>
       </section>
@@ -161,7 +148,7 @@ const Index = () => {
           />
           <Link
             to="/portfolio"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all hover:gap-3"
           >
             View Full Portfolio <ArrowRight size={16} />
           </Link>
@@ -171,33 +158,35 @@ const Index = () => {
       {/* Distribution Overview */}
       <section className="section-padding section-spacing">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <FadeInSection>
-            <img src={distributionHero} alt="Distribution" className="w-full h-[400px] object-cover" />
-          </FadeInSection>
+          <FadeIn>
+            <div className="overflow-hidden">
+              <img src={distributionHero} alt="Distribution" className="w-full h-[450px] object-cover hover:scale-105 transition-transform duration-700" />
+            </div>
+          </FadeIn>
           <div>
             <SectionHeading
               label="Distribution & Logistics"
               title="Reliable Infrastructure Across the Baltics"
-              subtitle="Our logistics network covers Europe, Baltic States, and third countries — ensuring products reach every destination efficiently and safely."
+              subtitle="Our logistics network covers Europe, Baltic States, and third countries — ensuring products reach every destination efficiently."
             />
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-5 mb-8">
               {[
                 { icon: Truck, label: "Europe-wide Logistics" },
                 { icon: ShieldCheck, label: "Quality Assured" },
                 { icon: Wine, label: "Temperature Controlled" },
                 { icon: Users, label: "Expert Team" },
               ].map((item) => (
-                <div key={item.label} className="flex items-center gap-3">
-                  <item.icon className="w-5 h-5 text-primary" />
-                  <span className="text-body text-foreground font-medium">{item.label}</span>
+                <div key={item.label} className="flex items-center gap-3 p-3 bg-secondary/50 border border-border">
+                  <item.icon className="w-5 h-5 text-primary shrink-0" />
+                  <span className="text-sm text-foreground font-medium">{item.label}</span>
                 </div>
               ))}
             </div>
             <Link
               to="/distribution"
-              className="inline-flex items-center gap-2 text-primary font-body font-semibold text-sm uppercase tracking-widest hover:gap-3 transition-all mt-8"
+              className="inline-flex items-center gap-2 text-primary font-body font-semibold text-sm uppercase tracking-widest hover:gap-3 transition-all group"
             >
-              Learn More <ArrowRight size={16} />
+              Learn More <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
@@ -217,7 +206,7 @@ const Index = () => {
           />
           <Link
             to="/partners"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/10 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/10 transition-all hover:gap-3"
           >
             Explore Partnerships <ArrowRight size={16} />
           </Link>
@@ -233,30 +222,38 @@ const Index = () => {
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { title: "Diversity", desc: "Our portfolio lists the best brands on the market, ranging from loved and respected names with preserved heritage to modern newcomers. We continually increase the range of offered products across the Baltic States." },
-            { title: "Values", desc: "We strive to create mutually fulfilling care for our brands, customers, and employees. Being a highly professional, passionate team, we value relationships founded on mutual trust, transparency, and respect for craftsmanship." },
-            { title: "Ambition", desc: "We seek to improve our results, relationships and product range. Our ambition is to become the leading company in the Baltic States, satisfy consumer needs for beverage diversity, and elevate the experience of beverage appreciation." },
+            { title: "Diversity", desc: "Our portfolio lists the best brands on the market, ranging from loved and respected names with preserved heritage to modern newcomers." },
+            { title: "Values", desc: "We strive to create mutually fulfilling care for our brands, customers, and employees. We value relationships founded on mutual trust and transparency." },
+            { title: "Ambition", desc: "We seek to improve our results, relationships and product range. Our ambition is to become the leading company in the Baltic States." },
           ].map((item, i) => (
-            <FadeInSection key={item.title} delay={i * 0.1}>
-              <div className="p-8 border border-border hover:border-primary/30 transition-colors group hover-lift">
-                <div className="w-12 h-[2px] bg-primary mb-6 group-hover:w-16 transition-all" />
-                <h3 className="font-display text-xl font-semibold text-foreground mb-3">{item.title}</h3>
+            <FadeIn key={item.title} delay={i * 0.1}>
+              <div className="p-8 lg:p-10 border border-border hover:border-primary/30 transition-all group hover-lift h-full">
+                <div className="w-12 h-[2px] bg-primary mb-6 group-hover:w-20 transition-all duration-500" />
+                <h3 className="font-display text-xl font-semibold text-foreground mb-4">{item.title}</h3>
                 <p className="text-body text-muted-foreground">{item.desc}</p>
               </div>
-            </FadeInSection>
+            </FadeIn>
           ))}
         </div>
       </section>
 
       {/* News Preview */}
-      <section className="section-padding section-spacing bg-secondary">
-        <SectionHeading
-          label="Vesper News"
-          title="Insights & Updates"
-        />
+      <section className="section-padding section-spacing bg-secondary/50">
+        <div className="flex items-end justify-between mb-12 md:mb-16">
+          <SectionHeading
+            label="Vesper News"
+            title="Insights & Updates"
+          />
+          <Link
+            to="/news"
+            className="hidden md:inline-flex items-center gap-2 text-primary font-body font-semibold text-sm uppercase tracking-widest hover:gap-3 transition-all group mb-12 md:mb-16"
+          >
+            All News <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {newsItems.map((item, i) => (
-            <FadeInSection key={item.title} delay={i * 0.15}>
+            <FadeIn key={item.title} delay={i * 0.12}>
               <Link to="/news" className="group block hover-lift">
                 <div className="overflow-hidden mb-6">
                   <img
@@ -271,7 +268,7 @@ const Index = () => {
                 </h3>
                 <p className="text-sm text-muted-foreground">{item.date}</p>
               </Link>
-            </FadeInSection>
+            </FadeIn>
           ))}
         </div>
       </section>
@@ -291,7 +288,7 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-10 py-5 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center gap-2 px-10 py-5 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all hover:gap-3"
             >
               Contact Us <ArrowRight size={16} />
             </Link>
