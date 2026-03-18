@@ -23,7 +23,8 @@ const categoryImages: Record<string, string> = {
   Tequila: catTequila, Sake: catMixers, "Red Wine": catWine,
   "White Wine": catChampagne, "Rosé Wine": catWine, Champagne: catChampagne,
   Prosecco: catChampagne, "Sparkling Wine": catChampagne, Brandy: catWhisky,
-  Cognac: catWhisky, Liqueurs: catLiqueurs,
+  Cognac: catWhisky, Liqueurs: catLiqueurs, Vermouth: catLiqueurs,
+  Mixers: catMixers,
 };
 
 const categoryDescriptions: Record<string, string> = {

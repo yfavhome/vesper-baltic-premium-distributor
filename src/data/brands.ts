@@ -217,6 +217,7 @@ export const brands: Brand[] = [
     products: [
       { name: "Wolfgang Pfaffmann Riesling vom Löss QbA trocken", type: "White Wine", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/wolfgang-pfaffmann-riesling-trocken" },
       { name: "Wolfgang Pfaffmann Weissburgunder Kalkstein QbA trocken", type: "White Wine", volume: "0.75L", abv: "13%", shopUrl: "https://www.alko.lv/products/wolfgang-pfaffmann-weissburgunder-kalkstein-trocken-pinot-blanc" },
+      { name: "Wolfgang Pfaffmann Grauer Burgunder Kalkmergel Pinot Gris", type: "White Wine", volume: "0.75L", abv: "13.5%", shopUrl: "https://www.alko.lv/products/wolfgang-pfaffmann-grauer-burgunder-kalkmergel-pinot-gris" },
     ],
   },
   {
