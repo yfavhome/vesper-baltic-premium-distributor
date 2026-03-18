@@ -63,6 +63,8 @@ const Footer = () => {
               <li><a href="tel:+37122100200" className="hover:text-primary transition-colors">+371 22100200</a></li>
               <li><a href="tel:+37167630724" className="hover:text-primary transition-colors">+371 67630724</a></li>
               <li>Jelgavas ceļš 20, Tīraine,<br />Mārupes novads, LV-2167, Latvia</li>
+              <li className="pt-1 text-primary-foreground/40 text-[10px] uppercase tracking-widest font-semibold">Business Hours</li>
+              <li>Mon–Fri: 10:00 AM – 6:00 PM</li>
             </ul>
             <div className="flex gap-4 mt-6">
               {[

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ArrowRight, Clock } from "lucide-react";
 import { toast } from "sonner";
 
 const ContactPage = () => {
@@ -129,6 +129,17 @@ const ContactPage = () => {
                     Jelgavas ceļš 20, Tīraine<br />
                     Mārupes pagasts, Mārupes novads<br />
                     LV-2167, Latvia
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4 p-5 border border-border hover:border-primary/20 transition-colors">
+                <div className="w-10 h-10 flex items-center justify-center bg-primary/5 shrink-0">
+                  <Clock className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-body font-semibold text-foreground mb-1">Business Hours</p>
+                  <p className="text-body text-muted-foreground">
+                    Monday–Friday: 10:00 AM – 6:00 PM
                   </p>
                 </div>
               </div>
