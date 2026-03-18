@@ -1,22 +1,11 @@
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import SectionHeading from "@/components/shared/SectionHeading";
+import FadeIn from "@/components/shared/FadeIn";
 import partnersHero from "@/assets/partners-hero.jpg";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { ShoppingCart, UtensilsCrossed, Wine, Hotel, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-
-const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay }}>
-      {children}
-    </motion.div>
-  );
-};
 
 const partnerTypes = [
   { icon: ShoppingCart, title: "Retail Chains", desc: "We supply the largest retail networks across Latvia, Lithuania, and Estonia with our full premium portfolio.", partners: ["Rimi", "Maxima", "Prisma", "Stockmann"] },
@@ -44,20 +33,22 @@ const PartnersPage = () => {
       {/* Partner Types */}
       <section className="section-padding section-spacing">
         <SectionHeading label="Our Partners" title="Serving Every Channel" />
-        <div className="space-y-12">
+        <div className="space-y-6">
           {partnerTypes.map((type, i) => (
-            <FadeIn key={type.title} delay={i * 0.1}>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 border border-border hover:border-primary/20 transition-colors">
+            <FadeIn key={type.title} delay={i * 0.08}>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 border border-border hover:border-primary/20 transition-all group hover-lift">
                 <div className="lg:col-span-2">
                   <div className="flex items-center gap-4 mb-4">
-                    <type.icon className="w-6 h-6 text-primary" />
+                    <div className="w-10 h-10 flex items-center justify-center bg-primary/5 group-hover:bg-primary/10 transition-colors">
+                      <type.icon className="w-5 h-5 text-primary" />
+                    </div>
                     <h3 className="font-display text-xl font-semibold text-foreground">{type.title}</h3>
                   </div>
                   <p className="text-body text-muted-foreground">{type.desc}</p>
                 </div>
-                <div className="flex flex-wrap gap-3 items-center">
+                <div className="flex flex-wrap gap-2 items-center">
                   {type.partners.map((p) => (
-                    <span key={p} className="px-4 py-2 bg-secondary text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    <span key={p} className="px-4 py-2 bg-secondary text-xs font-semibold uppercase tracking-wider text-muted-foreground border border-border">
                       {p}
                     </span>
                   ))}
@@ -69,13 +60,13 @@ const PartnersPage = () => {
       </section>
 
       {/* Partner Logos */}
-      <section className="section-padding section-spacing bg-secondary">
+      <section className="section-padding section-spacing bg-secondary/50">
         <SectionHeading label="Trusted By" title="Our Partner Network" align="center" />
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {partnerLogos.map((logo, i) => (
-            <FadeIn key={logo} delay={i * 0.05}>
-              <div className="p-6 bg-background flex items-center justify-center h-20">
-                <span className="font-display text-sm font-bold text-muted-foreground/60">{logo}</span>
+            <FadeIn key={logo} delay={i * 0.04}>
+              <div className="p-6 bg-background border border-border flex items-center justify-center h-20 hover:border-primary/20 transition-colors">
+                <span className="font-display text-sm font-bold text-muted-foreground/50">{logo}</span>
               </div>
             </FadeIn>
           ))}
@@ -85,7 +76,7 @@ const PartnersPage = () => {
       {/* CTA */}
       <section className="vesper-gradient section-padding section-spacing text-center">
         <SectionHeading label="Join Us" title="Become a Vesper Partner" light align="center" subtitle="Interested in adding premium brands to your portfolio? Get in touch with our partnership team." />
-        <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors">
+        <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all hover:gap-3">
           Contact Us <ArrowRight size={16} />
         </Link>
       </section>

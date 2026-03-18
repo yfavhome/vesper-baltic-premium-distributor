@@ -2,20 +2,9 @@ import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import SectionHeading from "@/components/shared/SectionHeading";
 import AnimatedCounter from "@/components/shared/AnimatedCounter";
+import FadeIn from "@/components/shared/FadeIn";
 import distributionHero from "@/assets/distribution-hero.jpg";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { Truck, Warehouse, ShoppingCart, UtensilsCrossed, MapPin, Globe, Store, Package } from "lucide-react";
-
-const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay }}>
-      {children}
-    </motion.div>
-  );
-};
 
 const services = [
   { icon: ShoppingCart, title: "Wholesale Trade", desc: "Comprehensive wholesale distribution covering the entire Baltic market with reliable supply chains." },
@@ -56,12 +45,12 @@ const DistributionPage = () => {
       {/* Services */}
       <section className="section-padding section-spacing">
         <SectionHeading label="Our Services" title="End-to-End Distribution Solutions" align="center" />
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service, i) => (
-            <FadeIn key={service.title} delay={i * 0.1}>
-              <div className="flex flex-col md:flex-row gap-6 p-8 border border-border hover:border-primary/30 transition-colors">
-                <div className="flex-shrink-0">
-                  <service.icon className="w-8 h-8 text-primary" />
+            <FadeIn key={service.title} delay={i * 0.08}>
+              <div className="flex gap-6 p-8 border border-border hover:border-primary/30 transition-all group hover-lift h-full">
+                <div className="w-12 h-12 flex items-center justify-center bg-primary/5 group-hover:bg-primary/10 transition-colors shrink-0">
+                  <service.icon className="w-6 h-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-display text-xl font-semibold text-foreground mb-2">{service.title}</h3>
@@ -74,13 +63,15 @@ const DistributionPage = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="section-padding section-spacing bg-secondary">
+      <section className="section-padding section-spacing bg-secondary/50">
         <SectionHeading label="Infrastructure" title="Built for Scale & Reliability" align="center" />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {features.map((f, i) => (
             <FadeIn key={f.title} delay={i * 0.1}>
-              <div className="text-center p-8 bg-background">
-                <f.icon className="w-8 h-8 text-primary mx-auto mb-4" />
+              <div className="text-center p-8 bg-background border border-border hover:border-primary/20 transition-all">
+                <div className="w-12 h-12 flex items-center justify-center bg-primary/5 mx-auto mb-4">
+                  <f.icon className="w-6 h-6 text-primary" />
+                </div>
                 <h4 className="font-display text-lg font-semibold text-foreground mb-2">{f.title}</h4>
                 <p className="text-sm text-muted-foreground">{f.desc}</p>
               </div>

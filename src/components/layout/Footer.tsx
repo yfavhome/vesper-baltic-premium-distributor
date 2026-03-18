@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import logoFull from "@/assets/logo-full.png";
+import logoIcon from "@/assets/logo-icon.png";
+import logoText from "@/assets/logo-text.png";
 
 const Footer = () => {
   return (
@@ -8,7 +9,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <img src={logoFull} alt="Vesper Group" className="h-20 w-auto mb-4 brightness-0 invert" />
+            <div className="flex items-center gap-3 mb-6">
+              <img src={logoIcon} alt="Vesper" className="h-10 w-auto" />
+              <img src={logoText} alt="Vesper" className="h-3.5 w-auto brightness-0 invert" />
+            </div>
             <p className="text-body text-primary-foreground/60 max-w-xs">
               Premium beverage distribution across the Baltic region. Connecting world-class brands with discerning markets.
             </p>
@@ -69,7 +73,7 @@ const Footer = () => {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-semibold uppercase tracking-widest text-primary-foreground/40 hover:text-primary transition-colors"
+                  className="w-9 h-9 flex items-center justify-center border border-primary-foreground/20 text-xs font-semibold uppercase tracking-widest text-primary-foreground/50 hover:text-primary hover:border-primary transition-colors"
                 >
                   {s.label}
                 </a>
