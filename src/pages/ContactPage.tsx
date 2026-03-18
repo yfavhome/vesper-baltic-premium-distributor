@@ -2,7 +2,7 @@ import { useState } from "react";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ArrowRight, Clock } from "lucide-react";
 import { toast } from "sonner";
 
 const ContactPage = () => {
