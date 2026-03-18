@@ -19,32 +19,30 @@ import { Search, ArrowRight, Wine, Package } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 const categoryImages: Record<string, string> = {
-  Whisky: catWhisky, Vodka: catVodka, Rum: catRum, Gin: catGin,
-  Tequila: catTequila, Sake: catMixers, "Red Wine": catWine,
-  "White Wine": catChampagne, "Rosé Wine": catWine, Champagne: catChampagne,
-  Prosecco: catChampagne, "Sparkling Wine": catChampagne, Brandy: catWhisky,
-  Cognac: catWhisky, Liqueurs: catLiqueurs, Vermouth: catLiqueurs,
-  Mixers: catMixers,
+  Champagne: catChampagne, Prosecco: catChampagne, "Sparkling Wine": catChampagne,
+  "White Wine": catWine, "Rosé Wine": catWine, "Red Wine": catWine,
+  Whisky: catWhisky, Rum: catRum, Gin: catGin, Vodka: catVodka,
+  Tequila: catTequila, Sake: catMixers,
+  Cognac: catWhisky, Brandy: catWhisky, Liqueurs: catLiqueurs, Mixers: catMixers,
 };
 
 const categoryDescriptions: Record<string, string> = {
-  Whisky: "Single malts, blends, and rare expressions",
-  Vodka: "Ultra-premium vodkas from around the world",
-  Rum: "Aged, dark, spiced and premium white rums",
-  Gin: "Craft and classic dry gins",
-  Tequila: "Artisanal and premium Mexican spirits",
-  Sake: "Premium Japanese rice wine including Dassai",
-  "Red Wine": "From Old World classics to New World discoveries",
-  "White Wine": "Crisp and aromatic white wines from top producers",
-  "Rosé Wine": "Elegant rosé wines from leading regions",
   Champagne: "Prestige cuvées and grower champagnes",
-  Prosecco: "Italian sparkling wines from Veneto and Trentino",
-  "Sparkling Wine": "Sparkling wines from around the globe",
-  Brandy: "Premium brandies including Armenian classics",
+  Prosecco: "Italian sparkling wines from Veneto",
+  "Sparkling Wine": "Crémant, Cava, and sparkling wines from around the globe",
+  "White Wine": "Crisp and aromatic whites from top producers worldwide",
+  "Rosé Wine": "Elegant rosé wines from Provence, Sicily, and beyond",
+  "Red Wine": "From Bordeaux to Barolo, Amarone to Malbec",
+  Whisky: "Scotch, Japanese, Indian, American, and world whiskies",
+  Rum: "Caribbean, Martinique rhum agricole, and craft rums",
+  Gin: "Craft and classic dry gins",
+  Vodka: "Premium vodkas",
+  Tequila: "Artisanal tequila and mezcal from Mexico",
+  Sake: "Premium Japanese sake including Dassai",
   Cognac: "Fine French cognacs and aged eaux-de-vie",
-  Liqueurs: "Classic and contemporary liqueurs",
-  Vermouth: "Italian vermouths and bitters for cocktails",
-  Mixers: "Premium tonics, sodas, and cocktail syrups",
+  Brandy: "Armagnac, Calvados, and premium brandies",
+  Liqueurs: "Amaretto, Limoncello, vermouth, pisco, and aperitivi",
+  Mixers: "Premium tonics, syrups, and mineral water",
 };
 
 interface CategoryData {

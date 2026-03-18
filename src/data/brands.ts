@@ -17,896 +17,1086 @@ export interface Product {
 }
 
 export const brands: Brand[] = [
-  // ── PROSECCO ──
-  {
-    name: "De Bernard", category: "Prosecco", country: "Italy", est: "1948",
-    desc: "Italian sparkling wine producer known for premium Prosecco DOC.",
-    products: [
-      { name: "De Bernard Prosecco DOC Rosé Brut", type: "Prosecco Rosé", volume: "0.75L", abv: "11%", image: "https://www.alko.lv/cdn/shop/products/Bernard_prosecco_rose_60x.png?v=1676549572", shopUrl: "https://www.alko.lv/products/de-bernard-prosecco-doc-rose-brut-11-0-75l" },
-      { name: "De Bernard Prosecco Extra Dry DOC", type: "Prosecco", volume: "200ml", abv: "11%", image: "https://www.alko.lv/cdn/shop/products/ProseccoDOCExtraDry200ml_60x.jpg?v=1678802233", shopUrl: "https://www.alko.lv/products/de-bernard-prosecco-extra-dry-doc-11-200ml" },
-    ],
-  },
-  {
-    name: "Sutto", category: "Prosecco", country: "Italy", est: "1933",
-    desc: "Family-run Prosecco and wine estate from Veneto.",
-    products: [
-      { name: "Prosecco Sutto DOC Brut", type: "Prosecco", volume: "0.75L", abv: "11%", shopUrl: "https://www.alko.lv/products/sutto-prosecco-doc-brut-0-75l-1" },
-      { name: "Prosecco Sutto Valdobbiadene DOCG Brut", type: "Prosecco", volume: "0.75L", abv: "11%", shopUrl: "https://www.alko.lv/products/prosecco-sutto-valdobbiadene-docg-brut-11-0-75l" },
-      { name: "Prosecco Sutto DOC Extra Dry Magnum", type: "Prosecco", volume: "1.5L", abv: "11%", shopUrl: "https://www.alko.lv/products/sutto-prosecco-doc-extra-dry-magnum-1-5l-1" },
-    ],
-  },
-  {
-    name: "Donna Gloria", category: "Prosecco", country: "Italy", est: "",
-    desc: "Premium Prosecco from Valdobbiadene DOCG region.",
-    products: [
-      { name: "Donna Gloria Valdobbiadene Prosecco Superiore DOCG Extra Dry", type: "Prosecco", volume: "0.75L", abv: "11.5%", shopUrl: "https://www.alko.lv/products/donna-gloria-valdobbiadene-prosecco-superiore-docg-11-5-0-75l" },
-      { name: "Donna Gloria Prosecco Extra Dry DOC", type: "Prosecco", volume: "0.75L", abv: "11%", shopUrl: "https://www.alko.lv/products/donna-gloria-prosecco-extra-dry-doc-11-0-75l" },
-    ],
-  },
-
-  // ── CHAMPAGNE ──
+  // ══════════════════════════════════════
+  // ── CHAMPAGNE
+  // ══════════════════════════════════════
   {
     name: "Duval-Leroy", category: "Champagne", country: "France", est: "1859",
     desc: "Prestigious French Champagne house with organic vineyards and a woman-led vision.",
     products: [
-      { name: "Duval-Leroy Brut Réserve GB", type: "Champagne", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/duval-leroy-brut-reserve-gb" },
-      { name: "Duval-Leroy Blanc de Blancs Grand Cru Prestige", type: "Champagne", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/duval-leroy-blanc-de-blancs-grand-cru-prestige-gb" },
+      { name: "Duval-Leroy Brut Réserve", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Duval-Leroy Brut Réserve", type: "Champagne", volume: "0.375L", abv: "12%" },
+      { name: "Duval-Leroy Rosé Prestige Premier Cru", type: "Champagne Rosé", volume: "0.75L", abv: "12%" },
+      { name: "Duval-Leroy Blanc de Blancs Grand Cru Prestige", type: "Champagne", volume: "0.75L", abv: "12.5%" },
+      { name: "Duval-Leroy Femme de Champagne Grand Cru", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Duval-Leroy Femme de Champagne Rosé de Saignée 2007", type: "Champagne Rosé", volume: "0.75L", abv: "12%" },
     ],
   },
   {
     name: "Laurent Lequart", category: "Champagne", country: "France", est: "",
     desc: "Artisan grower Champagne from Festigny — Cœur de Cuvée Extra Brut and more.",
     products: [
-      { name: "Laurent Lequart Cœur de Cuvée Extra Brut LIMITED + GB", type: "Champagne", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/laurent-lequart-coeur-de-cuvee-extra-brut" },
-      { name: "Laurent Lequart Millésime 2010 Brut", type: "Champagne", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/laurent-lequart-millesime-2010-brut-12-0-75l" },
-      { name: "Laurent Lequart Millésime 2008 Brut", type: "Champagne", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/laurent-lequart-millesime-2008-brut" },
-      { name: "Laurent Lequart Rosé Blanche D'Andesyne Extra Brut", type: "Champagne Rosé", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/laurent-lequart-rose-blanche-andesyne-extra-brut" },
-      { name: "Laurent Lequart Cuvée l'Héritière Extra Brut", type: "Champagne", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/laurent-lequart-decouverte-champagne-l-heritiere-extra-brut" },
-      { name: "Laurent Lequart Gourmande Blanc de Meunier Brut Nature", type: "Champagne", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/laurent-lequart-gourmande-champagne-blanc-de-meunier-brut-nature" },
-    ],
-  },
-  {
-    name: "Moët & Chandon", category: "Champagne", country: "France", est: "1743",
-    desc: "Iconic French Champagne house, synonymous with celebration worldwide.",
-    products: [
-      { name: "Moët & Chandon Brut Impérial", type: "Champagne", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/moet-chandon-brut-imperial-12-0-75l" },
-      { name: "Moët & Chandon Brut Impérial Rosé", type: "Champagne Rosé", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/moet-chandon-brut-imperial-rose-12-0-75l-1" },
-    ],
-  },
-  {
-    name: "Dom Pérignon", category: "Champagne", country: "France", est: "1921",
-    desc: "The ultimate prestige cuvée — vintage-only Champagne of legendary status.",
-    products: [
-      { name: "Dom Pérignon Grand Vintage 2012", type: "Champagne", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/dom-perignon-grand-vintage-2012-12-5-0-75l" },
-      { name: "Dom Pérignon Grand Vintage 2010", type: "Champagne", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/dom-perignon-grand-vintage-2010-12-5-0-75l" },
-      { name: "Dom Pérignon Vintage 2010 Lady Gaga Limited Edition", type: "Champagne", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/dom-perignon-vintage-2010-lady-gaga-limited-edition-12-5-0-75l" },
-    ],
-  },
-  {
-    name: "Veuve Clicquot", category: "Champagne", country: "France", est: "1772",
-    desc: "One of the world's most prestigious Champagne houses, famed for Yellow Label.",
-    products: [
-      { name: "Veuve Clicquot Brut", type: "Champagne", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/veuve-clicquot-brut-12-5-0-75l-1" },
-      { name: "Veuve Clicquot Brut", type: "Champagne", volume: "0.375L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/veuve-clicquot-brut-12-5-0-375l" },
+      { name: "Laurent Lequart Cuvée Réserve Brut", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Cuvée Réserve Brut Jéroboam", type: "Champagne", volume: "3L", abv: "12%" },
+      { name: "Laurent Lequart Cuvée Réserve Demi Sec", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Blanc de Noirs Brut Nature", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart L'Héritière Extra Brut", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Blanc de Blanc Brut", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Blanc de Meunier Brut Nature", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Rosé Blanche Andésyne Extra Brut", type: "Champagne Rosé", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Rosé Blanche Andésyne Brut", type: "Champagne Rosé", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Meunier Millésime 2019 Extra Brut", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Prestige Pur Meunier Extra Brut", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Saignée de Meunier Extra Brut", type: "Champagne Rosé", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Millésime 2015 Extra Brut", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Cœur de Cuvée Extra Brut +GB", type: "Champagne", volume: "0.75L", abv: "12%" },
+      { name: "Laurent Lequart Prestige Pure Meunier Extra Brut Magnum +GB", type: "Champagne", volume: "1.5L", abv: "12%" },
     ],
   },
 
-  // ── SPARKLING WINE ──
+  // ══════════════════════════════════════
+  // ── SPARKLING WINE / PROSECCO
+  // ══════════════════════════════════════
+  {
+    name: "Sutto", category: "Prosecco", country: "Italy", est: "1933",
+    desc: "Family-run Prosecco and wine estate from Veneto.",
+    products: [
+      { name: "Sutto Prosecco DOC Brut", type: "Prosecco", volume: "0.75L", abv: "11%" },
+      { name: "Sutto Prosecco DOC Extra Dry +GB Magnum", type: "Prosecco", volume: "1.5L", abv: "11%" },
+      { name: "Sutto Prosecco Valdobbiadene DOCG Brut", type: "Prosecco", volume: "0.75L", abv: "11%" },
+    ],
+  },
+  {
+    name: "Donna Gloria", category: "Prosecco", country: "Italy", est: "",
+    desc: "Premium Prosecco from Tenute Piccini — Valdobbiadene DOCG and DOC.",
+    products: [
+      { name: "Donna Gloria Spumante Gran Cuvée", type: "Sparkling Wine", volume: "0.75L", abv: "11%" },
+      { name: "Donna Gloria Prosecco Extra Dry DOC", type: "Prosecco", volume: "0.2L", abv: "11%" },
+      { name: "Donna Gloria Prosecco Edizione Prima DOC", type: "Prosecco", volume: "0.75L", abv: "11%" },
+      { name: "Donna Gloria Valdobbiadene Prosecco Superiore DOCG", type: "Prosecco", volume: "0.75L", abv: "11.5%" },
+    ],
+  },
+  {
+    name: "Tor Dell'Elmo", category: "Sparkling Wine", country: "Italy", est: "",
+    desc: "Italian sparkling from Togni — Dolce and Brut expressions.",
+    products: [
+      { name: "Tor Dell'Elmo Dolce", type: "Sparkling Wine", volume: "0.75L", abv: "9.5%" },
+      { name: "Tor Dell'Elmo Brut", type: "Sparkling Wine", volume: "0.75L", abv: "11%" },
+    ],
+  },
+  {
+    name: "Maistral", category: "Prosecco", country: "Italy", est: "",
+    desc: "Prosecco DOC — private label for The Artisan Spirits Box.",
+    products: [
+      { name: "Prosecco Maistral DOC Extra Dry", type: "Prosecco", volume: "0.75L", abv: "11%" },
+    ],
+  },
+  {
+    name: "De Bernard", category: "Prosecco", country: "Italy", est: "1948",
+    desc: "Italian sparkling wine producer known for premium Prosecco DOC.",
+    products: [
+      { name: "De Bernard Cuvée Millesimato Extra Dry", type: "Prosecco", volume: "0.75L", abv: "11%" },
+      { name: "De Bernard Cuvée Rosé Brut", type: "Prosecco Rosé", volume: "0.75L", abv: "11.5%" },
+      { name: "De Bernard Prosecco DOC Extra Dry", type: "Prosecco", volume: "0.75L", abv: "11%" },
+      { name: "De Bernard Prosecco DOC Extra Dry", type: "Prosecco", volume: "0.2L", abv: "11%" },
+      { name: "De Bernard Prosecco DOC Rosé Extra Dry", type: "Prosecco Rosé", volume: "0.75L", abv: "11%" },
+    ],
+  },
   {
     name: "Rotari", category: "Sparkling Wine", country: "Italy", est: "1977",
-    desc: "Italian Trento DOC sparkling wine producer using the traditional method.",
+    desc: "Italian Trento DOC sparkling wine — Metodo Classico.",
     products: [
-      { name: "Rotari Brut Trento DOC", type: "Sparkling Wine", volume: "0.75L", abv: "12.5%" },
-      { name: "Rotari Rosé Trento DOC", type: "Sparkling Wine", volume: "0.75L", abv: "12.5%" },
-      { name: "Rotari Flavio Riserva", type: "Sparkling Wine", volume: "0.75L", abv: "13%" },
+      { name: "Rotari Brut Platinum Classico", type: "Sparkling Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Rotari Brut Classico", type: "Sparkling Wine", volume: "0.187L", abv: "12.5%" },
+      { name: "Rotari Arte Italiana Metodo Classico", type: "Sparkling Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Rotari Trento DOC Rosé", type: "Sparkling Wine", volume: "0.75L", abv: "12.5%" },
     ],
   },
   {
-    name: "Forte Alto", category: "Sparkling Wine", country: "Italy", est: "1999",
-    desc: "Modern Italian sparkling wines and still wines from Trentino.",
+    name: "Bella Conchi", category: "Sparkling Wine", country: "Spain", est: "",
+    desc: "Spanish Cava from Catalonia — Brut and Rosé expressions.",
     products: [
-      { name: "Forte Alto Prosecco DOC", type: "Sparkling Wine", volume: "0.75L", abv: "11%" },
-      { name: "Forte Alto Pinot Grigio Delle Venezie DOC", type: "White Wine", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/forte-alto-pinot-grigio-vigneti-delle-dolomiti-igt" },
-      { name: "Forte Alto Merlot Delle Dolomiti IGT", type: "Red Wine", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/forte-alto-merlot" },
+      { name: "Bella Conchi Brut", type: "Cava", volume: "0.75L", abv: "11.5%" },
+      { name: "Bella Conchi Brut Rosé", type: "Cava Rosé", volume: "0.75L", abv: "11.5%" },
+    ],
+  },
+  {
+    name: "Frey Sohler", category: "Sparkling Wine", country: "France", est: "",
+    desc: "Alsatian family winery — Crémant Riesling and still wines.",
+    products: [
+      { name: "Frey Sohler Crémant Riesling Alsace", type: "Crémant", volume: "0.75L", abv: "12%" },
+      { name: "Frey Sohler Riesling AOC Alsace", type: "White Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Frey Sohler Gewürztraminer Réserve AOC Alsace", type: "White Wine", volume: "0.75L", abv: "12.5%" },
+    ],
+  },
+  {
+    name: "Loire Propriétés", category: "Sparkling Wine", country: "France", est: "",
+    desc: "Loire Valley wines — Crémant de Loire, Saumur, Vouvray, and more.",
+    products: [
+      { name: "Saumur AOC Demi-Sec Diamant de Loire", type: "Sparkling Wine", volume: "0.75L", abv: "12%" },
+      { name: "Château de Mauny AOC Crémant de Loire Brut", type: "Crémant", volume: "0.75L", abv: "12.5%" },
+      { name: "Château Dess Cosse AOC Crémant Loire Brut", type: "Crémant", volume: "0.75L", abv: "12.5%" },
+      { name: "Château Dess Cosse AOC Crémant Loire Brut Rosé", type: "Crémant Rosé", volume: "0.75L", abv: "12.5%" },
+      { name: "Château de Valmer AOC Vouvray Brut", type: "Sparkling Wine", volume: "0.75L", abv: "12.5%" },
+    ],
+  },
+  {
+    name: "Leo Hillinger", category: "Sparkling Wine", country: "Austria", est: "",
+    desc: "Premium Austrian organic wines from Burgenland — whites, reds, rosé and sparkling.",
+    products: [
+      { name: "Hillinger Secco Rosé", type: "Sparkling Wine", volume: "0.75L", abv: "12%" },
+      { name: "Hillinger Welschriesling Organic", type: "White Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Hillinger Small HILL White", type: "White Wine", volume: "0.75L", abv: "11.5%" },
+      { name: "Hillinger Grüner Veltliner Terroir Organic", type: "White Wine", volume: "0.75L", abv: "12%" },
+      { name: "Hillinger Traminer Eiswein", type: "Sweet Wine", volume: "0.375L", abv: "8.5%" },
+      { name: "Hillinger Small HILL Rosé", type: "Rosé Wine", volume: "0.75L", abv: "11.5%" },
+      { name: "Hillinger Blaufränkisch Organic", type: "Red Wine", volume: "0.75L", abv: "12%" },
+      { name: "Hillinger Zweigelt Organic", type: "Red Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Hillinger St. Laurent Organic", type: "Red Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Hillinger Blaufränkisch Leithaberg DAC Organic", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Hillinger Blaufränkisch Terroir Organic", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+    ],
+  },
+  {
+    name: "Pierre Chavin", category: "Sparkling Wine", country: "France", est: "",
+    desc: "Non-alcoholic sparkling wines and still wines — Chavin Zero and Le Petit Chavin.",
+    products: [
+      { name: "Chavin Zero Chardonnay Sparkling", type: "Non-Alcoholic Sparkling", volume: "0.75L", abv: "0%" },
+      { name: "Chavin Zero Chardonnay Sparkling", type: "Non-Alcoholic Sparkling", volume: "0.2L", abv: "0%" },
+      { name: "Le Petit Chavin Chardonnay Sparkling", type: "Non-Alcoholic Sparkling", volume: "0.75L", abv: "0%" },
+      { name: "Le Petit Chavin Rosé Sparkling", type: "Non-Alcoholic Sparkling", volume: "0.75L", abv: "0%" },
+      { name: "Le Petit Chavin Chardonnay Still", type: "Non-Alcoholic Wine", volume: "0.75L", abv: "0%" },
+      { name: "Le Petit Chavin Merlot Still", type: "Non-Alcoholic Wine", volume: "0.75L", abv: "0%" },
+      { name: "Chavin Zero Sauvignon Blanc", type: "Non-Alcoholic Wine", volume: "0.75L", abv: "0%" },
     ],
   },
 
-  // ── RED WINE ──
+  // ══════════════════════════════════════
+  // ── WHITE WINE
+  // ══════════════════════════════════════
   {
-    name: "Piccini 1882", category: "Red Wine", country: "Italy", est: "1882",
-    desc: "Tuscan wine house known for Chianti and premium Italian reds.",
+    name: "Tiraki", category: "White Wine", country: "New Zealand", est: "",
+    desc: "Marlborough wines — Sauvignon Blanc and Chardonnay.",
     products: [
-      { name: "Piccini Chianti DOCG", type: "Red Wine", volume: "0.75L", abv: "13%" },
-      { name: "Piccini Chianti Riserva", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
-      { name: "Piccini Brunello di Montalcino", type: "Red Wine", volume: "0.75L", abv: "14%" },
-      { name: "Piccini Memoro Rosso", type: "Red Wine", volume: "0.75L", abv: "14%" },
+      { name: "Tiraki Sauvignon Blanc Marlborough", type: "White Wine", volume: "0.75L", abv: "14%" },
+      { name: "Tiraki Chardonnay", type: "White Wine", volume: "0.75L", abv: "14%" },
+      { name: "Tiraki Pinot Noir", type: "Red Wine", volume: "0.75L", abv: "14%" },
     ],
   },
   {
-    name: "Togni", category: "Red Wine", country: "Italy", est: "1954",
-    desc: "Italian winery crafting distinctive wines since 1954.",
+    name: "Villa Hochdörffer", category: "White Wine", country: "Germany", est: "",
+    desc: "German Riesling from the Pfalz region.",
     products: [
-      { name: "Togni Cabernet Sauvignon", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Villa Hochdörffer Riesling Halbtrocken Kalkmergel", type: "White Wine", volume: "0.75L", abv: "11.5%" },
+      { name: "Villa Hochdörffer Riesling Trocken", type: "White Wine", volume: "1L", abv: "11.5%" },
     ],
   },
   {
-    name: "Tenuta Angoris", category: "Red Wine", country: "Italy", est: "1648",
-    desc: "Historic Italian winery in Friuli Venezia Giulia — wines and Pinot Grigio.",
+    name: "J. Meyer (Moselland)", category: "White Wine", country: "Germany", est: "",
+    desc: "German wines from the Pfalz — Riesling and Gewürztraminer.",
     products: [
-      { name: "Villa Locatelli Cabernet Sauvignon (Angoris)", type: "Red Wine", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/angoris-villa-locatelli-cabernet-sauvignon-friuli-isonzo" },
-      { name: "Angoris Albertina Pinot Nero", type: "Red Wine", volume: "0.75L", abv: "13%", shopUrl: "https://www.alko.lv/products/angoris-albertina-pinot-noir-2016" },
-      { name: "Villa Locatelli Pinot Grigio Friuli Isonzo DOC (Angoris)", type: "White Wine", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/angoris-villa-locatelli-pinot-grigio" },
-      { name: "Villa Locatelli Sauvignon Blanc Friuli Isonzo DOC (Angoris)", type: "White Wine", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/angoris-villa-locatelli-sauvignon-blanc" },
+      { name: "J. Meyer Riesling Pfalz", type: "White Wine", volume: "0.75L", abv: "12%" },
+      { name: "J. Meyer Gewürztraminer Pfalz", type: "White Wine", volume: "0.75L", abv: "12%" },
+    ],
+  },
+  {
+    name: "Tenuta Angoris", category: "White Wine", country: "Italy", est: "1648",
+    desc: "Historic Italian winery in Friuli Venezia Giulia — Pinot Grigio, Sauvignon, and Metodo Charmat.",
+    products: [
+      { name: "Villa Locatelli Pinot Grigio", type: "White Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Villa Locatelli Pinot Grigio", type: "White Wine", volume: "0.375L", abv: "12.5%" },
+      { name: "Villa Locatelli Sauvignon Blanc", type: "White Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Angoris Sauvignon Blanc DOC Collio", type: "White Wine", volume: "0.75L", abv: "14%" },
+      { name: "Angoris Spiule Chardonnay Riserva Giulio Locatelli DOC", type: "White Wine", volume: "0.75L", abv: "14%" },
+      { name: "Angoris Collio Bianco Riserva Giulio Locatelli DOC", type: "White Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Angoris Modolet Bianco Brut Metodo Charmat", type: "Sparkling Wine", volume: "0.75L", abv: "12%" },
+      { name: "Angoris Albertina Pinot Noir", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Angoris Cabernet Sauvignon DOC Collio", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Angoris Ravost Merlot Riserva Giulio Locatelli DOC", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Pignolo Riserva Giulio Locatelli DOC", type: "Red Wine", volume: "0.75L", abv: "14%" },
+    ],
+  },
+  {
+    name: "Tenuta Moraia", category: "Red Wine", country: "Italy", est: "",
+    desc: "Tuscan estate from Tenute Piccini — Maremma Toscana Riserva.",
+    products: [
+      { name: "Tenuta Moraia Albus Maremma Toscana Riserva Bianco BIO", type: "White Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Tenuta Moraia Vesper Maremma Toscana Riserva", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Tenuta Moraia Perpiero Toscana IGT", type: "Red Wine", volume: "0.75L", abv: "14%" },
+      { name: "Tenuta Moraia Apricaia Toscana IGT", type: "Red Wine", volume: "0.75L", abv: "14%" },
+    ],
+  },
+  {
+    name: "Bentu Luna", category: "Red Wine", country: "Italy", est: "",
+    desc: "Sardinian wines — Vermentino and Mandrolisai DOC.",
+    products: [
+      { name: "Bentu Luna UNDA Vermentino DOC", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Bentu Luna MARI Red Mandrolisai DOC", type: "Red Wine", volume: "0.75L", abv: "14%" },
+    ],
+  },
+  {
+    name: "Castello di Buttrio", category: "White Wine", country: "Italy", est: "",
+    desc: "Premium wines from Friuli Colli Orientali DOC.",
+    products: [
+      { name: "Castello di Buttrio Pinot Grigio DOC Friuli Colli Orientali", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Castello di Buttrio Ettaro Sauvignon Riserva DOC", type: "White Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Castello di Buttrio Mon Rouge IGT Venezia Giulia", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Castello di Buttrio Merlot DOC Friuli Colli Orientali", type: "Red Wine", volume: "0.75L", abv: "12.5%" },
+    ],
+  },
+  {
+    name: "Roberto Sarotto", category: "Red Wine", country: "Italy", est: "",
+    desc: "Piedmontese winery — Barolo, Barbaresco, Barbera d'Asti, Moscato d'Asti.",
+    products: [
+      { name: "Roberto Sarotto Moscato d'Asti", type: "White Wine", volume: "0.75L", abv: "5%" },
+      { name: "Roberto Sarotto Tenuta Manenti Aurora Gavi DOCG", type: "White Wine", volume: "0.75L", abv: "12%" },
+      { name: "Roberto Sarotto Langhe Arneis", type: "White Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Roberto Sarotto Bric Sassi Gavi del Comune di Gavi", type: "White Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Roberto Sarotto Chardonnay", type: "White Wine", volume: "0.75L", abv: "14%" },
+      { name: "Roberto Sarotto Barbera d'Asti DOCG", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Roberto Sarotto Barbera d'Asti Superiore", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Roberto Sarotto Barbera Elena la Luna D'Alba DOC", type: "Red Wine", volume: "0.75L", abv: "15.5%" },
+      { name: "Roberto Sarotto Langhe DOC Nebbiolo", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Roberto Sarotto Barbaresco Curra", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Roberto Sarotto Barbaresco Riserva DOCG", type: "Red Wine", volume: "0.75L", abv: "14%" },
+      { name: "Roberto Sarotto Barolo DOCG", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Roberto Sarotto Barolo Riserva DOCG", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Roberto Sarotto Barolo Audace", type: "Red Wine", volume: "0.75L", abv: "16%" },
+      { name: "Roberto Sarotto Grappa di Moscato", type: "Grappa", volume: "0.7L", abv: "40%" },
+    ],
+  },
+  {
+    name: "Cantine Lento", category: "White Wine", country: "Italy", est: "",
+    desc: "Calabrian winery — Greco di Lamezia and Dragone Selezione.",
+    products: [
+      { name: "Cantine Lento Greco Lamezia", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Calabria Dragone Selezione Bianco", type: "White Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Calabria Dragone Selezione Rosso", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+    ],
+  },
+  {
+    name: "Forte Alto", category: "White Wine", country: "Italy", est: "1999",
+    desc: "Modern Italian wines from Trentino — Pinot Grigio, Merlot, Teroldego.",
+    products: [
+      { name: "Forte Alto Pinot Grigio Vigneti delle Dolomiti IGT", type: "White Wine", volume: "0.75L", abv: "12%" },
+      { name: "Forte Alto Pinot Grigio Rosé Vigneti delle Dolomiti IGT", type: "Rosé Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Forte Alto Teroldego Vigneti delle Dolomiti IGT", type: "Red Wine", volume: "0.75L", abv: "12%" },
+      { name: "Forte Alto Merlot Vigneti delle Dolomiti IGT", type: "Red Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Forte Alto Red Blend Vigneti delle Dolomiti IGT", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
     ],
   },
   {
     name: "Feudo Arancio", category: "Red Wine", country: "Italy", est: "",
-    desc: "Sicilian winery producing excellent value DOC wines across many grape varieties.",
+    desc: "Sicilian winery producing excellent DOC wines across many grape varieties.",
     products: [
-      { name: "Feudo Arancio Merlot Sicilia DOC", type: "Red Wine", volume: "0.75L", abv: "13.5%", shopUrl: "https://www.alko.lv/products/feudo-arancio-merlot-sicilia-doc" },
-      { name: "Feudo Arancio Nero d'Avola Sicilia DOC", type: "Red Wine", volume: "0.75L", abv: "13%", shopUrl: "https://www.alko.lv/products/feudo-arancio-nero-davola-sicilia" },
-      { name: "Feudo Arancio Syrah Sicilia DOC", type: "Red Wine", volume: "0.75L", abv: "13.5%", shopUrl: "https://www.alko.lv/products/feudo-arancio-syrah-sicilia-doc" },
-      { name: "Feudo Arancio Cabernet Sauvignon Sicilia DOC", type: "Red Wine", volume: "0.75L", abv: "13.5%", shopUrl: "https://www.alko.lv/products/feudo-arancio-cabernet-sauvignon-sicilia-doc" },
-      { name: "Feudo Arancio Cantodoro Rosso Riserva Sicilia DOC", type: "Red Wine", volume: "0.75L", abv: "13.5%", shopUrl: "https://www.alko.lv/products/feudo-arancio-cantodoro-sicilia-doc" },
-      { name: "Feudo Arancio Pinot Grigio Sicilia DOC", type: "White Wine", volume: "0.75L", abv: "13%", shopUrl: "https://www.alko.lv/products/feudo-arancio-pinot-grigio-sicilia-doc" },
-      { name: "Feudo Arancio Inzolia Sicilia DOC", type: "White Wine", volume: "0.75L", abv: "13%", shopUrl: "https://www.alko.lv/products/feudo-arancio-inzolia-sicilia-igt" },
-      { name: "Feudo Arancio Chardonnay Sicilia DOC", type: "White Wine", volume: "0.75L", abv: "13.5%", shopUrl: "https://www.alko.lv/products/feudo-arancio-chardonnay-sicilia-doc" },
-      { name: "Feudo Arancio Tinchité Grillo Sicilia DOC", type: "White Wine", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/feudo-arancio-tinchite-grillo-sicillia-doc" },
+      { name: "Feudo Arancio Grillo Sicilia DOC", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Feudo Arancio Chardonnay Sicilia DOC", type: "White Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Feudo Arancio Pinot Grigio Sicilia DOC", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Feudo Arancio Tinchité Grillo Sicilia DOC", type: "White Wine", volume: "0.75L", abv: "12%" },
+      { name: "Feudo Arancio Inzolia Sicilia IGT", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Feudo Arancio Dalila Sicilia DOC", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Feudo Arancio Tinchité Frappato Rosé Terre Siciliane IGT", type: "Rosé Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Feudo Arancio Rosato Terre Siciliane IGT", type: "Rosé Wine", volume: "0.75L", abv: "12%" },
+      { name: "Feudo Arancio Syrah Sicilia DOC", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Feudo Arancio Merlot Sicilia DOC", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Feudo Arancio Cabernet Sauvignon Sicilia DOC", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Feudo Arancio Nero d'Avola Sicilia", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Feudo Arancio Passiari Appassimento", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Feudo Arancio Cantodoro Sicilia DOC", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+    ],
+  },
+  {
+    name: "Cantore di Castelforte", category: "Red Wine", country: "Italy", est: "",
+    desc: "Puglia wines — Primitivo Salento IGT and Primitivo di Manduria DOC.",
+    products: [
+      { name: "Castelforte Chardonnay Salento IGT", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Castelforte Primitivo Salento IGT Masserie Centonze", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Castelforte Primitivo di Manduria DOC Donna Maria", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+    ],
+  },
+  {
+    name: "La Colline aux Princes", category: "White Wine", country: "France", est: "",
+    desc: "Loire Valley — Pouilly-Fumé and Sancerre AOC.",
+    products: [
+      { name: "La Colline aux Princes AOC Pouilly-Fumé", type: "White Wine", volume: "0.75L", abv: "12%" },
+      { name: "La Colline aux Princes AOC Sancerre", type: "White Wine", volume: "0.75L", abv: "11%" },
+    ],
+  },
+  {
+    name: "Inwinectus (AdViNi)", category: "Red Wine", country: "France", est: "",
+    desc: "Languedoc wines — Pays d'Oc IGP varietal range.",
+    products: [
+      { name: "Inwinectus Chardonnay", type: "White Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Inwinectus Cabernet Sauvignon", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Inwinectus Merlot", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Inwinectus Syrah", type: "Red Wine", volume: "0.75L", abv: "13%" },
+    ],
+  },
+  {
+    name: "Borie Manoux (Bordeaux)", category: "Red Wine", country: "France", est: "",
+    desc: "Prestigious Bordeaux négociant — Châteaux from Pauillac to Saint-Émilion.",
+    products: [
+      { name: "Beau-Rivage AOC Bordeaux Rouge", type: "Red Wine", volume: "0.187L", abv: "13%" },
+      { name: "Château du Pin Blanc Bordeaux", type: "White Wine", volume: "0.75L", abv: "12%" },
+      { name: "Château Canteloup Rouge", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Château Mont Pérat Bordeaux Rouge", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Château Sénejac Haut-Médoc", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Château Haut Madrac Haut-Médoc", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Château Cantemerle Haut-Médoc", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Château Grand-Puy-Lacoste Lacoste-Borie Pauillac", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Château Fleur de Pédesclaux Pauillac", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Château Teyssier Saint-Émilion Grand Cru", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Château Fonbel Saint-Émilion", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Château De Ferrand Saint-Émilion", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Château D'Issan Margaux", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Château Pontac Lynch Margaux", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Château Ferrière Margaux", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Domaine de Chevalier L'Esprit Pessac-Léognan", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Château Lalande Borie Saint-Julien", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Château Lagrange Saint-Julien", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Château Talbot Saint-Julien", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Château Gloria Saint-Julien", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Château Beau-Site Saint-Estèphe", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Château Clinet Pomerol", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Château Nénin Pomerol", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Château Gazin Pomerol", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+    ],
+  },
+  {
+    name: "Peyrassol", category: "Rosé Wine", country: "France", est: "",
+    desc: "Prestigious Côtes de Provence rosé estate — Cuvée des Commandeurs, Château, and Le Clos.",
+    products: [
+      { name: "Peyrassol Cuvée les Commandeurs Côtes de Provence", type: "Rosé Wine", volume: "0.75L", abv: "13%" },
+      { name: "Peyrassol Château Rosé AOC Côtes de Provence", type: "Rosé Wine", volume: "0.75L", abv: "13%" },
+      { name: "Peyrassol Le Clos Rosé Côtes de Provence", type: "Rosé Wine", volume: "0.75L", abv: "13%" },
+    ],
+  },
+  {
+    name: "Woodhaven (Delicato)", category: "Red Wine", country: "USA", est: "",
+    desc: "California wines from Delicato Family — Chardonnay, Cabernet, Zinfandel.",
+    products: [
+      { name: "Woodhaven Chardonnay", type: "White Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Woodhaven Cabernet Sauvignon", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Woodhaven Zinfandel", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+    ],
+  },
+  {
+    name: "Noble Vines (Delicato)", category: "Red Wine", country: "USA", est: "",
+    desc: "Premium Napa Valley wines — Chardonnay, Cabernet, Pinot Noir.",
+    products: [
+      { name: "Noble Vines 446 Chardonnay", type: "White Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Noble Vines 337 Cabernet Sauvignon", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Noble Vines 667 Pinot Noir", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Noble Vines Red Blend", type: "Red Wine", volume: "0.75L", abv: "14%" },
+    ],
+  },
+  {
+    name: "Brazin (Delicato)", category: "Red Wine", country: "USA", est: "",
+    desc: "Old Vine Zinfandel from Lodi, California.",
+    products: [
+      { name: "Brazin Old Vine Zinfandel Lodi", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+    ],
+  },
+  {
+    name: "The Federalist", category: "Red Wine", country: "USA", est: "",
+    desc: "California wines from Terlato — Cabernet, Zinfandel, BBA.",
+    products: [
+      { name: "Steep Ridge Cabernet Sauvignon", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "The Federalist 1776 Cabernet Sauvignon Lodi", type: "Red Wine", volume: "0.75L", abv: "14.9%" },
+      { name: "The Federalist 1776 Zinfandel Lodi", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Federalist BBA Cabernet Sauvignon", type: "Red Wine", volume: "0.75L", abv: "14%" },
+      { name: "Federalist Chardonnay Mendocino", type: "White Wine", volume: "0.75L", abv: "14.5%" },
+    ],
+  },
+  {
+    name: "Synthesis", category: "Red Wine", country: "USA", est: "",
+    desc: "Napa Valley Cabernet Sauvignon.",
+    products: [
+      { name: "Synthesis Cabernet Sauvignon", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+    ],
+  },
+  {
+    name: "Villa Spinosa", category: "Red Wine", country: "Italy", est: "",
+    desc: "Valpolicella — Classico, Ripasso, and Amarone DOCG.",
+    products: [
+      { name: "Villa Spinosa Valpolicella Classico DOC", type: "Red Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Villa Spinosa Valpolicella Classico Superiore Figari", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Villa Spinosa Valpolicella Ripasso Classico Superiore Jago", type: "Red Wine", volume: "0.75L", abv: "14%" },
+      { name: "Villa Spinosa Amarone della Valpolicella DOCG", type: "Red Wine", volume: "0.75L", abv: "16.5%" },
+      { name: "Villa Spinosa Amarone Albasini della Valpolicella Classico DOCG", type: "Red Wine", volume: "0.75L", abv: "16%" },
+    ],
+  },
+  {
+    name: "Geografico", category: "Red Wine", country: "Italy", est: "",
+    desc: "Tuscan wines — Chianti DOCG, Brunello di Montalcino, Bolgheri.",
+    products: [
+      { name: "Chianti DOCG Geografico Rombo", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Chianti Colli Senesi DOCG Geografico", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Chianti Riserva DOCG Borgo alla Terra", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "La Pevera Rosso Toscano IGT", type: "Red Wine", volume: "0.75L", abv: "14%" },
+      { name: "Brunello di Montalcino DOCG Corte dei Pazzi Sellaio", type: "Red Wine", volume: "0.75L", abv: "14%" },
+      { name: "Bolgheri DOC Corte dei Pazzi Sellaio", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+    ],
+  },
+  {
+    name: "Quinta Quietud", category: "Red Wine", country: "Spain", est: "",
+    desc: "Premium Toro DO wines — La Mula de la Quietud.",
+    products: [
+      { name: "La Mula de la Quietud", type: "Red Wine", volume: "0.75L", abv: "15%" },
+      { name: "La Mula de la Quietud Magnum + Wooden Box", type: "Red Wine", volume: "1.5L", abv: "15%" },
     ],
   },
   {
     name: "Domaine Bousquet", category: "Red Wine", country: "Argentina", est: "",
     desc: "Organic Argentine winery producing premium Malbec from Mendoza.",
     products: [
-      { name: "Domaine Bousquet Malbec", type: "Red Wine", volume: "0.75L", abv: "13.5%", shopUrl: "https://www.alko.lv/products/domaine-bosquet-malbec-14-0-75l" },
-      { name: "Domaine Bousquet Malbec Reserva", type: "Red Wine", volume: "0.75L", abv: "14.5%", shopUrl: "https://www.alko.lv/products/domaine-bosquet-malbec-reserva-14-5-0-75l" },
+      { name: "Domaine Bousquet Chardonnay", type: "White Wine", volume: "0.75L", abv: "14%" },
+      { name: "Domaine Bousquet Malbec", type: "Red Wine", volume: "0.75L", abv: "14%" },
+      { name: "Domaine Bousquet Malbec Reserva", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
     ],
   },
   {
-    name: "Roberto Sarotto", category: "Red Wine", country: "Italy", est: "",
-    desc: "Piedmontese winery known for Barbera d'Asti and Moscato d'Asti.",
+    name: "Caleuche (Viña Aromo)", category: "Red Wine", country: "Chile", est: "",
+    desc: "Chilean wines from Maule Valley — Cabernet, Carménère, Chardonnay, Sauvignon Blanc.",
     products: [
-      { name: "Roberto Sarotto Barbera d'Asti DOCG", type: "Red Wine", volume: "0.75L", abv: "13.5%", shopUrl: "https://www.alko.lv/products/roberto-sarotto-barbera-dasti-docg" },
-      { name: "Roberto Sarotto Moscato d'Asti", type: "White Wine", volume: "0.75L", abv: "5%", shopUrl: "https://www.alko.lv/products/roberto-sarotto-moscato-d-asti" },
-      { name: "Roberto Sarotto Grappa di Moscato", type: "Brandy", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/roberto-sarotto-grappa-di-moscato" },
+      { name: "Caleuche Sauvignon Blanc", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Caleuche Chardonnay", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Caleuche Reserve Chardonnay", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Caleuche Reserve Sauvignon Blanc", type: "White Wine", volume: "0.75L", abv: "13%" },
+      { name: "Caleuche Family Collection Chardonnay", type: "White Wine", volume: "0.75L", abv: "14%" },
+      { name: "Caleuche Cabernet Sauvignon", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
+      { name: "Caleuche Carménère", type: "Red Wine", volume: "0.75L", abv: "13%" },
+      { name: "Caleuche Reserve Carménère", type: "Red Wine", volume: "0.75L", abv: "14%" },
+      { name: "Caleuche Family Collection Red Blend", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
     ],
   },
   {
-    name: "Villa Spinosa", category: "Red Wine", country: "Italy", est: "",
-    desc: "Valpolicella Classico DOC wines from Veneto.",
+    name: "Telurico", category: "Red Wine", country: "Chile", est: "",
+    desc: "Chilean Carignan from Maule Valley.",
     products: [
-      { name: "Villa Spinosa Valpolicella Classico DOC", type: "Red Wine", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/villa-spinosa-valpolicella-classico-doc" },
+      { name: "Telurico Carignan Red", type: "Red Wine", volume: "0.75L", abv: "15%" },
     ],
   },
   {
-    name: "Castello di Buttrio", category: "Red Wine", country: "Italy", est: "",
-    desc: "Premium wines from Friuli Colli Orientali DOC.",
+    name: "Gocha (Askaneli Brothers)", category: "Red Wine", country: "Georgia", est: "",
+    desc: "Georgian wines and brandies from Kakheti — Saperavi, Kindzmarauli, Tsinandali.",
     products: [
-      { name: "Castello di Buttrio Merlot DOC Friuli Colli Orientali", type: "Red Wine", volume: "0.75L", abv: "12.5%", shopUrl: "https://www.alko.lv/products/castelo-di-buttrio-merlot-doc-friuli-colli-orientali" },
-      { name: "Castello di Buttrio Pinot Grigio DOC Friuli Colli Orientali", type: "White Wine", volume: "0.75L", abv: "13%", shopUrl: "https://www.alko.lv/products/castelo-di-buttrio-pinot-grigio-doc-friuli-colli-orientali" },
+      { name: "Gocha Alazani Valley White Semi Sweet", type: "White Wine", volume: "0.75L", abv: "12%" },
+      { name: "Gocha Kakheti Valley White Semi Sweet", type: "White Wine", volume: "0.75L", abv: "12%" },
+      { name: "Gocha Tsinandali Dry White", type: "White Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Gocha Alazani Valley Red Semi Sweet", type: "Red Wine", volume: "0.75L", abv: "12%" },
+      { name: "Gocha Kakheti Valley Red Semi Sweet", type: "Red Wine", volume: "0.75L", abv: "12%" },
+      { name: "Gocha Saperavi Red Dry", type: "Red Wine", volume: "0.75L", abv: "12.5%" },
+      { name: "Gocha Kindzmarauli Red Semi Sweet", type: "Red Wine", volume: "0.75L", abv: "12%" },
     ],
   },
   {
-    name: "Torres", category: "Red Wine", country: "Spain", est: "1870",
-    desc: "One of Spain's most iconic wine families from Penedès.",
+    name: "Hesketh", category: "Red Wine", country: "Australia", est: "",
+    desc: "Australian wine — Great Australian Red blend.",
     products: [
-      { name: "Torres Celeste Crianza", type: "Red Wine", volume: "0.75L", abv: "14%" },
-      { name: "Torres Gran Coronas Reserva", type: "Red Wine", volume: "0.75L", abv: "14%" },
-      { name: "Torres Mas La Plana", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Hesketh Great Australian Red", type: "Red Wine", volume: "0.75L", abv: "13.5%" },
     ],
   },
   {
-    name: "Catena Zapata", category: "Red Wine", country: "Argentina", est: "1902",
-    desc: "Argentina's pioneer of high-altitude Malbec wines from Mendoza.",
+    name: "Parker Estate", category: "Red Wine", country: "Australia", est: "",
+    desc: "Australian premium Cabernet — First Growth.",
     products: [
-      { name: "Aruma Malbec (Catena)", type: "Red Wine", volume: "0.75L", abv: "13%", shopUrl: "https://www.alko.lv/products/bodegas-caro-aruma-malbec" },
+      { name: "Parker Estate First Growth Cabernet", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
     ],
   },
   {
-    name: "Spier", category: "Red Wine", country: "South Africa", est: "1692",
-    desc: "Historic South African wine estate in Stellenbosch.",
+    name: "Quinta da Corte", category: "Red Wine", country: "Portugal", est: "",
+    desc: "Douro wines and Port — Reserva, LBV, Tawny 10/20 years.",
     products: [
-      { name: "Spier Signature Pinotage", type: "Red Wine", volume: "0.75L", abv: "14%" },
+      { name: "Quinta da Corte Princesa Reserva DOC Douro", type: "Red Wine", volume: "0.75L", abv: "14.5%" },
+      { name: "Porto Quinta da Corte LBV +GB", type: "Port Wine", volume: "0.75L", abv: "19.5%" },
+      { name: "Porto Quinta da Corte Tawny 10 Years +GB", type: "Port Wine", volume: "0.75L", abv: "19%" },
+      { name: "Porto Quinta da Corte Tawny 20 Years +GB", type: "Port Wine", volume: "0.75L", abv: "20%" },
+      { name: "Porto Quinta da Corte Vintage 2020 +GB", type: "Port Wine", volume: "0.75L", abv: "19.5%" },
     ],
   },
 
-  // ── WHITE WINE ──
+  // ══════════════════════════════════════
+  // ── RUM
+  // ══════════════════════════════════════
   {
-    name: "Wolfgang Pfaffmann", category: "White Wine", country: "Germany", est: "",
-    desc: "German winery from the Pfalz region producing excellent Riesling and Pinot Blanc.",
+    name: "Colonist", category: "Rum", country: "Belgium", est: "",
+    desc: "Premium rum — White, Dark, Spiced Black, and Reserva.",
     products: [
-      { name: "Wolfgang Pfaffmann Riesling vom Löss QbA trocken", type: "White Wine", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/wolfgang-pfaffmann-riesling-trocken" },
-      { name: "Wolfgang Pfaffmann Weissburgunder Kalkstein QbA trocken", type: "White Wine", volume: "0.75L", abv: "13%", shopUrl: "https://www.alko.lv/products/wolfgang-pfaffmann-weissburgunder-kalkstein-trocken-pinot-blanc" },
-      { name: "Wolfgang Pfaffmann Grauer Burgunder Kalkmergel Pinot Gris", type: "White Wine", volume: "0.75L", abv: "13.5%", shopUrl: "https://www.alko.lv/products/wolfgang-pfaffmann-grauer-burgunder-kalkmergel-pinot-gris" },
+      { name: "Colonist Premium Rum White", type: "White Rum", volume: "0.7L", abv: "40%" },
+      { name: "Colonist Premium Rum Dark", type: "Dark Rum", volume: "0.7L", abv: "40%" },
+      { name: "Colonist Premium Rum Spiced Black", type: "Spiced Rum", volume: "0.7L", abv: "40%" },
+      { name: "Colonist Rum Spiced Black 1st Man in Space", type: "Spiced Rum", volume: "0.7L", abv: "40%" },
+      { name: "Colonist Premium Rum Reserva", type: "Aged Rum", volume: "0.7L", abv: "40%" },
     ],
   },
   {
-    name: "Villa Hochdörffer", category: "White Wine", country: "Germany", est: "",
-    desc: "German estate producing refined Riesling from Pfalz.",
-    products: [
-      { name: "Villa Hochdörffer Riesling halbtrocken Kalkmergel", type: "White Wine", volume: "0.75L", abv: "11.5%", shopUrl: "https://www.alko.lv/products/villa-hochdorffer-riesling-halbtrocken-kalkmergel" },
-    ],
-  },
-  {
-    name: "Ken Forrester", category: "White Wine", country: "South Africa", est: "",
-    desc: "South Africa's Chenin Blanc specialist from Stellenbosch.",
-    products: [
-      { name: "Ken Forrester Petit Chenin Blanc", type: "White Wine", volume: "0.75L", abv: "13%", shopUrl: "https://www.alko.lv/products/ken-forrester-petit-chenin-blanc" },
-    ],
-  },
-  {
-    name: "Domaine du Chardonnay", category: "White Wine", country: "France", est: "",
-    desc: "Classic Chablis producer from Burgundy.",
-    products: [
-      { name: "Domaine du Chardonnay Chablis", type: "White Wine", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/domaine-du-chardonnay-chablis" },
-    ],
-  },
-  {
-    name: "Villa Maria", category: "White Wine", country: "New Zealand", est: "1961",
-    desc: "New Zealand's most awarded winery, famous for Sauvignon Blanc.",
-    products: [
-      { name: "Villa Maria Private Bin Sauvignon Blanc", type: "White Wine", volume: "0.75L", abv: "13%" },
-    ],
-  },
-  {
-    name: "Brancott Estate", category: "White Wine", country: "New Zealand", est: "1976",
-    desc: "Marlborough Sauvignon Blanc pioneer.",
-    products: [
-      { name: "Brancott Estate Sauvignon Blanc", type: "White Wine", volume: "0.75L", abv: "13%" },
-    ],
-  },
-  {
-    name: "Schloss Gobelsburg", category: "White Wine", country: "Austria", est: "1171",
-    desc: "Historic Austrian wine estate known for Grüner Veltliner and Riesling from Kamptal.",
-    products: [
-      { name: "Gobelsburg Grüner Veltliner Kamptal DAC", type: "White Wine", volume: "0.75L", abv: "12.5%" },
-      { name: "Gobelsburg Riesling Kamptal DAC", type: "White Wine", volume: "0.75L", abv: "12%" },
-    ],
-  },
-  {
-    name: "Weingut Dr. Loosen", category: "White Wine", country: "Germany", est: "1150",
-    desc: "World-class German Riesling producer from the Mosel valley.",
-    products: [
-      { name: "Dr. Loosen Blue Slate Riesling Kabinett", type: "White Wine", volume: "0.75L", abv: "8%" },
-    ],
-  },
-  {
-    name: "Château Tirecul La Gravière", category: "White Wine", country: "France", est: "",
-    desc: "Prestigious Monbazillac sweet wines from Bergerac.",
-    products: [
-      { name: "Tirecul La Gravière Monbazillac", type: "Sweet White Wine", volume: "0.75L", abv: "13%" },
-    ],
-  },
-
-  // ── WHISKY ──
-  {
-    name: "Moonshine Runners", category: "Whisky", country: "USA", est: "",
-    desc: "The Legendary range of blended whiskeys from America, Scotland, and Canada.",
-    products: [
-      { name: "Moonshine Runners The Legendary Blended American Whiskey", type: "Blended Whiskey", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/moonshine-runners-the-legendary-blended-american-whisky" },
-      { name: "Moonshine Runners Blended Scotch Whiskey", type: "Scotch", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/moonshine-runners-blended-scotch-whiskey-40-0-7l" },
-      { name: "Moonshine Runners The Legendary Straight Bourbon Whiskey", type: "Bourbon", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/moonshine-runners-the-legendary-straight-bourbon-whisky" },
-      { name: "Moonshine Runners The Legendary Blended Canadian Whiskey", type: "Canadian Whisky", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/moonshine-runners-the-legendary-blended-canadian-whisky" },
-    ],
-  },
-  {
-    name: "Back to Black", category: "Whisky", country: "UK", est: "",
-    desc: "Premium Scotch whisky with a bold, smooth character.",
-    products: [
-      { name: "Back to Black Scotch Whiskey", type: "Scotch", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/back-to-black-blended-scotch-whisky-40-0-7l" },
-    ],
-  },
-  {
-    name: "Bandwagon", category: "Whisky", country: "USA", est: "",
-    desc: "Straight Bourbon and ready-to-drink cocktails.",
-    products: [
-      { name: "Bandwagon Straight Bourbon Original Whiskey", type: "Bourbon", volume: "0.7L", abv: "41.3%", shopUrl: "https://www.alko.lv/products/bandwagon-straight-bourbon-original-whisky" },
-      { name: "OldFashioned Cocktail Bandwagon", type: "Ready-to-Drink", volume: "0.7L", abv: "35%", shopUrl: "https://www.alko.lv/products/oldfashioned-coctail" },
-      { name: "Manhattan Cocktail Bandwagon", type: "Ready-to-Drink", volume: "0.7L", abv: "35%", shopUrl: "https://www.alko.lv/products/manhattan-coctail" },
-    ],
-  },
-  {
-    name: "Compass Box", category: "Whisky", country: "UK", est: "",
-    desc: "Artisan Scotch whisky blender known for The Peat Monster and The Spice Tree.",
-    products: [
-      { name: "Compass Box The Peat Monster Coffret 2 Verres", type: "Blended Malt Scotch", volume: "0.7L", abv: "46%", shopUrl: "https://www.alko.lv/products/compass-box-the-peat-monster-coffret-2-verres-46-0-7l" },
-      { name: "Compass Box The Spice Tree Coffret 2 Verres", type: "Blended Malt Scotch", volume: "0.7L", abv: "46%", shopUrl: "https://www.alko.lv/products/compass-box-the-spice-tree-coffret-2-verres-46-0-7l" },
-    ],
-  },
-  {
-    name: "Mars", category: "Whisky", country: "Japan", est: "",
-    desc: "Japanese whisky distillery producing Mars Kasei and Mars Cosmo.",
-    products: [
-      { name: "Mars Kasei", type: "Japanese Whisky", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/mars-kasei" },
-      { name: "Mars Cosmo", type: "Japanese Whisky", volume: "0.7L", abv: "43%", shopUrl: "https://www.alko.lv/products/mars-cosmo" },
-    ],
-  },
-  {
-    name: "Amrut", category: "Whisky", country: "India", est: "",
-    desc: "Award-winning Indian single malt whisky.",
-    products: [
-      { name: "Amrut Indian Single Malt", type: "Single Malt", volume: "0.7L", abv: "46%", shopUrl: "https://www.alko.lv/products/amrut-indian-single-malt-of" },
-    ],
-  },
-  {
-    name: "Macallan", category: "Whisky", country: "UK", est: "1824",
-    desc: "One of the world's most iconic single malt Scotch whisky distilleries.",
-    products: [
-      { name: "Macallan 12 Years Sherry Oak GB", type: "Single Malt Scotch", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/macallan-12-years-sherry-oak-gb-0-7l-40" },
-    ],
-  },
-  {
-    name: "Chivas Regal", category: "Whisky", country: "UK", est: "1801",
-    desc: "Prestigious blended Scotch whisky house.",
-    products: [
-      { name: "Chivas Regal 21 Years Royal Salute The Signature Blend + GB", type: "Blended Scotch", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/chivas-regal-21years-royal-salute-the-signature-blend-gb-40-0-7-l" },
-    ],
-  },
-  {
-    name: "The New Zealand Whisky", category: "Whisky", country: "New Zealand", est: "",
-    desc: "Rare whisky from New Zealand — Diggers & Ditch.",
-    products: [
-      { name: "NEW ZEALAND WHISKY Diggers & Ditch", type: "Whisky", volume: "0.5L", abv: "45%", shopUrl: "https://www.alko.lv/products/new-zealand-whisky-the-diggers-ditch-45-0-5l" },
-    ],
-  },
-
-  // ── VODKA ──
-  {
-    name: "Ice Palace", category: "Vodka", country: "Latvia", est: "",
-    desc: "Premium Latvian vodka brand with multiple expressions.",
-    products: [
-      { name: "Ice Palace Degvīns 40%", type: "Vodka", volume: "1L", abv: "40%", shopUrl: "https://www.alko.lv/products/ice-palace-vodka" },
-      { name: "Ice Palace Degvīns 40%", type: "Vodka", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/ice-palace-vodka-40-0-7l" },
-      { name: "Ice Palace Degvīns 40%", type: "Vodka", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/ice-palace-vodka-40-0-5l" },
-      { name: "Ice Palace CRANBERRY Degvīns 40%", type: "Flavored Vodka", volume: "1L", abv: "40%", shopUrl: "https://www.alko.lv/products/ice-palace-vodka-cranberry-40-1l" },
-      { name: "Ice Palace CRANBERRY Degvīns 40%", type: "Flavored Vodka", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/ice-palace-vodka-cranberry-40-0-5l" },
-      { name: "Ice Palace Degvīns + GB 40%", type: "Vodka Gift Box", volume: "1L", abv: "40%", shopUrl: "https://www.alko.lv/products/ice-palace-degvins-gb-40-1l" },
-    ],
-  },
-  {
-    name: "Grey Goose", category: "Vodka", country: "France", est: "1997",
-    desc: "Ultra-premium French vodka made from fine French wheat.",
-    products: [
-      { name: "Grey Goose Le Citron", type: "Flavored Vodka", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/grey-goose-le-citron-40-0-7-l" },
-    ],
-  },
-  {
-    name: "J.J. Kurberg", category: "Vodka", country: "Estonia", est: "",
-    desc: "Estonian organic vodka with unique botanical infusions.",
-    products: [
-      { name: "J.J. Kurberg Humal/HOPS Organic Vodka", type: "Organic Vodka", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/vodka-j-j-kurberg-humal-hops-organic-40-0-0-5l" },
-      { name: "J.J. Kurberg Kuldjuur/Golden Root Vodka", type: "Organic Vodka", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/vodka-j-j-kurberg-kuldjuur-golden-root-40-0-0-5l" },
-    ],
-  },
-  {
-    name: "Vestal", category: "Vodka", country: "Poland", est: "",
-    desc: "Small-batch vintage Polish potato vodka with terroir character.",
-    products: [
-      { name: "Vestal Vodka", type: "Vodka", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/vestal-vodka-40-0-5l" },
-    ],
-  },
-  {
-    name: "Tovaritch", category: "Vodka", country: "Russia", est: "",
-    desc: "Premium vodka with classic character.",
-    products: [
-      { name: "Tovaritch Degvīns", type: "Vodka", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/tovaritch-vodka-40-0-7l" },
-      { name: "Tovaritch Degvīns", type: "Vodka", volume: "1L", abv: "40%", shopUrl: "https://www.alko.lv/products/tovaritch-vodka-40-1l" },
-    ],
-  },
-  {
-    name: "Fly", category: "Vodka", country: "Latvia", est: "",
-    desc: "Latvian premium vodka brand — Fly Superior.",
-    products: [
-      { name: "Fly Degvīns Superior", type: "Vodka", volume: "1L", abv: "40%", shopUrl: "https://www.alko.lv/products/fly-vodka-superior-40-1l" },
-      { name: "Fly Degvīns Superior + GB", type: "Vodka Gift Box", volume: "1L", abv: "40%", shopUrl: "https://www.alko.lv/products/fly-degvins-superior-gb-gb-40-1l" },
-    ],
-  },
-  {
-    name: "Louers", category: "Vodka", country: "Latvia", est: "",
-    desc: "Ultra-premium Latvian vodka with LED light gift box.",
-    products: [
-      { name: "Louers Premium Vodka + light + GB", type: "Ultra Premium Vodka", volume: "1L", abv: "40%", shopUrl: "https://www.alko.lv/products/louers-premium-vodka-light-gb-1l-40" },
-    ],
-  },
-
-  // ── RUM ──
-  {
-    name: "Black Tears", category: "Rum", country: "Cuba", est: "",
-    desc: "Dry Spiced Rum — a unique Cuban rum with distinctive character and bold flavor.",
-    products: [
-      { name: "Black Tears Dry Spiced Rum", type: "Spiced Rum", volume: "0.7L", abv: "40%" },
-    ],
-  },
-  {
-    name: "Dad Joke", category: "Rum", country: "USA", est: "",
-    desc: "Spiced rum and prosecco brand with a playful personality.",
+    name: "Dad Joke", category: "Rum", country: "Belgium", est: "",
+    desc: "Spiced rum and Prosecco brand with playful personality.",
     products: [
       { name: "Dad Joke Spiced Rum", type: "Spiced Rum", volume: "0.7L", abv: "40%" },
-      { name: "Dad Joke Prosecco DOC Extra Dry", type: "Prosecco", volume: "0.7L", abv: "11%" },
+      { name: "Dad Joke Ananas Spiced Rum", type: "Spiced Rum", volume: "0.7L", abv: "40%" },
+      { name: "Dad Joke Coconut Spiced Rum", type: "Spiced Rum", volume: "0.7L", abv: "40%" },
+      { name: "Dad Joke Salted Caramel & Banana Spiced Rum", type: "Spiced Rum", volume: "0.7L", abv: "40%" },
+      { name: "Dad Joke Prosecco DOC Extra Dry", type: "Prosecco", volume: "0.75L", abv: "11%" },
     ],
   },
   {
-    name: "Zacapa", category: "Rum", country: "Guatemala", est: "",
-    desc: "Iconic Guatemalan rum aged using the solera method.",
+    name: "Hampden", category: "Rum", country: "Jamaica", est: "",
+    desc: "Legendary Jamaican rum distillery — overproof and aged expressions.",
     products: [
-      { name: "Zacapa 23 YO Solera Gran Reserva + GB", type: "Aged Rum", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/zacapa-23yo-solera-gran-reserva-gb-40-0-7l" },
-      { name: "Zacapa 23 Centenario Gran Reserva + GB", type: "Aged Rum", volume: "1L", abv: "40%", shopUrl: "https://www.alko.lv/products/zacapa-23-centenario-gran-reserva-gb-40-1l" },
+      { name: "Hampden Overproof +GB", type: "Overproof Rum", volume: "0.7L", abv: "60%" },
+      { name: "Hampden +GB", type: "Rum", volume: "0.7L", abv: "46%" },
+      { name: "Hampden 8 ans", type: "Aged Rum", volume: "0.7L", abv: "46%" },
     ],
   },
   {
-    name: "Santos Dumont", category: "Rum", country: "Brazil", est: "",
-    desc: "Brazilian XO rum with unique cask finishes.",
+    name: "Mhoba", category: "Rum", country: "South Africa", est: "",
+    desc: "South African sugarcane rum — Bushfire, Pineapple, Select Release.",
     products: [
-      { name: "Santos Dumont XO Palmira", type: "Aged Rum", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/santos-dumont-xo-palmira-40-0-7l" },
-      { name: "Santos Dumont XO Gewürztraminer", type: "Aged Rum", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/santos-dumont-xo-gewurztraminer-40-0-7l" },
-      { name: "Santos Dumont Rum GP", type: "Aged Rum", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/santos-dumont-rum-gp-40-0-7l" },
+      { name: "Mhoba Bushfire", type: "Rum", volume: "0.7L", abv: "55%" },
+      { name: "Mhoba Franky's Pineapple", type: "Rum", volume: "0.7L", abv: "43%" },
+      { name: "Mhoba Select Release White", type: "White Rum", volume: "0.7L", abv: "58%" },
     ],
   },
   {
-    name: "Remedy", category: "Rum", country: "Germany", est: "",
-    desc: "Craft rum brand with spiced and elixir expressions.",
+    name: "Neisson", category: "Rum", country: "Martinique", est: "",
+    desc: "Premium Martinique rhum agricole — Bio and Le Vieux.",
     products: [
-      { name: "Remedy Spiced Rum", type: "Spiced Rum", volume: "0.7L", abv: "42%", shopUrl: "https://www.alko.lv/products/remedy-spiced-rum-42-0-7l" },
-      { name: "Remedy Elixir Rum Liqueur", type: "Rum Liqueur", volume: "0.7L", abv: "34%", shopUrl: "https://www.alko.lv/products/remedy-elixir-rum-liqueur-34-0-7l" },
+      { name: "Neisson Le Rhum Bio", type: "Rhum Agricole", volume: "0.7L", abv: "52.5%" },
+      { name: "Neisson Le Rhum par Neisson", type: "Rhum Agricole", volume: "0.7L", abv: "52.5%" },
+      { name: "Neisson Profil 105", type: "Rhum Agricole", volume: "0.7L", abv: "54.2%" },
+      { name: "Neisson Le Vieux par Neisson", type: "Aged Rhum", volume: "0.7L", abv: "45%" },
+    ],
+  },
+  {
+    name: "Canoubier", category: "Rum", country: "France", est: "",
+    desc: "Caribbean rum bottled in France — Barbados, Trinidad, Guadeloupe.",
+    products: [
+      { name: "Canoubier Barbade Rum", type: "Rum", volume: "0.7L", abv: "40%" },
+      { name: "Canoubier Trinidad Rum", type: "Rum", volume: "0.7L", abv: "40%" },
+      { name: "Canoubier Guadeloupe Dark", type: "Dark Rum", volume: "0.7L", abv: "40%" },
+    ],
+  },
+  {
+    name: "Black Tears", category: "Rum", country: "Cuba", est: "",
+    desc: "Cuban Dry Spiced Rum by Vigia — distinctive character and bold flavor.",
+    products: [
+      { name: "Black Tears Dry Spiced", type: "Spiced Rum", volume: "0.7L", abv: "40%" },
+      { name: "Black Tears Dry Spiced", type: "Spiced Rum", volume: "1L", abv: "40%" },
+      { name: "Black Tears Aguardiente", type: "Aguardiente", volume: "0.7L", abv: "40%" },
+      { name: "Black Tears Super Dry White Rum", type: "White Rum", volume: "0.7L", abv: "40%" },
+      { name: "Black Tears Roble Superior Gold Rum", type: "Gold Rum", volume: "0.7L", abv: "40%" },
+      { name: "La Progresiva Mezcla 13 Premium Aged +GB", type: "Aged Rum", volume: "0.7L", abv: "41%" },
+      { name: "La Progresiva Mezcla 8 LE Premium Aged", type: "Aged Rum", volume: "0.7L", abv: "41%" },
     ],
   },
   {
     name: "Transcontinental Rum Line (TCRL)", category: "Rum", country: "France", est: "",
     desc: "Single-cask rum bottlings from across the Caribbean and beyond.",
     products: [
-      { name: "NIGHT RAMBLER TCRL", type: "Blended Rum", volume: "0.7L", abv: "42%", shopUrl: "https://www.alko.lv/products/night-rambler-tcrl-42-0-7l" },
-      { name: "PANAMA 6 ans 2015 TCRL GB", type: "Aged Rum", volume: "0.7L", abv: "43%", shopUrl: "https://www.alko.lv/products/panama-6-ans-2015-tcrl-gb-43-0-7l" },
-      { name: "TRINIDAD 2006 SB TCRL", type: "Aged Rum", volume: "0.7L", abv: "56.5%", shopUrl: "https://www.alko.lv/products/trinidad-2006-sb-tcrl-56-5-0-7l" },
-      { name: "VENEZUELA 2008 Single Cask TCRL", type: "Aged Rum", volume: "0.7L", abv: "62%", shopUrl: "https://www.alko.lv/products/venezuela-2008-single-cask-tcrl-62-0-7l" },
-      { name: "NICARAGUA 2004 Coffret 2 Verres TCRL", type: "Aged Rum", volume: "0.7L", abv: "43%", shopUrl: "https://www.alko.lv/products/nicaragua-2004-coffret-2-verres-transcontinental" },
+      { name: "Night Rambler TCRL", type: "Blended Rum", volume: "0.7L", abv: "42%" },
+      { name: "Flying King TCRL", type: "Blended Rum", volume: "0.7L", abv: "42%" },
+      { name: "Nicaragua 2004 Coffret 2 Verres TCRL +GB", type: "Aged Rum", volume: "0.7L", abv: "43%" },
+      { name: "Panama 6 ans 2015 TCRL +GB", type: "Aged Rum", volume: "0.7L", abv: "43%" },
+      { name: "Jamaica 2016 TCRL +GB", type: "Rum", volume: "0.7L", abv: "57.2%" },
+      { name: "Australia 7 ans 2014 TCRL +GB", type: "Rum", volume: "0.7L", abv: "48%" },
     ],
   },
   {
     name: "Papalin", category: "Rum", country: "Jamaica", est: "",
     desc: "Jamaican high-ester rum with serious character.",
     products: [
-      { name: "PAPALIN 5 ans Jamaica High Ester", type: "Rum", volume: "0.7L", abv: "47%", shopUrl: "https://www.alko.lv/products/papalin-5-ans-jamaica-high-ester-47-0-7l" },
-      { name: "PAPALIN 5 ans Jamaica High Ester Overproof", type: "Overproof Rum", volume: "0.7L", abv: "57%", shopUrl: "https://www.alko.lv/products/papalin-5-ans-jamaica-high-ester-overproof-57-0-7l" },
+      { name: "Papalin 5 ans Jamaica High Ester", type: "Rum", volume: "0.7L", abv: "47%" },
+      { name: "Papalin 5 ans Jamaica High Ester Overproof", type: "Overproof Rum", volume: "0.7L", abv: "47%" },
     ],
   },
   {
-    name: "Vieux Sajous", category: "Rum", country: "Haiti", est: "",
-    desc: "Haitian clairin and aged rum — raw and authentic.",
+    name: "Veritas", category: "Rum", country: "Barbados", est: "",
+    desc: "Barbadian rum — pure and authentic.",
     products: [
-      { name: "VIEUX SAJOUS 5 ans 2019 Haiti", type: "Aged Rum", volume: "0.7L", abv: "58.3%", shopUrl: "https://www.alko.lv/products/vieux-sajous-5-ans-2019-haiti-58-3-0-7l" },
+      { name: "Veritas Rum", type: "Rum", volume: "0.7L", abv: "47%" },
+    ],
+  },
+  {
+    name: "Clairin", category: "Rum", country: "Haiti", est: "",
+    desc: "Haitian clairin — raw, unaged cane spirit from small distillers.",
+    products: [
+      { name: "Clairin Sonson", type: "Clairin", volume: "0.7L", abv: "51.1%" },
+      { name: "Clairin Casimir", type: "Clairin", volume: "0.7L", abv: "53.3%" },
+      { name: "Clairin Sajous", type: "Clairin", volume: "0.7L", abv: "56.4%" },
+      { name: "Providence 3 ans 2020", type: "Aged Clairin", volume: "0.7L", abv: "52%" },
+      { name: "Vieux Sajous 5 ans 2019 Haiti", type: "Aged Clairin", volume: "0.7L", abv: "58.3%" },
     ],
   },
 
-  // ── GIN ──
+  // ══════════════════════════════════════
+  // ── WHISKY
+  // ══════════════════════════════════════
   {
-    name: "Gin Mare", category: "Gin", country: "Spain", est: "",
-    desc: "Mediterranean-inspired premium Spanish gin with olive, basil, rosemary and thyme.",
+    name: "Moonshine Runners", category: "Whisky", country: "Belgium", est: "",
+    desc: "Blended whiskeys from America, Scotland, and Canada.",
     products: [
-      { name: "Gin Mare Mediterranean Gin", type: "Gin", volume: "0.7L", abv: "42.7%" },
+      { name: "Moonshine Runners Blended American Whisky", type: "Blended Whiskey", volume: "0.7L", abv: "40%" },
+      { name: "Moonshine Runners Blended Canadian Whisky", type: "Canadian Whisky", volume: "0.7L", abv: "40%" },
+      { name: "Moonshine Runners Blended Scotch Whisky", type: "Scotch", volume: "0.7L", abv: "40%" },
     ],
   },
   {
-    name: "KI NO BI", category: "Gin", country: "Japan", est: "",
-    desc: "Artisanal Japanese dry gin from Kyoto Distillery.",
+    name: "Bandwagon", category: "Whisky", country: "Belgium", est: "",
+    desc: "Straight Bourbon whiskey.",
     products: [
-      { name: "KI NO BI Kyoto Dry Gin", type: "Gin", volume: "0.7L", abv: "45.7%" },
+      { name: "Bandwagon Straight Bourbon Original Whisky", type: "Bourbon", volume: "0.7L", abv: "41.3%" },
     ],
   },
   {
-    name: "City of London", category: "Gin", country: "UK", est: "",
-    desc: "Classic London dry gin from the heart of the City.",
+    name: "Kentucky Jack", category: "Whisky", country: "USA", est: "",
+    desc: "American bourbon — Original and Black Edition.",
     products: [
-      { name: "City Of London Gin", type: "London Dry Gin", volume: "0.7L", abv: "41.3%", shopUrl: "https://www.alko.lv/products/city-of-london" },
+      { name: "Kentucky Jack Original Bourbon", type: "Bourbon", volume: "0.7L", abv: "40%" },
+      { name: "Kentucky Jack Black Edition Bourbon", type: "Bourbon", volume: "0.7L", abv: "40%" },
     ],
   },
   {
-    name: "Strange Luve", category: "Gin", country: "Latvia", est: "",
-    desc: "Latvian craft gin in classic London Dry and Pink expressions.",
+    name: "Bowsaw", category: "Whisky", country: "USA", est: "",
+    desc: "American whiskey — Rye and Bourbon expressions.",
     products: [
-      { name: "Strange Luve London Dry Gin", type: "London Dry Gin", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/strange-luve-london-dry" },
-      { name: "Strange Luve London Pink Gin", type: "Pink Gin", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/strange-luve-london-pink-gin-40-0-7l" },
+      { name: "Bowsaw Rye Straight American Whiskey", type: "Rye Whiskey", volume: "0.7L", abv: "40%" },
+      { name: "Bowsaw 100% Straight American Bourbon", type: "Bourbon", volume: "0.7L", abv: "40%" },
     ],
   },
   {
-    name: "Whitley Neill", category: "Gin", country: "UK", est: "",
-    desc: "Award-winning British gin with unique botanical infusions.",
+    name: "Back to Black", category: "Whisky", country: "Belgium", est: "",
+    desc: "Blended Scotch and Irish whisky.",
     products: [
-      { name: "Whitley Neill Quince Gin", type: "Flavored Gin", volume: "0.7L", abv: "43%", shopUrl: "https://www.alko.lv/products/whitley-neill-quince" },
-      { name: "Whitley Neill Pink Grapefruit Gin", type: "Flavored Gin", volume: "0.7L", abv: "43%", shopUrl: "https://www.alko.lv/products/whitley-neill-pink-grapefruit" },
+      { name: "Back to Black Blended Scotch Whisky", type: "Scotch", volume: "0.7L", abv: "40%" },
+      { name: "Back to Black Blended Irish Whisky", type: "Irish Whiskey", volume: "0.7L", abv: "40%" },
     ],
   },
   {
-    name: "Edinburgh Gin", category: "Gin", country: "UK", est: "",
-    desc: "Premium Scottish gin from the heart of Edinburgh.",
+    name: "Born Irish", category: "Whisky", country: "Ireland", est: "",
+    desc: "Irish whiskey.",
     products: [
-      { name: "Edinburgh Gin", type: "Gin", volume: "0.7L", abv: "43%", shopUrl: "https://www.alko.lv/products/edinburgh-gin-43-0-7l" },
+      { name: "Born Irish Whiskey", type: "Irish Whiskey", volume: "0.7L", abv: "40%" },
     ],
   },
   {
-    name: "The London No.1", category: "Gin", country: "UK", est: "",
-    desc: "Distinctive blue-colored premium London gin.",
+    name: "Glen Mansion", category: "Whisky", country: "UK", est: "",
+    desc: "Blended Scotch whisky — private label.",
     products: [
-      { name: "The London No.1 Gin", type: "London Dry Gin", volume: "0.7L", abv: "47%", shopUrl: "https://www.alko.lv/products/the-london-no-1-gin-47-0-7l" },
+      { name: "Glen Mansion Blended Scotch Whisky", type: "Scotch", volume: "0.7L", abv: "40%" },
+      { name: "Glen Mansion Blended Scotch Whisky", type: "Scotch", volume: "1L", abv: "40%" },
     ],
   },
   {
-    name: "Tarquin's", category: "Gin", country: "UK", est: "",
-    desc: "Cornish handcrafted gin with distinctive fruit expressions.",
+    name: "Broody Hen", category: "Whisky", country: "UK", est: "",
+    desc: "Scottish whisky — Blended and 10 Year Single Malt.",
     products: [
-      { name: "Tarquin's Blackberry Gin", type: "Fruit Gin", volume: "0.7L", abv: "38%", shopUrl: "https://www.alko.lv/products/tarquins-blackberry-gin-38-0-7l" },
+      { name: "Broody Hen Blended Scotch Whisky", type: "Scotch", volume: "0.7L", abv: "40%" },
+      { name: "Broody Hen 10 Years Single Malt Scotch", type: "Single Malt", volume: "0.7L", abv: "40%" },
     ],
   },
   {
-    name: "Tanqueray", category: "Gin", country: "UK", est: "1830",
-    desc: "World-renowned London dry gin brand.",
+    name: "The New Zealand Whisky", category: "Whisky", country: "New Zealand", est: "",
+    desc: "Rare whisky from New Zealand — Diggers & Ditch and aged expressions.",
     products: [
-      { name: "Tanqueray Rangpur Gin", type: "Gin", volume: "0.7L", abv: "47.3%", shopUrl: "https://www.alko.lv/products/tanqueray-rangpur-gin-47-3-0-7l" },
+      { name: "NZ Whisky 18 ans Dunedin Double Wood", type: "Whisky", volume: "0.5L", abv: "40%" },
+      { name: "NZ Whisky Diggers & Ditch", type: "Whisky", volume: "0.5L", abv: "45%" },
+      { name: "NZ Whisky 21 ans High Wheeler", type: "Whisky", volume: "0.35L", abv: "43%" },
     ],
   },
   {
-    name: "Bobby's Gin", category: "Gin", country: "Netherlands", est: "",
-    desc: "Dutch gin with Indonesian-inspired botanicals.",
+    name: "Hellyers Road", category: "Whisky", country: "Australia", est: "",
+    desc: "Tasmanian single malt whisky — Peated, Pinot Noir cask, and aged expressions.",
     products: [
-      { name: "Bobby's Gin", type: "Gin", volume: "0.7L", abv: "42%", shopUrl: "https://www.alko.lv/products/bobbys-gin-42-0-7l" },
+      { name: "Hellyers Road Pinot Noir +GB", type: "Single Malt", volume: "0.7L", abv: "46.2%" },
+      { name: "Hellyers Road Peated +GB", type: "Single Malt", volume: "0.7L", abv: "46.2%" },
+      { name: "Hellyers Road Twin Oak", type: "Single Malt", volume: "0.7L", abv: "48.9%" },
+      { name: "Hellyers Road 12 ans Original", type: "Single Malt", volume: "0.7L", abv: "46.2%" },
     ],
   },
   {
-    name: "UMAMi Gin", category: "Gin", country: "Estonia", est: "",
-    desc: "Estonian craft gin with umami character.",
+    name: "Mackmyra", category: "Whisky", country: "Sweden", est: "",
+    desc: "Swedish whisky — Brukswhisky, Svensk Ek, Svensk Rök, Björksav.",
     products: [
-      { name: "UMAMi Gin", type: "Gin", volume: "0.5L", abv: "42%", shopUrl: "https://www.alko.lv/products/umami-gin-42-0-5l" },
+      { name: "Mackmyra Brukswhisky +GB", type: "Swedish Whisky", volume: "0.7L", abv: "41.4%" },
+      { name: "Mackmyra Svensk Ek +GB", type: "Swedish Whisky", volume: "0.7L", abv: "46.1%" },
+      { name: "Mackmyra Svensk Rök +GB", type: "Swedish Whisky", volume: "0.7L", abv: "46.1%" },
+      { name: "Mackmyra Björksav +GB", type: "Swedish Whisky", volume: "0.7L", abv: "46.1%" },
     ],
   },
   {
-    name: "Berkshire", category: "Gin", country: "UK", est: "",
-    desc: "British dry gin with honey and fruit variations.",
+    name: "Mars", category: "Whisky", country: "Japan", est: "",
+    desc: "Japanese whisky distillery — Mars Kasei, Mars Cosmo, and Komagatake series.",
     products: [
-      { name: "Berkshire Dry Gin", type: "London Dry Gin", volume: "0.5L", abv: "40.3%", shopUrl: "https://www.alko.lv/products/berkshire-dry-gin-40-3-0-5l" },
-      { name: "Berkshire Honey Orange Gin", type: "Flavored Gin", volume: "0.5L", abv: "40.3%", shopUrl: "https://www.alko.lv/products/berkshire-honey-orange-gin-40-3-0-5l" },
+      { name: "Mars Kasei +GB", type: "Japanese Whisky", volume: "0.7L", abv: "40%" },
+      { name: "Mars Cosmo +GB", type: "Japanese Whisky", volume: "0.7L", abv: "43%" },
+      { name: "Mars Cosmo Wine Cask Finish", type: "Japanese Whisky", volume: "0.7L", abv: "43%" },
+      { name: "Mars Tsunuki Peated", type: "Japanese Whisky", volume: "0.7L", abv: "50%" },
+      { name: "Mars Wa Bi Gin +GB", type: "Gin", volume: "0.7L", abv: "45%" },
     ],
   },
   {
-    name: "Cold Gin", category: "Gin", country: "Latvia", est: "",
-    desc: "Latvian craft gin with exotic flavors — Brazilian Lime and Rhubarb & Rose.",
+    name: "Ichiro's Malt", category: "Whisky", country: "Japan", est: "",
+    desc: "Prestigious Japanese whisky — Malt & Grain.",
     products: [
-      { name: "Cold Brasilian Lime Gin", type: "Flavored Gin", volume: "0.7L", abv: "40.3%", shopUrl: "https://www.alko.lv/products/cold-brasilian-lime-gin-40-3-0-7l" },
-      { name: "Cold Rhubarb & Rose Gin", type: "Flavored Gin", volume: "0.7L", abv: "40.3%", shopUrl: "https://www.alko.lv/products/cold-rhubarb-rose-gin-40-3-0-7l" },
+      { name: "Ichiro's Malt & Grain", type: "Japanese Whisky", volume: "0.7L", abv: "46.5%" },
+    ],
+  },
+  {
+    name: "Amrut", category: "Whisky", country: "India", est: "",
+    desc: "Award-winning Indian single malt whisky — many expressions.",
+    products: [
+      { name: "Amrut Raj Igala +GB", type: "Indian Whisky", volume: "0.7L", abv: "40%" },
+      { name: "Amrut Indian Single Malt +GB", type: "Single Malt", volume: "0.7L", abv: "46%" },
+      { name: "Amrut Peated +GB", type: "Single Malt", volume: "0.7L", abv: "46%" },
+      { name: "Amrut Fusion +GB", type: "Single Malt", volume: "0.7L", abv: "50%" },
+      { name: "Amrut Cask Strength +GB", type: "Single Malt", volume: "0.7L", abv: "61.8%" },
+      { name: "Amrut Peated Cask Strength +GB", type: "Single Malt", volume: "0.7L", abv: "62.8%" },
+      { name: "Amrut Bagheera", type: "Single Malt", volume: "0.7L", abv: "46%" },
+      { name: "Amrut Naarangi", type: "Single Malt", volume: "0.7L", abv: "50%" },
+      { name: "Amrut Triparva Triple Distilled", type: "Single Malt", volume: "0.7L", abv: "50%" },
+      { name: "Amrut Neidhal", type: "Single Malt", volume: "0.7L", abv: "46%" },
+      { name: "Amrut Two Indies Rum", type: "Rum", volume: "0.7L", abv: "42.8%" },
+    ],
+  },
+  {
+    name: "Compass Box", category: "Whisky", country: "UK", est: "2000",
+    desc: "Artisan Scotch whisky blender — The Peat Monster, Orchard House, Hedonism, and many limited editions.",
+    products: [
+      { name: "Compass Box Great King Artist Blend", type: "Blended Scotch", volume: "0.7L", abv: "43%" },
+      { name: "Compass Box Great King Glasgow Blend", type: "Blended Scotch", volume: "0.7L", abv: "43%" },
+      { name: "Compass Box Orchard House", type: "Blended Malt", volume: "0.7L", abv: "46%" },
+      { name: "Compass Box The Peat Monster", type: "Blended Malt", volume: "0.7L", abv: "46%" },
+      { name: "Compass Box The Story of the Spaniard", type: "Blended Malt", volume: "0.7L", abv: "43%" },
+      { name: "Compass Box Spice Tree Coffret 2 Verres", type: "Blended Malt", volume: "0.7L", abv: "46%" },
+      { name: "Compass Box Nectarosity", type: "Blended Malt", volume: "0.7L", abv: "46%" },
+      { name: "Compass Box Crimson Casks", type: "Blended Malt", volume: "0.7L", abv: "46%" },
+      { name: "Compass Box Hedonism +GB", type: "Blended Grain", volume: "0.7L", abv: "43%" },
+      { name: "Compass Box Celestial +GB", type: "Blended Malt", volume: "0.7L", abv: "50%" },
+      { name: "Compass Box Flaming Heart 7th Edition", type: "Blended Malt", volume: "0.7L", abv: "48.9%" },
+      { name: "Compass Box Secret of Smoke", type: "Blended Malt", volume: "0.7L", abv: "52%" },
+    ],
+  },
+  {
+    name: "Proper No. Twelve", category: "Whisky", country: "Ireland", est: "",
+    desc: "Conor McGregor's Irish whiskey — Original and Apple.",
+    products: [
+      { name: "Proper No. Twelve Irish Whiskey", type: "Irish Whiskey", volume: "0.7L", abv: "40%" },
+      { name: "Proper No. Twelve Irish Whiskey", type: "Irish Whiskey", volume: "1L", abv: "40%" },
+      { name: "Proper No. Twelve Irish Apple Whiskey", type: "Irish Whiskey", volume: "0.7L", abv: "35%" },
     ],
   },
 
-  // ── TEQUILA / MEZCAL ──
+  // ══════════════════════════════════════
+  // ── GIN
+  // ══════════════════════════════════════
+  {
+    name: "Strange Luve", category: "Gin", country: "Belgium", est: "",
+    desc: "Craft gin — London Dry, Pink, and Quince expressions.",
+    products: [
+      { name: "Strange Luve London Dry Gin", type: "London Dry Gin", volume: "0.7L", abv: "40%" },
+      { name: "Strange Luve London Dry Pink Gin", type: "Pink Gin", volume: "0.7L", abv: "40%" },
+      { name: "Strange Luve Quince Gin", type: "Flavored Gin", volume: "0.7L", abv: "40%" },
+      { name: "Strange Luve Negroni Cocktail", type: "Ready-to-Drink", volume: "0.7L", abv: "27%" },
+    ],
+  },
+  {
+    name: "UMAMi Gin", category: "Gin", country: "France", est: "",
+    desc: "Craft gin with umami character — Distillerie des Moisans.",
+    products: [
+      { name: "UMAMi Gin", type: "Gin", volume: "0.5L", abv: "42%" },
+    ],
+  },
+
+  // ══════════════════════════════════════
+  // ── VODKA
+  // ══════════════════════════════════════
+  {
+    name: "Fly", category: "Vodka", country: "Ukraine", est: "",
+    desc: "Premium vodka — Fly Superior.",
+    products: [
+      { name: "Fly Vodka Superior", type: "Vodka", volume: "1L", abv: "40%" },
+      { name: "Fly Vodka Superior +GB", type: "Vodka Gift Box", volume: "1L", abv: "40%" },
+    ],
+  },
+  {
+    name: "Ice Palace", category: "Vodka", country: "Ukraine", est: "",
+    desc: "Premium vodka brand with Cranberry expression.",
+    products: [
+      { name: "Ice Palace Vodka", type: "Vodka", volume: "1L", abv: "40%" },
+      { name: "Ice Palace Vodka", type: "Vodka", volume: "0.7L", abv: "40%" },
+      { name: "Ice Palace Vodka", type: "Vodka", volume: "0.5L", abv: "40%" },
+      { name: "Ice Palace Vodka +GB", type: "Vodka Gift Box", volume: "1L", abv: "40%" },
+      { name: "Ice Palace Cranberry Vodka", type: "Flavored Vodka", volume: "0.5L", abv: "40%" },
+      { name: "Ice Palace Cranberry Vodka", type: "Flavored Vodka", volume: "1L", abv: "40%" },
+    ],
+  },
+  {
+    name: "Tovaritch", category: "Vodka", country: "Switzerland", est: "",
+    desc: "Premium vodka.",
+    products: [
+      { name: "Tovaritch Vodka", type: "Vodka", volume: "0.7L", abv: "40%" },
+      { name: "Tovaritch Vodka", type: "Vodka", volume: "1L", abv: "40%" },
+      { name: "Tovaritch Vodka", type: "Vodka", volume: "0.2L", abv: "37.5%" },
+    ],
+  },
+
+  // ══════════════════════════════════════
+  // ── TEQUILA & MEZCAL
+  // ══════════════════════════════════════
+  {
+    name: "Dos Compañeros", category: "Tequila", country: "Mexico", est: "",
+    desc: "Mexican tequila — Gold and Silver.",
+    products: [
+      { name: "Dos Compañeros Silver", type: "Tequila Silver", volume: "0.7L", abv: "38%" },
+      { name: "Dos Compañeros Gold", type: "Tequila Gold", volume: "0.7L", abv: "38%" },
+    ],
+  },
   {
     name: "Don Fulano", category: "Tequila", country: "Mexico", est: "",
-    desc: "Premium artisanal Mexican tequila from Jalisco highlands.",
+    desc: "Premium artisanal tequila from Jalisco highlands.",
     products: [
-      { name: "Don Fulano Blanco Fuerte", type: "Tequila Blanco", volume: "0.7L", abv: "50%", shopUrl: "https://www.alko.lv/products/don-fulano-blanco-fuerte" },
-      { name: "Don Fulano Blanco", type: "Tequila Blanco", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/don-fulano-blanco" },
-      { name: "Don Fulano Reposado", type: "Tequila Reposado", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/don-fulano-reposado" },
-      { name: "Don Fulano Imperial Decanter", type: "Tequila Añejo", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/don-fulano-imperial-decanter-40-0-7l" },
+      { name: "Don Fulano Blanco", type: "Tequila Blanco", volume: "0.7L", abv: "40%" },
+      { name: "Don Fulano Reposado", type: "Tequila Reposado", volume: "0.7L", abv: "40%" },
+      { name: "Don Fulano Blanco Fuerte", type: "Tequila Blanco", volume: "0.7L", abv: "50%" },
+      { name: "Don Fulano Imperial Decanter", type: "Tequila Añejo", volume: "0.7L", abv: "40%" },
     ],
   },
   {
     name: "Derrumbes", category: "Tequila", country: "Mexico", est: "",
-    desc: "Artisanal Mexican mezcal from different terroirs — Oaxaca, San Luis, Michoacán.",
+    desc: "Artisanal mezcal from different terroirs — Oaxaca, San Luis, Michoacán.",
     products: [
-      { name: "Derrumbes N.1 Oaxaca", type: "Mezcal", volume: "0.7L", abv: "46.6%", shopUrl: "https://www.alko.lv/products/derrumbes-mezcal-n-1-oaxaca" },
-      { name: "Derrumbes N.3 San Luis", type: "Mezcal", volume: "0.7L", abv: "44.3%", shopUrl: "https://www.alko.lv/products/derrumbes-mezcal-n-3-san" },
-      { name: "Derrumbes N.2 Michoacán", type: "Mezcal", volume: "0.7L", abv: "46.3%", shopUrl: "https://www.alko.lv/products/derrumbes-n-2-michoacan-49-3-0-7l" },
+      { name: "Derrumbes N.1 Oaxaca", type: "Mezcal", volume: "0.7L", abv: "47.5%" },
+      { name: "Derrumbes N.3 San Luis", type: "Mezcal", volume: "0.7L", abv: "44.4%" },
+      { name: "Derrumbes N.2 Michoacán", type: "Mezcal", volume: "0.7L", abv: "49.3%" },
     ],
   },
   {
-    name: "Dos Compañeros", category: "Tequila", country: "Mexico", est: "",
-    desc: "Accessible Mexican tequila in Gold and Silver expressions.",
+    name: "Nucano", category: "Tequila", country: "Mexico", est: "",
+    desc: "Artisanal Oaxacan mezcal — Espadín and Tobalá.",
     products: [
-      { name: "Dos Compañeros Gold", type: "Tequila Gold", volume: "0.7L", abv: "38%", shopUrl: "https://www.alko.lv/products/dos-companeros-gold-38-0-7l" },
-      { name: "Dos Compañeros Silver", type: "Tequila Silver", volume: "0.7L", abv: "38%", shopUrl: "https://www.alko.lv/products/dos-companeros-silver-38-0-7l" },
+      { name: "Nucano Espadín Joven Mezcal", type: "Mezcal", volume: "0.7L", abv: "45%" },
+      { name: "Nucano Espadín Reposado Mezcal", type: "Mezcal", volume: "0.7L", abv: "40%" },
+      { name: "Nucano Tobalá Joven Mezcal", type: "Mezcal", volume: "0.7L", abv: "44.2%" },
     ],
   },
 
-  // ── SAKE ──
+  // ══════════════════════════════════════
+  // ── SAKE
+  // ══════════════════════════════════════
   {
     name: "Dassai", category: "Sake", country: "Japan", est: "",
     desc: "World-renowned premium Japanese sake, crafted from Yamada Nishiki rice.",
     products: [
-      { name: "Dassai 45 Junmai Daiginjo", type: "Sake", volume: "0.72L", abv: "16%" },
       { name: "Dassai 23 Junmai Daiginjo", type: "Sake", volume: "0.72L", abv: "16%" },
       { name: "Dassai 39 Junmai Daiginjo", type: "Sake", volume: "0.72L", abv: "16%" },
+      { name: "Dassai 45 Junmai Daiginjo", type: "Sake", volume: "0.72L", abv: "16%" },
+      { name: "Dassai 45 Junmai Daiginjo", type: "Sake", volume: "0.3L", abv: "15%" },
+    ],
+  },
+  {
+    name: "Bijito", category: "Sake", country: "Japan", est: "",
+    desc: "Japanese sake — Junmai and Junmai Ginjo.",
+    products: [
+      { name: "Bijito Junmai", type: "Sake", volume: "0.72L", abv: "14.5%" },
+      { name: "Bijito Junmai Ginjo", type: "Sake", volume: "0.72L", abv: "14.5%" },
+    ],
+  },
+  {
+    name: "Miyako", category: "Sake", country: "Japan", est: "",
+    desc: "Japanese Nihonshu saké.",
+    products: [
+      { name: "Miyako Nihonshu Saké", type: "Sake", volume: "0.72L", abv: "14.5%" },
     ],
   },
 
-  // ── COGNAC ──
+  // ══════════════════════════════════════
+  // ── COGNAC
+  // ══════════════════════════════════════
+  {
+    name: "DEAU Cognac", category: "Cognac", country: "France", est: "",
+    desc: "Modern French cognac house — VS, VSOP, XO, and Black.",
+    products: [
+      { name: "DEAU Cognac VS +GB", type: "Cognac VS", volume: "0.7L", abv: "40%" },
+      { name: "DEAU Cognac VSOP +GB", type: "Cognac VSOP", volume: "0.7L", abv: "40%" },
+      { name: "DEAU Cognac XO +GB", type: "Cognac XO", volume: "0.7L", abv: "40%" },
+      { name: "DEAU Cognac Black +GB", type: "Cognac", volume: "0.7L", abv: "40%" },
+    ],
+  },
   {
     name: "Rémi Landier", category: "Cognac", country: "France", est: "",
     desc: "Family-owned Grande and Fine Champagne cognac house.",
     products: [
-      { name: "Rémi Landier VS", type: "Cognac", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/remi-landier-vs-gb" },
-      { name: "Rémi Landier VSOP Double Matured", type: "Cognac", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/remi-landier-vsop-double-matured-40-0-7l" },
-      { name: "Rémi Landier Napoléon GB", type: "Cognac", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/remi-landier-napoleon-gb" },
-      { name: "Rémi Landier XO Vieille Réserve GB", type: "Cognac", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/remi-landier-xo-vieille-reserve-gb" },
-      { name: "Rémi Landier XO Artisanal GB", type: "Cognac", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/remi-landier-xo-artisanal-gb" },
-      { name: "Rémi Landier Très Vieux Grande Champagne", type: "Cognac", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/remi-landier-tres-vieux-grande-champagne" },
-    ],
-  },
-  {
-    name: "Tesseron", category: "Cognac", country: "France", est: "",
-    desc: "Prestigious Cognac house known for Lot No. expressions.",
-    products: [
-      { name: "Tesseron 76 X.O.", type: "Cognac XO", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/tesseron-76-xo" },
-    ],
-  },
-  {
-    name: "DEAU Cognac", category: "Cognac", country: "France", est: "",
-    desc: "Modern French cognac house with distinctive black bottles.",
-    products: [
-      { name: "DEAU Cognac VS GB", type: "Cognac VS", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/deau-cognac-vs-gb-40-0-7l" },
-      { name: "DEAU Cognac VSOP GB", type: "Cognac VSOP", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/deau-cognac-vsop-gb-40-0-7l" },
-      { name: "DEAU Cognac XO GB", type: "Cognac XO", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/deau-cognac-xo-gb-40-0-7l" },
-      { name: "DEAU Cognac Black GB", type: "Cognac", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/deau-cognac-black-gb-40-0-7l" },
+      { name: "Rémi Landier VS +GB", type: "Cognac VS", volume: "0.7L", abv: "40%" },
+      { name: "Rémi Landier VS Original Blend", type: "Cognac VS", volume: "0.7L", abv: "40%" },
+      { name: "Rémi Landier VSOP +GB", type: "Cognac VSOP", volume: "0.7L", abv: "40%" },
+      { name: "Rémi Landier VSOP Double Matured", type: "Cognac VSOP", volume: "0.7L", abv: "40%" },
+      { name: "Rémi Landier Napoléon +GB", type: "Cognac", volume: "0.7L", abv: "40%" },
+      { name: "Rémi Landier XO Vieille Réserve +GB", type: "Cognac XO", volume: "0.7L", abv: "40%" },
+      { name: "Rémi Landier XO Fins Bois", type: "Cognac XO", volume: "0.7L", abv: "40%" },
+      { name: "Rémi Landier XO Artisanal +GB", type: "Cognac XO", volume: "0.7L", abv: "40%" },
+      { name: "Rémi Landier Très Vieux Fins Bois", type: "Cognac", volume: "0.7L", abv: "40%" },
+      { name: "Rémi Landier Très Vieux Grande Champagne", type: "Cognac", volume: "0.7L", abv: "40%" },
     ],
   },
   {
     name: "VITI Collection", category: "Cognac", country: "France", est: "",
     desc: "Cognac from the Landier family — Napoléon expression.",
     products: [
-      { name: "VITI COLLECTION Napoléon Cognac Landier Family", type: "Cognac", volume: "0.7L", abv: "45%", shopUrl: "https://www.alko.lv/products/viti-collection-napoleon-landier-family-45-0-7l" },
-    ],
-  },
-  {
-    name: "Camus", category: "Cognac", country: "France", est: "1863",
-    desc: "One of the last independent Cognac houses, known for VSOP.",
-    products: [
-      { name: "Camus VSOP Intensely Aromatic", type: "Cognac VSOP", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/camus-vsop-intensely-aromatic-40-0-7l-gb" },
+      { name: "VITI Collection Napoléon Cognac Landier Family", type: "Cognac", volume: "0.7L", abv: "45%" },
     ],
   },
 
-  // ── BRANDY ──
+  // ══════════════════════════════════════
+  // ── BRANDY & ARMAGNAC
+  // ══════════════════════════════════════
   {
-    name: "Aivazovsky", category: "Brandy", country: "Armenia", est: "",
-    desc: "Premium Armenian brandy — 3 star expression.",
-    products: [
-      { name: "Aivazovsky 3★ Brendijs", type: "Brandy", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/aivazovsky-3-brendijs-40-0-5l" },
-    ],
-  },
-  {
-    name: "Gocha Brandy Askaneli", category: "Brandy", country: "Georgia", est: "",
+    name: "Gocha Brandy (Askaneli)", category: "Brandy", country: "Georgia", est: "",
     desc: "Georgian brandy aged 3, 5, and 8 years.",
     products: [
-      { name: "Gocha Brandy Askaneli 3 YO", type: "Brandy", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/gocha-brandy-askaneli-3-yo-40-0-5l" },
-      { name: "Gocha Brandy Askaneli 5 YO", type: "Brandy", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/gocha-brandy-askaneli-5-yo-40-0-5l" },
-      { name: "Gocha Brandy Askaneli 8 YO", type: "Brandy", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/gocha-brandy-askaneli-8-yo-40-0-5l" },
+      { name: "Gocha Brandy Askaneli 3 YO", type: "Brandy", volume: "0.5L", abv: "40%" },
+      { name: "Gocha Brandy Askaneli 5 YO", type: "Brandy", volume: "0.5L", abv: "40%" },
+      { name: "Gocha Brandy Askaneli 8 YO", type: "Brandy", volume: "0.5L", abv: "40%" },
     ],
   },
   {
-    name: "Handsa", category: "Brandy", country: "Ukraine", est: "",
-    desc: "Organic rye brandy — unique Eastern European style.",
+    name: "Aivazovsky", category: "Brandy", country: "Armenia", est: "",
+    desc: "Premium Armenian brandy — 3, 5, and 7 star.",
     products: [
-      { name: "Handsa Organic Rye Brandy", type: "Rye Brandy", volume: "0.5L", abv: "63.2%", shopUrl: "https://www.alko.lv/products/handsa-organic-rye-brandy-63-2-0-5l" },
-      { name: "Handsa Organic Rye Brandy", type: "Rye Brandy", volume: "0.5L", abv: "50%", shopUrl: "https://www.alko.lv/products/handsa-organic-rye-brandy-50-0-0-5l" },
-      { name: "Handsa Organic Rye Brandy", type: "Rye Brandy", volume: "0.2L", abv: "63.2%", shopUrl: "https://www.alko.lv/products/handsa-organic-rye-brandy-63-2-0-2l" },
+      { name: "Aivazovsky 3★ Brendijs", type: "Brandy", volume: "0.5L", abv: "40%" },
+      { name: "Aivazovsky 5★ Brendijs", type: "Brandy", volume: "0.5L", abv: "40%" },
+      { name: "Aivazovsky 7★ Brendijs", type: "Brandy", volume: "0.5L", abv: "40%" },
     ],
   },
   {
-    name: "Castarede", category: "Brandy", country: "France", est: "",
-    desc: "Historic Armagnac house — VSOP and XO expressions.",
+    name: "Duc Moisans (Armagnac)", category: "Brandy", country: "France", est: "",
+    desc: "Vintage Armagnac — 1974, 1984, 1994 expressions.",
     products: [
-      { name: "Castarède V.S.O.P.", type: "Armagnac", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/castarede-vsop" },
-      { name: "Castarède X.O.", type: "Armagnac", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/castarede-xo" },
+      { name: "Armagnac Duc Moisans 1994 +GB", type: "Armagnac", volume: "0.7L", abv: "40%" },
+      { name: "Armagnac Duc Moisans 1984 +GB", type: "Armagnac", volume: "0.7L", abv: "40%" },
+      { name: "Armagnac Duc Moisans 1974 +GB", type: "Armagnac", volume: "0.7L", abv: "40%" },
+    ],
+  },
+  {
+    name: "30&40 Calvados", category: "Brandy", country: "France", est: "",
+    desc: "Calvados Extra Old from La Maison du Whisky.",
+    products: [
+      { name: "30&40 Calvados Extra Old", type: "Calvados", volume: "0.5L", abv: "42%" },
     ],
   },
 
-  // ── LIQUEURS ──
+  // ══════════════════════════════════════
+  // ── LIQUEURS & VERMOUTH
+  // ══════════════════════════════════════
   {
     name: "Lazzaroni", category: "Liqueurs", country: "Italy", est: "",
-    desc: "Italian liqueur house — Amaretto, Limoncino, and more.",
+    desc: "Italian liqueur house — Amaretto, Limoncino, Triple Sec, Sambuca, and more.",
     products: [
-      { name: "Lazzaroni Amaretto", type: "Amaretto", volume: "0.5L", abv: "24%", shopUrl: "https://www.alko.lv/products/lazzaroni-amaretto-24-0-5l" },
-      { name: "Lazzaroni Amaretto", type: "Amaretto", volume: "0.7L", abv: "24%", shopUrl: "https://www.alko.lv/products/lazzaroni-amaretto-24-0-7l" },
-      { name: "Lazzaroni Limoncino", type: "Limoncello", volume: "0.5L", abv: "32%", shopUrl: "https://www.alko.lv/products/lazzaroni-limoncino-32-0-5l" },
-      { name: "Lazzaroni Limoncino", type: "Limoncello", volume: "0.7L", abv: "32%", shopUrl: "https://www.alko.lv/products/lazzaroni-limoncino-32-0-7l" },
-      { name: "Lazzaroni Triple Sec", type: "Liqueur", volume: "0.7L", abv: "38%", shopUrl: "https://www.alko.lv/products/lazzaroni-triple-sec-38-0-7l" },
-      { name: "Lazzaroni Mela Verde Sour Apple", type: "Liqueur", volume: "0.5L", abv: "21%", shopUrl: "https://www.alko.lv/products/lazzaroni-mela-verde-sour-apple-21-0-5l" },
-      { name: "Lazzaroni Aperitivo Happy Red", type: "Aperitivo", volume: "0.7L", abv: "11%", shopUrl: "https://www.alko.lv/products/lazzaroni-aperitivo-happy-red-11-0-7l" },
+      { name: "Lazzaroni Amaretto", type: "Amaretto", volume: "0.5L", abv: "24%" },
+      { name: "Lazzaroni Amaretto", type: "Amaretto", volume: "0.7L", abv: "24%" },
+      { name: "Lazzaroni Amaretto +GB", type: "Amaretto", volume: "0.7L", abv: "24%" },
+      { name: "Lazzaroni Amaretto + Amaretti Crunchy", type: "Amaretto", volume: "0.5L", abv: "24%" },
+      { name: "Lazzaroni Limoncino", type: "Limoncello", volume: "0.5L", abv: "32%" },
+      { name: "Lazzaroni Limoncino", type: "Limoncello", volume: "0.7L", abv: "32%" },
+      { name: "Lazzaroni Limoncino +GB", type: "Limoncello", volume: "0.7L", abv: "32%" },
+      { name: "Lazzaroni Triple Sec", type: "Liqueur", volume: "0.7L", abv: "38%" },
+      { name: "Lazzaroni Mela Verde Sour Apple", type: "Liqueur", volume: "0.7L", abv: "21%" },
+      { name: "Lazzaroni Sambuca del Chiostro", type: "Sambuca", volume: "0.7L", abv: "38%" },
+      { name: "Lazzaroni Black Coffee", type: "Coffee Liqueur", volume: "0.7L", abv: "27%" },
+      { name: "Lazzaroni Aperitivo Happy Red", type: "Aperitivo", volume: "0.7L", abv: "11%" },
     ],
   },
   {
-    name: "Aperol", category: "Liqueurs", country: "Italy", est: "",
-    desc: "The iconic Italian aperitivo — essential for Spritz.",
+    name: "Beniamino Maschio", category: "Liqueurs", country: "Italy", est: "",
+    desc: "Italian liqueurs — Limoncello San Pietro and Amaretto Sofia.",
     products: [
-      { name: "Aperol", type: "Aperitivo", volume: "1L", abv: "11%", shopUrl: "https://www.alko.lv/products/aperol-11-1l" },
+      { name: "Limoncello San Pietro", type: "Limoncello", volume: "0.7L", abv: "28%" },
+      { name: "Amaretto Sofia", type: "Amaretto", volume: "0.7L", abv: "28%" },
     ],
   },
   {
-    name: "Kahlúa", category: "Liqueurs", country: "Mexico", est: "",
-    desc: "World-famous coffee liqueur.",
+    name: "Mulassano", category: "Liqueurs", country: "Italy", est: "1907",
+    desc: "Historic Italian vermouth from Turin — Rosso, Bianco, Extra Dry, and Aperitivo.",
     products: [
-      { name: "Kahlúa Coffee Liqueur", type: "Coffee Liqueur", volume: "1L", abv: "16%", shopUrl: "https://www.alko.lv/products/kahlua-16-1l-1" },
+      { name: "Mulassano Vermouth Rosso", type: "Vermouth", volume: "0.75L", abv: "18%" },
+      { name: "Mulassano Vermouth Bianco", type: "Vermouth", volume: "0.75L", abv: "18%" },
+      { name: "Mulassano Vermouth Extra Dry", type: "Vermouth", volume: "0.75L", abv: "18%" },
+      { name: "Mulassano Aperitivo", type: "Aperitivo", volume: "0.7L", abv: "24%" },
     ],
   },
   {
-    name: "Dubai Chocolate Pechery", category: "Liqueurs", country: "UAE", est: "",
-    desc: "Chocolate liqueur with a Middle Eastern twist.",
-    products: [
-      { name: "Dubai Chocolate Pechery Liqueur", type: "Chocolate Liqueur", volume: "0.7L", abv: "17%", shopUrl: "https://www.alko.lv/products/dubai-chocolate-pechery-likieris-17-0-7l" },
-    ],
-  },
-  {
-    name: "Ancho Reyes", category: "Liqueurs", country: "Mexico", est: "",
-    desc: "Ancho chile liqueur — bold and unique.",
-    products: [
-      { name: "Ancho Reyes Verde", type: "Chile Liqueur", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/ancho-reyes-verde-40-0-7l" },
-    ],
-  },
-  {
-    name: "Passoa", category: "Liqueurs", country: "France", est: "",
-    desc: "The Passion Drink — passion fruit liqueur for cocktails.",
-    products: [
-      { name: "Passoa The Passion Drink", type: "Passion Fruit Liqueur", volume: "0.7L", abv: "17%", shopUrl: "https://www.alko.lv/products/passoa-the-passion-drink-17-0-7l" },
-    ],
-  },
-
-  // ── ROSÉ WINE ──
-  {
-    name: "Feudo Arancio (Rosé)", category: "Rosé Wine", country: "Italy", est: "",
-    desc: "Sicilian rosé from Frappato grapes — fresh and aromatic.",
-    products: [
-      { name: "Feudo Arancio Tinchité Frappato Rosé Terre Siciliane IGT", type: "Rosé Wine", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/feudo-arancio-tinchite-frappato-rose-terre-siciliane-igt" },
-    ],
-  },
-  {
-    name: "Forte Alto (Rosé)", category: "Rosé Wine", country: "Italy", est: "1999",
-    desc: "Pinot Grigio Rosé from the Dolomites — elegant and refreshing.",
-    products: [
-      { name: "Forte Alto Rosé Pinot Grigio Vigneti Delle Dolomiti IGT", type: "Rosé Wine", volume: "0.75L", abv: "12%", shopUrl: "https://www.alko.lv/products/forte-alto-pinot-grigio-rose" },
-    ],
-  },
-  {
-    name: "Castillo De La Victoria", category: "White Wine", country: "Spain", est: "",
-    desc: "Affordable Spanish white wine — Blanco Dulce from La Mancha.",
-    products: [
-      { name: "Castillo De La Victoria Blanco Dulce", type: "White Wine", volume: "0.75L", abv: "10.5%", shopUrl: "https://www.alko.lv/products/castillo-de-la-victoria-blanco-semi-dulce-10-5-0-75l" },
-    ],
-  },
-
-  // ── VERMOUTH & BITTERS ──
-  {
-    name: "Mulassano", category: "Vermouth", country: "Italy", est: "1907",
-    desc: "Historic Italian vermouth house from Turin — creators of the original tramezzino.",
-    products: [
-      { name: "Mulassano Vermouth Extra Dry", type: "Vermouth", volume: "0.75L", abv: "18%", shopUrl: "https://www.alko.lv/products/mulassano-vermouth-extra-dry" },
-      { name: "Mulassano Vermouth Bianco", type: "Vermouth", volume: "0.75L", abv: "18%", shopUrl: "https://www.alko.lv/products/mulassano-vermouth-bianco" },
-      { name: "Mulassano Vermouth Rosso", type: "Vermouth", volume: "0.75L", abv: "18%", shopUrl: "https://www.alko.lv/products/mulassano-vermouth-rouge" },
-    ],
-  },
-  {
-    name: "Martini", category: "Vermouth", country: "Italy", est: "1863",
-    desc: "The world's most iconic vermouth brand — essential for classic cocktails.",
-    products: [
-      { name: "Martini Rosso", type: "Vermouth", volume: "1L", abv: "15%", shopUrl: "https://www.alko.lv/products/martini-rosso" },
-      { name: "Martini Extra Dry", type: "Vermouth", volume: "1L", abv: "15%", shopUrl: "https://www.alko.lv/products/martini-extra-dry" },
-      { name: "Martini Extra Dry", type: "Vermouth", volume: "0.75L", abv: "15%", shopUrl: "https://www.alko.lv/products/martini-extra-dry-15-0-75l" },
-      { name: "Martini Bianco", type: "Vermouth", volume: "1L", abv: "15%", shopUrl: "https://www.alko.lv/products/martini-bianco-15-1l" },
-      { name: "Martini Riserva Rubino", type: "Premium Vermouth", volume: "0.75L", abv: "18%", shopUrl: "https://www.alko.lv/products/martini-riserva-rubino-18-0-75l" },
-    ],
-  },
-  {
-    name: "Campari", category: "Vermouth", country: "Italy", est: "1860",
-    desc: "The iconic Italian bitter — cornerstone of Negroni and Americano cocktails.",
-    products: [
-      { name: "Campari Bitter", type: "Bitter", volume: "1L", abv: "25%", shopUrl: "https://www.alko.lv/products/campari-bitter-25-1l" },
-    ],
-  },
-  {
-    name: "Sip & Roll", category: "Vermouth", country: "Latvia", est: "",
-    desc: "Latvian-crafted bitter aperitivo — bold and aromatic.",
-    products: [
-      { name: "Sip & Roll Bitter", type: "Bitter", volume: "0.7L", abv: "11%", shopUrl: "https://www.alko.lv/products/sip-roll-bitter-11-0-7l" },
-    ],
-  },
-
-  // ── RUM (additional) ──
-  {
-    name: "Colonist", category: "Rum", country: "Ukraine", est: "",
-    desc: "Premium Ukrainian rum — Spiced Black and Dark expressions.",
-    products: [
-      { name: "Colonist Premium Rum Spiced Black", type: "Spiced Rum", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/colonist-premium-rum-spiced-black" },
-      { name: "Colonist Premium Rum Dark", type: "Dark Rum", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/colonist-premium-rum-dark" },
-    ],
-  },
-
-  // ── SPARKLING WINE (additional) ──
-  {
-    name: "Bella Conchi", category: "Sparkling Wine", country: "Spain", est: "",
-    desc: "Spanish Cava from Penedès — Brut and Rosé expressions.",
-    products: [
-      { name: "Bella Conchi Brut Rosé", type: "Cava Rosé", volume: "0.75L", abv: "11.5%", shopUrl: "https://www.alko.lv/products/bella-conchi-brut-rose" },
-      { name: "Bella Conchi Brut Selection", type: "Cava", volume: "0.75L", abv: "11.5%", shopUrl: "https://www.alko.lv/products/bella-conchi-brut" },
-    ],
-  },
-
-  // ── INFUSIONS & SPIRITS ──
-  {
-    name: "Glabātājs", category: "Liqueurs", country: "Latvia", est: "",
-    desc: "Latvian craft infusions — Rhubarb, Oak-aged Grāls, and Watermelon.",
-    products: [
-      { name: "Glabātājs Rabarberu", type: "Infusion", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/glabatajs-rabarberu-40-0-5l" },
-      { name: "Glabātājs Grāls (Oak-aged)", type: "Infusion", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/glabatajs-grals-uz-ozoliem-40-0-5l" },
-      { name: "Glabātājs Arbūzu (Watermelon)", type: "Infusion", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/glabatajs-arbuzu-40-0-5l" },
-    ],
-  },
-  {
-    name: "Abavas", category: "Brandy", country: "Latvia", est: "",
-    desc: "Latvian artisan berry distillate from the Abava valley.",
-    products: [
-      { name: "Abavas Ogu Destilāts (Berry Distillate)", type: "Fruit Brandy", volume: "0.7L", abv: "42%", shopUrl: "https://www.alko.lv/products/abavas-ogu-destilats" },
-      { name: "Upenu Brandvīns (Blackcurrant Brandy)", type: "Fruit Brandy", volume: "0.5L", abv: "40%", shopUrl: "https://www.alko.lv/products/destilats-upenu-brandvins" },
-      { name: "Bumbieru Brandvīns LE (Pear Brandy)", type: "Fruit Brandy", volume: "0.25L", abv: "40%", shopUrl: "https://www.alko.lv/products/destilats-le-bumbieru-brandvins" },
-    ],
-  },
-  {
-    name: "Akmenlauzis", category: "Liqueurs", country: "Latvia", est: "",
-    desc: "Latvian traditional spirit infusions — Baltais and Smiltsērkšķis.",
-    products: [
-      { name: "Akmenlauzis Baltais", type: "Spirit", volume: "1L", abv: "40%", shopUrl: "https://www.alko.lv/products/akmenlauzis-baltais" },
-      { name: "Akmenlauzis Smiltsērkšķis (Sea Buckthorn)", type: "Spirit", volume: "1L", abv: "36%", shopUrl: "https://www.alko.lv/products/akmenlauzis-smiltserkskis" },
-    ],
-  },
-  {
-    name: "Pampelle", category: "Liqueurs", country: "France", est: "",
-    desc: "Ruby Red Grapefruit aperitif — perfect for spritzes.",
-    products: [
-      { name: "Pampelle Ruby L'Apéro", type: "Aperitif", volume: "0.7L", abv: "15%", shopUrl: "https://www.alko.lv/products/liqueur-pampelle-15-0-7l" },
-    ],
-  },
-  {
-    name: "Waqar", category: "Brandy", country: "Chile", est: "",
+    name: "Waqar", category: "Liqueurs", country: "Chile", est: "",
     desc: "Premium Chilean Pisco — handcrafted from Muscat grapes.",
     products: [
-      { name: "Waqar Pisco", type: "Pisco", volume: "0.7L", abv: "40%", shopUrl: "https://www.alko.lv/products/waqar-pisco-40-0-7l" },
+      { name: "Waqar Pisco", type: "Pisco", volume: "0.7L", abv: "40%" },
     ],
   },
 
-  // ── MIXERS & SYRUPS ──
+  // ══════════════════════════════════════
+  // ── READY TO DRINK
+  // ══════════════════════════════════════
+  {
+    name: "Almare Spritz", category: "Liqueurs", country: "Italy", est: "",
+    desc: "Ready-to-drink Italian spritzes — Elderflower Hugo and Aperitivo Italiano.",
+    products: [
+      { name: "Almare Spritz Elderflower Hugo", type: "Ready-to-Drink", volume: "0.75L", abv: "8%" },
+      { name: "Almare Spritz Aperitivo Italiano", type: "Ready-to-Drink", volume: "0.75L", abv: "8%" },
+    ],
+  },
+
+  // ══════════════════════════════════════
+  // ── MIXERS & SYRUPS
+  // ══════════════════════════════════════
   {
     name: "Malafemmina", category: "Mixers", country: "Italy", est: "",
-    desc: "Italian craft mixers — premium tonics, sodas, and lemonades for cocktails.",
+    desc: "Italian craft mixers — premium tonics, sodas, and lemonades.",
     products: [
-      { name: "Malafemmina Rose Lemonade", type: "Mixer", volume: "200ml", abv: "0%", shopUrl: "https://www.alko.lv/products/malafemmina-rose-lemonade-200ml" },
-      { name: "Malafemmina Grapefruit Soda", type: "Mixer", volume: "200ml", abv: "0%", shopUrl: "https://www.alko.lv/products/malafemmina-grapefruit-soda-200ml" },
-      { name: "Malafemmina Ginger Beer", type: "Mixer", volume: "200ml", abv: "0%", shopUrl: "https://www.alko.lv/products/malafemmina-ginger-beer-200-ml" },
-      { name: "Malafemmina Tonic Water", type: "Mixer", volume: "200ml", abv: "0%", shopUrl: "https://www.alko.lv/products/malafemmina-tonic-water-20ml" },
+      { name: "Malafemmina Tonic Water", type: "Mixer", volume: "0.2L", abv: "0%" },
+      { name: "Malafemmina Ginger Beer", type: "Mixer", volume: "0.2L", abv: "0%" },
+      { name: "Malafemmina Grapefruit Soda", type: "Mixer", volume: "0.2L", abv: "0%" },
+      { name: "Malafemmina Lemon Tonic", type: "Mixer", volume: "0.2L", abv: "0%" },
+      { name: "Malafemmina Rose Lemonade", type: "Mixer", volume: "0.2L", abv: "0%" },
+    ],
+  },
+  {
+    name: "GocciaBlue", category: "Mixers", country: "Italy", est: "",
+    desc: "Italian mineral water — sparkling and still, glass and PET.",
+    products: [
+      { name: "GocciaBlue Sparkling Glass", type: "Water", volume: "0.75L", abv: "0%" },
+      { name: "GocciaBlue Still Glass", type: "Water", volume: "0.75L", abv: "0%" },
+      { name: "GocciaBlue Sparkling PET", type: "Water", volume: "1.5L", abv: "0%" },
+      { name: "GocciaBlue Still PET", type: "Water", volume: "1.5L", abv: "0%" },
     ],
   },
   {
     name: "Orsadrinks", category: "Mixers", country: "Italy", est: "",
-    desc: "Professional Italian cocktail syrups — gluten-free, bar-quality range.",
+    desc: "Professional Italian cocktail syrups, fruit mixes, and barista products — gluten-free.",
     products: [
-      { name: "Orsadrinks Iced Tea Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-iced-tea-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Iced Tea Peach Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-iced-tea-peach-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Banana Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-banana-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Premium Sour Lemon", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-premium-sour-lemon-100-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Premium Sour Lime", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-premium-sour-lime-100-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Hibiscus Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-hibiscus-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Lavender Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-lavender-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Elderflower Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-elderflower-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Italian Spritz Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-italian-spritz-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks White Sugar Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-white-sugar-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Popcorn Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-popcorn-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Agave Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-agave-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Rhubarb Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-rhubarb-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Pink Grapefruit Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-pink-grapefruit-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks White Mint Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-white-mint-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Chai Tea Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-chai-tea-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Grenadine Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-grenadine-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Black Currant Cassis Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-black-currant-cassis-syrup-gluten-free-tara-0-75l" },
-      { name: "Orsadrinks Strawberry Syrup", type: "Syrup", volume: "0.75L", abv: "0%", shopUrl: "https://www.alko.lv/products/orsadrinks-strawberry-syrup-gluten-free-tara-0-75l" },
+      { name: "Orsadrinks Agave Syrup", type: "Syrup", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Caramel Syrup", type: "Syrup", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Elderflower Syrup", type: "Syrup", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Grenadine Syrup", type: "Syrup", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Hibiscus Syrup", type: "Syrup", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Italian Spritz Syrup", type: "Syrup", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Lavender Syrup", type: "Syrup", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Passion Fruit Syrup", type: "Syrup", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Rhubarb Syrup", type: "Syrup", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Strawberry Syrup", type: "Syrup", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Premium Sour Lemon", type: "Juice", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Premium Sour Lime", type: "Juice", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Iced Tea", type: "Iced Tea", volume: "0.75L", abv: "0%" },
+      { name: "Orsadrinks Iced Tea Peach", type: "Iced Tea", volume: "0.75L", abv: "0%" },
     ],
   },
 ];
 
 export const productCategories = [
-  "Whisky", "Vodka", "Rum", "Gin", "Tequila", "Sake",
-  "Red Wine", "White Wine", "Rosé Wine", "Champagne", "Prosecco",
-  "Sparkling Wine", "Brandy", "Cognac", "Liqueurs", "Vermouth", "Mixers",
+  "Champagne", "Prosecco", "Sparkling Wine",
+  "White Wine", "Rosé Wine", "Red Wine",
+  "Whisky", "Rum", "Gin", "Vodka",
+  "Tequila", "Sake",
+  "Cognac", "Brandy", "Liqueurs", "Mixers",
 ] as const;
 
 export const countries = [
