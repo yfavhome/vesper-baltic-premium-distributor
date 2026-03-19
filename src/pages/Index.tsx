@@ -61,16 +61,16 @@ const Index = () => {
             <p className="text-body-lg text-primary-foreground/70 mt-8 max-w-2xl">
               {t.home.heroSubtitle}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 mt-10">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-10">
               <Link
                 to="/portfolio"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all hover:gap-3"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-primary text-primary-foreground font-body font-semibold text-xs sm:text-sm uppercase tracking-widest hover:bg-primary/90 transition-all hover:gap-3"
               >
                 {t.home.explorePortfolio} <ArrowRight size={16} />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary-foreground/10 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/20 backdrop-blur-sm transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-primary-foreground/10 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-xs sm:text-sm uppercase tracking-widest hover:bg-primary-foreground/20 backdrop-blur-sm transition-colors"
               >
                 {t.home.becomePartner}
               </Link>
@@ -78,7 +78,7 @@ const Index = () => {
                 href="https://www.alko.lv/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary-foreground/10 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/20 backdrop-blur-sm transition-all hover:gap-3"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-primary-foreground/10 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-xs sm:text-sm uppercase tracking-widest hover:bg-primary-foreground/20 backdrop-blur-sm transition-all hover:gap-3"
               >
                 {t.home.shopOnline} <ArrowRight size={16} />
               </a>
