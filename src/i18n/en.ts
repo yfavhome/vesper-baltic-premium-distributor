@@ -111,7 +111,7 @@ export const en = {
     balticCoverage: "Baltic Market Coverage",
     balticCoverageDesc: "Wholesale and retail trade covering Latvia, Lithuania, and Estonia with carefully selected partners.",
     premiumPortfolio: "Premium & Diverse Portfolio",
-    premiumPortfolioDesc: "37+ brands from 16+ countries — from everyday favorites to rare exclusive finds.",
+    premiumPortfolioDesc: "Brands from 16+ countries — from everyday favorites to rare exclusive finds.",
     partnershipFocus: "Partnership Focus",
     partnershipFocusDesc: "Long-term relationship approach focused on increasing sales and brand presence for our partners.",
     fullLogistics: "Full Logistics",
