@@ -178,6 +178,7 @@ const ProductCategoryPage = () => {
 
   return (
     <Layout>
+      <SEO title={`${decodedCategory} — Products`} description={`Explore our ${decodedCategory.toLowerCase()} collection. Premium ${decodedCategory.toLowerCase()} distributed by Vesper Group across the Baltics.`} />
       {/* Category Hero */}
       <section className="relative h-[50vh] md:h-[55vh] flex items-end overflow-hidden">
         <img src={heroImage} alt={decodedCategory} className="absolute inset-0 w-full h-full object-cover" />
