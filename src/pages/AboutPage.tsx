@@ -28,8 +28,8 @@ const AboutPage = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-8 content-center">
-            <AnimatedCounter end={37} suffix="+" label={t.about.brands} />
-            <AnimatedCounter end={16} label={t.about.productCategories} />
+            <AnimatedCounter end={brands.length} suffix="+" label={t.about.brands} />
+            <AnimatedCounter end={productCategories.length} label={t.about.productCategories} />
             <AnimatedCounter end={3} label={t.about.balticMarkets} />
             <AnimatedCounter end={6} label={t.about.coreServices} />
           </div>

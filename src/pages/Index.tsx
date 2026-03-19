@@ -145,7 +145,7 @@ const Index = () => {
         <div className="relative z-10 section-padding">
           <SectionHeading
             label={t.home.portfolioLabel}
-            title={t.home.portfolioTitle}
+            title={t.home.portfolioTitle.replace("37+", `${brands.length}+`)}
             subtitle={t.home.portfolioSubtitle}
             light
           />
