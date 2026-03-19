@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import AgeVerification from "@/components/shared/AgeVerification";
@@ -8,11 +9,18 @@ import ScrollToTop from "@/components/shared/ScrollToTop";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
       <Preloader />
       <AgeVerification />
       <Navbar />
-      <main className="flex-1">{children}</main>
+      <motion.main
+        className="flex-1"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      >
+        {children}
+      </motion.main>
       <Footer />
 
       <ScrollToTop />
