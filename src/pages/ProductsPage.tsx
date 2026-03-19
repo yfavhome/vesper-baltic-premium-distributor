@@ -88,10 +88,10 @@ const CategoryCard = ({ cat, index }: { cat: CategoryData; index: number }) => {
           />
         </div>
         {/* Overlay with enhanced hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--vesper-dark))]/90 via-[hsl(var(--vesper-dark))]/20 to-transparent group-hover:from-[hsl(var(--vesper-dark))]/95 group-hover:via-[hsl(var(--vesper-dark))]/40 transition-all duration-500" />
+        <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black/90 via-black/20 to-transparent group-hover:from-black/95 group-hover:via-black/40 transition-all duration-500" />
         
         {/* Content */}
-        <div className="absolute bottom-0 left-0 right-0 p-8 transform group-hover:translate-y-[-4px] transition-transform duration-500">
+        <div className="absolute bottom-0 left-0 right-0 z-[3] p-8 transform group-hover:translate-y-[-4px] transition-transform duration-500">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-[10px] uppercase tracking-widest text-primary font-semibold">
               {cat.brandCount} {cat.brandCount === 1 ? "brand" : "brands"} · {cat.productCount} products
@@ -106,7 +106,7 @@ const CategoryCard = ({ cat, index }: { cat: CategoryData; index: number }) => {
         </div>
 
         {/* Top corner badge on hover */}
-        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+        <div className="absolute top-4 right-4 z-[3] opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
           <span className="px-3 py-1.5 bg-primary/90 text-primary-foreground text-[10px] uppercase tracking-widest font-semibold backdrop-blur-sm">
             Explore
           </span>
