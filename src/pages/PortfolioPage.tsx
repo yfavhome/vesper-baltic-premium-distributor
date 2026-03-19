@@ -37,7 +37,7 @@ const PortfolioPage = () => {
       />
 
       <section className="section-padding section-spacing">
-        <SectionHeading label="Our Brands" title={`${brands.length} Brands From Around the World`} align="center" />
+        <SectionHeading label={t.portfolio.ourBrands} title={`${brands.length} ${t.portfolio.brandsCount}`} align="center" />
 
         {/* Search */}
         <div className="max-w-md mx-auto mb-10">
