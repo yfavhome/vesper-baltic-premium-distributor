@@ -95,11 +95,9 @@ const Footer = () => {
             © {new Date().getFullYear()} Vesper Group. {t.footer.rights}
           </p>
           <div className="flex gap-6">
-            {[t.footer.privacy, t.footer.terms, t.footer.cookies].map((item) => (
-              <a key={item} href="#" className="text-xs text-primary-foreground/30 hover:text-primary-foreground/60 transition-colors">
-                {item}
-              </a>
-            ))}
+            <Link to="/privacy" className="text-xs text-primary-foreground/30 hover:text-primary-foreground/60 transition-colors">{t.footer.privacy}</Link>
+            <Link to="/terms" className="text-xs text-primary-foreground/30 hover:text-primary-foreground/60 transition-colors">{t.footer.terms}</Link>
+            <Link to="/cookies" className="text-xs text-primary-foreground/30 hover:text-primary-foreground/60 transition-colors">{t.footer.cookies}</Link>
           </div>
         </div>
       </div>
