@@ -1,4 +1,5 @@
 import { useState, useRef, useMemo } from "react";
+import SEO from "@/components/shared/SEO";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";

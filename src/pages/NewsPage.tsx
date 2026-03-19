@@ -25,6 +25,7 @@ const NewsPage = () => {
 
   return (
     <Layout>
+      <SEO title="News & Insights" description="Stay up to date with the latest news, events, and product launches from Vesper Group — the Baltics' premium beverage distributor." />
       <section className="vesper-gradient pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="section-padding">
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-label text-primary mb-4">

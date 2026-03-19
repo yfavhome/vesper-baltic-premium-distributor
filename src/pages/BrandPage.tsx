@@ -30,6 +30,7 @@ const BrandPage = () => {
 
   return (
     <Layout>
+      <SEO title={`${brand.name} — ${brand.category}`} description={`${brand.desc} Distributed by Vesper Group across the Baltics.`} />
       {/* Hero */}
       <section className="vesper-gradient pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="section-padding">
