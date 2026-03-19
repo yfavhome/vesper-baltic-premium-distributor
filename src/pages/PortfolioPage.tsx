@@ -7,44 +7,44 @@ import BrandCard from "@/components/shared/BrandCard";
 import portfolioHero from "@/assets/portfolio-hero.jpg";
 import { brands, productCategories, countries } from "@/data/brands";
 import { Search } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 import { Input } from "@/components/ui/input";
 
-const categories = ["All", ...productCategories];
-const countryList = ["All Countries", ...countries];
-
 const PortfolioPage = () => {
-  const [filter, setFilter] = useState("All");
-  const [countryFilter, setCountryFilter] = useState("All Countries");
-  
+  const { t } = useLanguage();
+  const categories = [t.portfolio.all, ...productCategories];
+  const countryList = [t.portfolio.allCountries, ...countries];
+  const [filter, setFilter] = useState(t.portfolio.all);
+  const [countryFilter, setCountryFilter] = useState(t.portfolio.allCountries);
   const [search, setSearch] = useState("");
 
   const filtered = brands.filter((b) => {
-    const catMatch = filter === "All" || b.category === filter;
-    const countryMatch = countryFilter === "All Countries" || b.country === countryFilter;
+    const catMatch = filter === t.portfolio.all || b.category === filter;
+    const countryMatch = countryFilter === t.portfolio.allCountries || b.country === countryFilter;
     const searchMatch = !search || b.name.toLowerCase().includes(search.toLowerCase()) || b.desc.toLowerCase().includes(search.toLowerCase());
     return catMatch && countryMatch && searchMatch;
   });
 
   return (
     <Layout>
-      <SEO title="Brand Portfolio" description="Explore 37+ premium brands distributed by Vesper Group across the Baltics — wines, champagnes, spirits, and more from world-class producers." />
+      <SEO title={`${t.portfolio.label} — Vesper Group`} description={`Explore ${brands.length}+ premium brands distributed by Vesper Group across the Baltics — wines, champagnes, spirits, and more.`} />
       <PageHero
-        label="Brand Portfolio"
-        title="World-Class Brands, One Trusted Partner"
-        subtitle="Discover the premium brands we distribute across the Baltic region."
+        label={t.portfolio.label}
+        title={t.portfolio.title}
+        subtitle={t.portfolio.subtitle}
         image={portfolioHero}
       />
 
       <section className="section-padding section-spacing">
-        <SectionHeading label="Our Brands" title={`${brands.length} Brands From Around the World`} align="center" />
+        <SectionHeading label={t.portfolio.ourBrands} title={`${brands.length} ${t.portfolio.brandsCount}`} align="center" />
 
         {/* Search */}
         <div className="max-w-md mx-auto mb-10">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
             <Input
-              placeholder="Search brands..."
+              placeholder={t.portfolio.searchBrands}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="pl-10"
@@ -94,13 +94,13 @@ const PortfolioPage = () => {
         {(filter !== "All" || countryFilter !== "All Countries" || search) && (
           <div className="flex items-center justify-center gap-3 mb-8">
             <span className="text-sm text-muted-foreground">
-              {filtered.length} {filtered.length === 1 ? "brand" : "brands"} found
+              {filtered.length} {filtered.length === 1 ? t.portfolio.brandFound : t.portfolio.brandsFound}
             </span>
             <button
-              onClick={() => { setFilter("All"); setCountryFilter("All Countries"); setSearch(""); }}
+              onClick={() => { setFilter(t.portfolio.all); setCountryFilter(t.portfolio.allCountries); setSearch(""); }}
               className="text-xs text-primary hover:underline"
             >
-              Clear all filters
+              {t.portfolio.clearFilters}
             </button>
           </div>
         )}
@@ -118,12 +118,12 @@ const PortfolioPage = () => {
 
         {filtered.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-muted-foreground">No brands match the selected filters.</p>
+            <p className="text-muted-foreground">{t.portfolio.noMatch}</p>
             <button
-              onClick={() => { setFilter("All"); setCountryFilter("All Countries"); setSearch(""); }}
+              onClick={() => { setFilter(t.portfolio.all); setCountryFilter(t.portfolio.allCountries); setSearch(""); }}
               className="text-primary text-sm mt-2 hover:underline"
             >
-              Clear filters
+              {t.portfolio.clearBtn}
             </button>
           </div>
         )}

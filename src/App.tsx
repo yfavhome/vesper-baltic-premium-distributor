@@ -18,6 +18,9 @@ import NewsPage from "./pages/NewsPage";
 import ContactPage from "./pages/ContactPage";
 import BrandPage from "./pages/BrandPage";
 import NotFound from "./pages/NotFound";
+import PrivacyPage from "./pages/PrivacyPage";
+import TermsPage from "./pages/TermsPage";
+import CookiePage from "./pages/CookiePage";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +51,9 @@ const App = () => (
             <Route path="/news" element={<NewsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/brand/:brandSlug" element={<BrandPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/cookies" element={<CookiePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
