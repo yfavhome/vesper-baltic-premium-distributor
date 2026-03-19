@@ -8,6 +8,7 @@ import AnimatedCounter from "@/components/shared/AnimatedCounter";
 import FadeIn from "@/components/shared/FadeIn";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { brands, productCategories, countries } from "@/data/brands";
+import TrustedBy from "@/components/shared/TrustedBy";
 import heroBg from "@/assets/hero-bg.jpg";
 import portfolioHero from "@/assets/portfolio-hero.jpg";
 import distributionHero from "@/assets/distribution-hero.jpg";
