@@ -9,7 +9,9 @@ import heroBg from "@/assets/hero-bg.jpg";
 import portfolioHero from "@/assets/portfolio-hero.jpg";
 import distributionHero from "@/assets/distribution-hero.jpg";
 import partnersHero from "@/assets/partners-hero.jpg";
-import newsPlaceholder from "@/assets/news-placeholder.jpg";
+import newsEvent from "@/assets/news-event.jpg";
+import newsPartnership from "@/assets/news-partnership.jpg";
+import newsBrands from "@/assets/news-brands.jpg";
 
 const services = [
   { icon: ShoppingCart, name: "Wholesale Trade", desc: "Covering Baltic market with reliable supply chains" },
@@ -21,9 +23,9 @@ const services = [
 ];
 
 const newsItems = [
-  { title: "Events with Vesper Catering", date: "September 2025", category: "Events" },
-  { title: "Vesper Group Strengthens Baltic Partnerships", date: "2025", category: "Company News" },
-  { title: "New Premium Brand Partnerships Announced", date: "2025", category: "Partnerships" },
+  { title: "Events with Vesper Catering", date: "September 2025", category: "Events", image: newsEvent },
+  { title: "Vesper Group Strengthens Baltic Partnerships", date: "2025", category: "Company News", image: newsPartnership },
+  { title: "New Premium Brand Partnerships Announced", date: "2025", category: "Partnerships", image: newsBrands },
 ];
 
 const Index = () => {
