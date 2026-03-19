@@ -7,11 +7,9 @@ import BrandCard from "@/components/shared/BrandCard";
 import portfolioHero from "@/assets/portfolio-hero.jpg";
 import { brands, productCategories, countries } from "@/data/brands";
 import { Search } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 import { Input } from "@/components/ui/input";
-
-const categories = ["All", ...productCategories];
-const countryList = ["All Countries", ...countries];
 
 const PortfolioPage = () => {
   const [filter, setFilter] = useState("All");
