@@ -15,7 +15,7 @@ const AboutPage = () => {
   return (
     <Layout>
       <SEO title="About Vesper Group" description={`Learn about Vesper Group — a premium beverage distributor in the Baltics with ${brands.length}+ brands and a commitment to quality.`} />
-      <PageHero label={t.about.label} title={t.about.title} subtitle={t.about.subtitle} image={aboutHero} />
+      <PageHero label={t.about.label} title={t.about.title} subtitle={t.about.subtitle} image={aboutHero} size="tall" />
 
       <section className="section-padding section-spacing">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">

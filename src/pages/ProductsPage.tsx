@@ -175,10 +175,12 @@ const ProductsPage = () => {
     <Layout>
       <SEO title="Products" description="Browse our curated selection of premium beverages — champagne, wine, whisky, rum, gin, vodka, and more. 600+ products from 37+ brands." />
       <PageHero
-        label="Product Categories"
-        title="A Curated Selection of Fine Beverages"
-        subtitle="Explore our comprehensive range of premium spirits, wines, and more — carefully sourced from the world's finest producers."
+        label={t.products.label}
+        title={t.products.title}
+        subtitle={t.products.subtitle}
         image={productsHero}
+        size="compact"
+        align="bottom-center"
       />
 
       {/* Stats & Search Bar */}
