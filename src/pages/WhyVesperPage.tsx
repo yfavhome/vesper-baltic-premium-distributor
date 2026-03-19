@@ -93,10 +93,10 @@ const WhyVesperPage = () => {
       {/* FAQ Section */}
       <section className="bg-secondary/30 section-padding section-spacing">
         <SectionHeading
-          label={t.faq?.label || "FAQ"}
-          title={t.faq?.title || "Frequently Asked Questions"}
+          label={(t as any).faq?.label || "FAQ"}
+          title={(t as any).faq?.title || "Frequently Asked Questions"}
           align="center"
-          subtitle={t.faq?.subtitle || "Find answers to common questions about working with Vesper Group."}
+          subtitle={(t as any).faq?.subtitle || "Find answers to common questions about working with Vesper Group."}
         />
         <div className="max-w-3xl mx-auto space-y-3">
           {faqItems.map((item: { q: string; a: string }, i: number) => (
