@@ -14,7 +14,7 @@ const AboutPage = () => {
 
   return (
     <Layout>
-      <SEO title="About Vesper Group" description="Learn about Vesper Group — a premium beverage distributor in the Baltics with 10+ years of experience, 37+ brands, and a commitment to quality." />
+      <SEO title="About Vesper Group" description={`Learn about Vesper Group — a premium beverage distributor in the Baltics with ${brands.length}+ brands and a commitment to quality.`} />
       <PageHero label={t.about.label} title={t.about.title} subtitle={t.about.subtitle} image={aboutHero} />
 
       <section className="section-padding section-spacing">
