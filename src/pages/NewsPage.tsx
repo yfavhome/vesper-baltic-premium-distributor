@@ -4,7 +4,9 @@ import FadeIn from "@/components/shared/FadeIn";
 import newsEvent from "@/assets/news-event.jpg";
 import newsPartnership from "@/assets/news-partnership.jpg";
 import newsBrands from "@/assets/news-brands.jpg";
-import newsPlaceholder from "@/assets/news-placeholder.jpg";
+import newsSake from "@/assets/news-sake.jpg";
+import newsRum from "@/assets/news-rum.jpg";
+import newsShop from "@/assets/news-shop.jpg";
 import { motion } from "framer-motion";
 
 const articles = [
