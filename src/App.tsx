@@ -17,6 +17,7 @@ import WhyVesperPage from "./pages/WhyVesperPage";
 import NewsPage from "./pages/NewsPage";
 import ContactPage from "./pages/ContactPage";
 import BrandPage from "./pages/BrandPage";
+import BrandPartnershipPage from "./pages/BrandPartnershipPage";
 import NotFound from "./pages/NotFound";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
@@ -51,6 +52,7 @@ const App = () => (
             <Route path="/news" element={<NewsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/brand/:brandSlug" element={<BrandPage />} />
+            <Route path="/brand-partnership" element={<BrandPartnershipPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/cookies" element={<CookiePage />} />

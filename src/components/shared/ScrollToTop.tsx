@@ -21,7 +21,7 @@ const ScrollToTop = () => {
           transition={{ duration: 0.2 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Scroll to top"
-          className="fixed bottom-24 right-6 z-50 w-11 h-11 flex items-center justify-center rounded-full border border-border bg-background/90 backdrop-blur-sm text-foreground/60 shadow-lg hover:text-primary hover:border-primary transition-colors duration-300"
+          className="fixed bottom-24 right-6 z-50 w-11 h-11 flex items-center justify-center border border-primary/30 bg-vesper-dark/90 backdrop-blur-sm text-primary shadow-lg hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
         >
           <ArrowUp size={18} />
         </motion.button>

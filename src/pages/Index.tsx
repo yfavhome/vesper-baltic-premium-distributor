@@ -8,6 +8,7 @@ import AnimatedCounter from "@/components/shared/AnimatedCounter";
 import FadeIn from "@/components/shared/FadeIn";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { brands, productCategories, countries } from "@/data/brands";
+import TrustedBy from "@/components/shared/TrustedBy";
 import heroBg from "@/assets/hero-bg.jpg";
 import portfolioHero from "@/assets/portfolio-hero.jpg";
 import distributionHero from "@/assets/distribution-hero.jpg";
@@ -38,7 +39,7 @@ const Index = () => {
     <Layout>
       <SEO title="Vesper Group — Premium Beverage Distribution in the Baltics" description={`Vesper Group is the leading premium beverage distributor in the Baltic region. ${brands.length}+ brands, 600+ products from world-class producers.`} />
       {/* Hero */}
-      <section className="relative h-screen flex items-center overflow-hidden">
+      <section className="relative h-screen flex items-center overflow-hidden noise-overlay">
         <img src={heroBg} alt="Premium beverages" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 vesper-overlay" />
         <motion.div
@@ -94,6 +95,9 @@ const Index = () => {
           <div className="w-[1px] h-10 bg-gradient-to-b from-primary-foreground/40 to-transparent" />
         </motion.div>
       </section>
+
+      {/* Trusted By */}
+      <TrustedBy />
 
       {/* About Preview */}
       <section className="section-padding section-spacing">
