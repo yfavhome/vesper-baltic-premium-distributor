@@ -2,18 +2,11 @@ import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import SectionHeading from "@/components/shared/SectionHeading";
 import FadeIn from "@/components/shared/FadeIn";
+import { useLanguage } from "@/i18n/LanguageContext";
 import partnersHero from "@/assets/partners-hero.jpg";
 import { ShoppingCart, UtensilsCrossed, Wine, Hotel, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-
-const partnerTypes = [
-  { icon: ShoppingCart, title: "Retail Chains", desc: "We supply the largest retail networks across Latvia, Lithuania, and Estonia with our full premium portfolio.", partners: ["Rimi", "Maxima", "Prisma", "Stockmann"] },
-  { icon: UtensilsCrossed, title: "Restaurants", desc: "Fine dining establishments trust Vesper to curate their wine lists and spirits selection.", partners: ["Vincents", "3 Pavāru", "Entresol", "Ferma"] },
-  { icon: Wine, title: "Bars & Lounges", desc: "From craft cocktail bars to premium lounges, we supply the spirits that drive exceptional experiences.", partners: ["Herbārijs", "Black Magic", "Skyline Bar", "I Love You"] },
-  { icon: Hotel, title: "Hotels", desc: "International hotel chains and boutique properties rely on our consistent service and quality.", partners: ["Grand Hotel Kempinski", "Radisson", "Pullman", "Hotel Bergs"] },
-  { icon: Building2, title: "Hospitality Groups", desc: "Large hospitality operators benefit from our centralized ordering and distribution capabilities.", partners: ["SemaraH Hotels", "Lido", "Baltic Hotel Group"] },
-];
 
 const partnerLogos = [
   "Rimi", "Maxima", "Prisma", "Stockmann", "SELVER", "Coop", "Lidl", "Barbora",
@@ -21,18 +14,22 @@ const partnerLogos = [
 ];
 
 const PartnersPage = () => {
+  const { t } = useLanguage();
+
+  const partnerTypes = [
+    { icon: ShoppingCart, title: t.partners.retailChains, desc: t.partners.retailChainsDesc, partners: ["Rimi", "Maxima", "Prisma", "Stockmann"] },
+    { icon: UtensilsCrossed, title: t.partners.restaurants, desc: t.partners.restaurantsDesc, partners: ["Vincents", "3 Pavāru", "Entresol", "Ferma"] },
+    { icon: Wine, title: t.partners.barsLounges, desc: t.partners.barsLoungesDesc, partners: ["Herbārijs", "Black Magic", "Skyline Bar", "I Love You"] },
+    { icon: Hotel, title: t.partners.hotels, desc: t.partners.hotelsDesc, partners: ["Grand Hotel Kempinski", "Radisson", "Pullman", "Hotel Bergs"] },
+    { icon: Building2, title: t.partners.hospitalityGroups, desc: t.partners.hospitalityGroupsDesc, partners: ["SemaraH Hotels", "Lido", "Baltic Hotel Group"] },
+  ];
+
   return (
     <Layout>
-      <PageHero
-        label="Partners & HoReCa"
-        title="Building Lasting Partnerships"
-        subtitle="We collaborate with the Baltic region's finest retail chains, restaurants, hotels, and bars."
-        image={partnersHero}
-      />
+      <PageHero label={t.partners.label} title={t.partners.title} subtitle={t.partners.subtitle} image={partnersHero} />
 
-      {/* Partner Types */}
       <section className="section-padding section-spacing">
-        <SectionHeading label="Our Partners" title="Serving Every Channel" />
+        <SectionHeading label={t.partners.ourPartners} title={t.partners.servingChannels} />
         <div className="space-y-6">
           {partnerTypes.map((type, i) => (
             <FadeIn key={type.title} delay={i * 0.08}>
@@ -59,9 +56,8 @@ const PartnersPage = () => {
         </div>
       </section>
 
-      {/* Partner Logos */}
       <section className="section-padding section-spacing bg-secondary/50">
-        <SectionHeading label="Trusted By" title="Our Partner Network" align="center" />
+        <SectionHeading label={t.partners.trustedBy} title={t.partners.partnerNetwork} align="center" />
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {partnerLogos.map((logo, i) => (
             <FadeIn key={logo} delay={i * 0.04}>
@@ -73,11 +69,10 @@ const PartnersPage = () => {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="vesper-gradient section-padding section-spacing text-center">
-        <SectionHeading label="Join Us" title="Become a Vesper Partner" light align="center" subtitle="Interested in adding premium brands to your portfolio? Get in touch with our partnership team." />
+        <SectionHeading label={t.partners.joinUs} title={t.partners.becomePartner} light align="center" subtitle={t.partners.becomePartnerSub} />
         <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all hover:gap-3">
-          Contact Us <ArrowRight size={16} />
+          {t.partners.contactUs} <ArrowRight size={16} />
         </Link>
       </section>
     </Layout>

@@ -1,6 +1,7 @@
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
 import FadeIn from "@/components/shared/FadeIn";
+import { useLanguage } from "@/i18n/LanguageContext";
 import newsEvent from "@/assets/news-event.jpg";
 import newsPartnership from "@/assets/news-partnership.jpg";
 import newsBrands from "@/assets/news-brands.jpg";
@@ -9,31 +10,31 @@ import newsRum from "@/assets/news-rum.jpg";
 import newsShop from "@/assets/news-shop.jpg";
 import { motion } from "framer-motion";
 
-const articles = [
-  { title: "Events with Vesper Catering", date: "September 4, 2025", category: "Events", excerpt: "Vesper Group strengthens partnerships in the Baltic market. Our team took part in a business networking event bringing together leading companies and professionals from Latvia and beyond.", image: newsEvent },
-  { title: "Vesper Group Strengthens Baltic Market Partnerships", date: "2025", category: "Company News", excerpt: "This week, our team participated in a networking event bringing together leading companies and professionals from Latvia and beyond, discussing market trends and new opportunities.", image: newsPartnership },
-  { title: "New Premium Brand Partnerships Announced", date: "2025", category: "Partnerships", excerpt: "Vesper Group continues to expand its portfolio with new exclusive brand partnerships, bringing world-class beverages to Baltic consumers.", image: newsBrands },
-  { title: "Dassai Sake Now Available in the Baltics", date: "2025", category: "Product Launch", excerpt: "We are proud to introduce Dassai, one of Japan's most renowned sake brands, to the Baltic market through our distribution network.", image: newsSake },
-  { title: "Black Tears Dry Spiced Rum Arrives", date: "2025", category: "Product Launch", excerpt: "Cuban-crafted Black Tears Dry Spiced Rum is now available through Vesper Group's Baltic distribution channels.", image: newsRum },
-  { title: "Vesper Online Shop alko.lv Expands Range", date: "2025", category: "Company News", excerpt: "Our e-commerce platform alko.lv continues to grow with an expanded selection of premium beverages available for convenient online ordering.", image: newsShop },
-];
-
 const NewsPage = () => {
+  const { t } = useLanguage();
+
+  const articles = [
+    { ...t.newsArticles.event, date: "September 4, 2025", image: newsEvent },
+    { ...t.newsArticles.partnerships, date: "2025", image: newsPartnership },
+    { ...t.newsArticles.brands, date: "2025", image: newsBrands },
+    { ...t.newsArticles.sake, date: "2025", image: newsSake },
+    { ...t.newsArticles.rum, date: "2025", image: newsRum },
+    { ...t.newsArticles.shop, date: "2025", image: newsShop },
+  ];
+
   return (
     <Layout>
-      {/* Hero */}
       <section className="vesper-gradient pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="section-padding">
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-label text-primary mb-4">
-            News & Insights
+            {t.news.label}
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-display-lg text-primary-foreground max-w-3xl">
-            Latest from Vesper Group
+            {t.news.title}
           </motion.h1>
         </div>
       </section>
 
-      {/* Featured */}
       <section className="section-padding section-spacing">
         <FadeIn>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
@@ -49,8 +50,7 @@ const NewsPage = () => {
           </div>
         </FadeIn>
 
-        {/* Grid */}
-        <SectionHeading label="All Articles" title="Stay Informed" />
+        <SectionHeading label={t.news.allArticles} title={t.news.stayInformed} />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.slice(1).map((article, i) => (
             <FadeIn key={article.title} delay={i * 0.08}>

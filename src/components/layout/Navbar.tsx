@@ -2,24 +2,31 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-// Logo rendered as styled text to avoid image transparency issues
+import { useLanguage, Language } from "@/i18n/LanguageContext";
 
-const navLinks = [
-  { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Portfolio", path: "/portfolio" },
-  { label: "Products", path: "/products" },
-  { label: "Distribution", path: "/distribution" },
-  { label: "Partners", path: "/partners" },
-  { label: "News", path: "/news" },
-  { label: "Contact", path: "/contact" },
-  { label: "Shop", path: "https://www.alko.lv/", external: true },
+const languages: { code: Language; label: string }[] = [
+  { code: "en", label: "EN" },
+  { code: "lv", label: "LV" },
+  { code: "ru", label: "RU" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { lang, setLang, t } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.home, path: "/" },
+    { label: t.nav.about, path: "/about" },
+    { label: t.nav.portfolio, path: "/portfolio" },
+    { label: t.nav.products, path: "/products" },
+    { label: t.nav.distribution, path: "/distribution" },
+    { label: t.nav.partners, path: "/partners" },
+    { label: t.nav.news, path: "/news" },
+    { label: t.nav.contact, path: "/contact" },
+    { label: t.nav.shop, path: "https://www.alko.lv/", external: true },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -31,7 +38,6 @@ const Navbar = () => {
     setMobileOpen(false);
   }, [location]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -94,6 +100,25 @@ const Navbar = () => {
                 </Link>
               )
             )}
+
+            {/* Language Switcher */}
+            <div className="flex items-center gap-1 ml-2 border-l border-current/20 pl-4">
+              {languages.map((l) => (
+                <button
+                  key={l.code}
+                  onClick={() => setLang(l.code)}
+                  className={`text-[10px] font-body font-bold uppercase tracking-wider px-1.5 py-0.5 transition-all ${
+                    lang === l.code
+                      ? "text-primary"
+                      : scrolled
+                      ? "text-foreground/40 hover:text-foreground/70"
+                      : "text-primary-foreground/40 hover:text-primary-foreground/70"
+                  }`}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Mobile Toggle */}
@@ -149,6 +174,28 @@ const Navbar = () => {
                   )}
                 </motion.div>
               ))}
+
+              {/* Mobile Language Switcher */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + navLinks.length * 0.04 }}
+                className="flex items-center gap-3 mt-4 pt-4 border-t border-border"
+              >
+                {languages.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => setLang(l.code)}
+                    className={`text-sm font-body font-bold uppercase tracking-wider px-3 py-1.5 transition-all ${
+                      lang === l.code
+                        ? "text-primary border-b-2 border-primary"
+                        : "text-foreground/40 hover:text-foreground/70"
+                    }`}
+                  >
+                    {l.label}
+                  </button>
+                ))}
+              </motion.div>
             </div>
           </motion.div>
         )}
