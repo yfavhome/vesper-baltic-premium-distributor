@@ -111,7 +111,7 @@ export const lv: Translations = {
     balticCoverage: "Baltijas tirgus pārklājums",
     balticCoverageDesc: "Vairumtirdzniecība un mazumtirdzniecība, kas aptver Latviju, Lietuvu un Igauniju ar rūpīgi atlasītiem partneriem.",
     premiumPortfolio: "Premium un daudzveidīgs portfolio",
-    premiumPortfolioDesc: "37+ zīmoli no 16+ valstīm — no ikdienas favorītiem līdz retiem ekskluzīviem atradumiem.",
+    premiumPortfolioDesc: "Zīmoli no 16+ valstīm — no ikdienas favorītiem līdz retiem ekskluzīviem atradumiem.",
     partnershipFocus: "Fokuss uz partnerību",
     partnershipFocusDesc: "Ilgtermiņa attiecību pieeja, kas vērsta uz pārdošanas un zīmola klātbūtnes palielināšanu mūsu partneriem.",
     fullLogistics: "Pilna loģistika",
