@@ -112,8 +112,8 @@ const Index = () => {
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-8">
-            <AnimatedCounter end={37} suffix="+" label={t.home.brands} />
-            <AnimatedCounter end={16} label={t.home.productCategories} />
+            <AnimatedCounter end={brands.length} suffix="+" label={t.home.brands} />
+            <AnimatedCounter end={productCategories.length} label={t.home.productCategories} />
             <AnimatedCounter end={3} label={t.home.balticMarkets} />
             <AnimatedCounter end={6} label={t.home.services} />
           </div>
