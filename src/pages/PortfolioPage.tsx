@@ -20,8 +20,8 @@ const PortfolioPage = () => {
   const [search, setSearch] = useState("");
 
   const filtered = brands.filter((b) => {
-    const catMatch = filter === "All" || b.category === filter;
-    const countryMatch = countryFilter === "All Countries" || b.country === countryFilter;
+    const catMatch = filter === t.portfolio.all || b.category === filter;
+    const countryMatch = countryFilter === t.portfolio.allCountries || b.country === countryFilter;
     const searchMatch = !search || b.name.toLowerCase().includes(search.toLowerCase()) || b.desc.toLowerCase().includes(search.toLowerCase());
     return catMatch && countryMatch && searchMatch;
   });
