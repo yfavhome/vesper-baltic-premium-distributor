@@ -237,7 +237,7 @@ export const lv: Translations = {
     title: "Vesper priekšrocības",
     subtitle: "Uzziniet, kāpēc vadošie zīmoli un mazumtirgotāji izvēlas Vesper Group kā savu izplatīšanas partneri Baltijā.",
     premiumPortfolio: "Premium produktu portfolio",
-    premiumPortfolioDesc: "Piekļuve vairāk nekā 37 pasaules klases zīmoliem un simtiem produktu, kas rūpīgi atlasīti Baltijas tirgum. No prestižiem vīniem līdz amatnieciskiem stiprajiem dzērieniem.",
+    premiumPortfolioDesc: "Piekļuve pasaules klases zīmoliem un simtiem produktu, kas rūpīgi atlasīti Baltijas tirgum. No prestižiem vīniem līdz amatnieciskiem stiprajiem dzērieniem.",
     reliableNetwork: "Uzticams izplatīšanas tīkls",
     reliableNetworkDesc: "Loģistikas infrastruktūra, kas aptver visas trīs Baltijas valstis, ar temperatūras kontrolētu noliktavu un profesionālu apstrādi.",
     qualityAssurance: "Kvalitātes garantija",
