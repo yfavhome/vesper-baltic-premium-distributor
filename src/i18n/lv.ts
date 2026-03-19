@@ -93,7 +93,7 @@ export const lv: Translations = {
     storyTitle: "Augoša spēja Baltijas dzērienu izplatīšanā",
     storyP1: "Vesper Group ir alkoholisko dzērienu izplatītājs, kas atrodas Latvijā un darbojas visā Baltijas reģionā. Mēs piedāvājam plašu dzērienu klāstu — no ikdienas dzērieniem līdz ekskluzīviem premium zīmoliem — rūpējoties, lai ikviens atrastu pareizo izvēli.",
     storyP2: "Mūsu portfolio iekļauj labākos zīmolus tirgū — no mīlētiem un cienītiem nosaukumiem ar saglabātu mantojumu līdz moderniem jaunpienācējiem. Mēs pastāvīgi paplašinām piedāvāto produktu klāstu Baltijas valstīs, meklējot jaunus ekskluzīvus zīmolus.",
-    storyP3: "Šodien mēs pārstāvam 37+ zīmolus no valstīm, tostarp Itālijas, Francijas, Kubas, Japānas, Spānijas, Argentīnas, Čīles un daudzām citām — izplatot vairākās produktu kategorijās caur mūsu plašo mazumtirdzniecības un HoReCa tīklu.",
+    storyP3: "Šodien mēs pārstāvam zīmolus no valstīm, tostarp Itālijas, Francijas, Kubas, Japānas, Spānijas, Argentīnas, Čīles un daudzām citām — izplatot vairākās produktu kategorijās caur mūsu plašo mazumtirdzniecības un HoReCa tīklu.",
     brands: "Zīmoli",
     productCategories: "Produktu kategorijas",
     balticMarkets: "Baltijas tirgi",
