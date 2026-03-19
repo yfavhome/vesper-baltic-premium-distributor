@@ -36,7 +36,7 @@ const NewsPage = () => {
         <FadeIn>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             <div className="overflow-hidden">
-              <img src={newsPlaceholder} alt="Featured" className="w-full h-full object-cover min-h-[300px] hover:scale-105 transition-transform duration-700" />
+              <img src={articles[0].image} alt={articles[0].title} className="w-full h-full object-cover min-h-[300px] hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="flex flex-col justify-center">
               <p className="text-label text-primary mb-3">{articles[0].category}</p>
