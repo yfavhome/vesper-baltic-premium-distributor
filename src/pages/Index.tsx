@@ -126,7 +126,7 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
             <FadeIn key={service.name} delay={i * 0.08}>
-              <div className="group flex flex-col items-center gap-5 p-10 bg-background border border-border hover:border-primary/30 hover-lift text-center transition-all">
+              <div className="group flex flex-col items-center gap-5 p-10 bg-background border border-border hover:border-primary/30 hover-lift text-center transition-all h-full">
                 <div className="w-14 h-14 flex items-center justify-center bg-primary/5 group-hover:bg-primary/10 transition-colors">
                   <service.icon className="w-7 h-7 text-primary" />
                 </div>
