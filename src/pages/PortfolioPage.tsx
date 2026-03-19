@@ -15,7 +15,7 @@ const countryList = ["All Countries", ...countries];
 const PortfolioPage = () => {
   const [filter, setFilter] = useState("All");
   const [countryFilter, setCountryFilter] = useState("All Countries");
-  const [selected, setSelected] = useState<typeof brands[0] | null>(null);
+  
   const [search, setSearch] = useState("");
 
   const filtered = brands.filter((b) => {
