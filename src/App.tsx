@@ -47,6 +47,7 @@ const App = () => (
             <Route path="/why-vesper" element={<WhyVesperPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/brand/:brandSlug" element={<BrandPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
