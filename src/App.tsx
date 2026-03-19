@@ -16,6 +16,7 @@ import PartnersPage from "./pages/PartnersPage";
 import WhyVesperPage from "./pages/WhyVesperPage";
 import NewsPage from "./pages/NewsPage";
 import ContactPage from "./pages/ContactPage";
+import BrandPage from "./pages/BrandPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
