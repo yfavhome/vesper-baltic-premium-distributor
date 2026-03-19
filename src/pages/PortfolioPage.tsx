@@ -34,6 +34,7 @@ const PortfolioPage = () => {
         title={t.portfolio.title}
         subtitle={t.portfolio.subtitle}
         image={portfolioHero}
+        size="compact"
       />
 
       <section className="section-padding section-spacing">

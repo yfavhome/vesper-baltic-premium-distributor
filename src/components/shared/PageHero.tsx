@@ -5,18 +5,35 @@ interface PageHeroProps {
   title: string;
   subtitle?: string;
   image: string;
+  size?: "default" | "compact" | "tall";
+  align?: "bottom-left" | "center" | "bottom-center";
 }
 
-const PageHero = ({ label, title, subtitle, image }: PageHeroProps) => {
+const sizeClasses = {
+  compact: "h-[45vh] md:h-[50vh]",
+  default: "h-[60vh] md:h-[70vh]",
+  tall: "h-[70vh] md:h-[80vh]",
+};
+
+const alignClasses = {
+  "bottom-left": "items-end text-left",
+  "bottom-center": "items-end text-center",
+  center: "items-center text-center",
+};
+
+const PageHero = ({ label, title, subtitle, image, size = "default", align = "bottom-left" }: PageHeroProps) => {
   return (
-    <section className="relative h-[60vh] md:h-[70vh] flex items-end overflow-hidden">
-      <img
+    <section className={`relative ${sizeClasses[size]} flex ${alignClasses[align]} overflow-hidden`}>
+      <motion.img
         src={image}
         alt={title}
         className="absolute inset-0 w-full h-full object-cover"
+        initial={{ scale: 1.08 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
       />
       <div className="absolute inset-0 vesper-overlay" />
-      <div className="relative z-10 section-padding pb-16 md:pb-24 w-full">
+      <div className={`relative z-10 section-padding pb-16 md:pb-24 w-full ${align === "center" ? "flex flex-col items-center" : ""}`}>
         {label && (
           <motion.p
             initial={{ opacity: 0, y: 20 }}

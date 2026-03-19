@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage, Language } from "@/i18n/LanguageContext";
 import logoIcon from "@/assets/logo-v-icon.png";
@@ -11,23 +11,58 @@ const languages: { code: Language; label: string }[] = [
   { code: "ru", label: "RU" },
 ];
 
+interface DropdownItem {
+  label: string;
+  path: string;
+  external?: boolean;
+}
+
+interface NavItem {
+  label: string;
+  path?: string;
+  external?: boolean;
+  children?: DropdownItem[];
+}
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const location = useLocation();
   const { lang, setLang, t } = useLanguage();
 
-  const navLinks = [
+  const navItems: NavItem[] = [
     { label: t.nav.home, path: "/" },
-    { label: t.nav.about, path: "/about" },
+    {
+      label: t.nav.about,
+      children: [
+        { label: t.nav.about, path: "/about" },
+        { label: "Why Vesper", path: "/why-vesper" },
+      ],
+    },
     { label: t.nav.portfolio, path: "/portfolio" },
-    { label: t.nav.products, path: "/products" },
-    { label: t.nav.distribution, path: "/distribution" },
+    {
+      label: t.nav.products,
+      children: [
+        { label: t.nav.products, path: "/products" },
+        { label: t.nav.distribution, path: "/distribution" },
+      ],
+    },
     { label: t.nav.partners, path: "/partners" },
     { label: t.nav.news, path: "/news" },
     { label: t.nav.contact, path: "/contact" },
     { label: t.nav.shop, path: "https://www.alko.lv/", external: true },
   ];
+
+  // Flatten for mobile + active detection
+  const allPaths = navItems.flatMap((item) =>
+    item.children ? item.children.map((c) => c.path) : item.path ? [item.path] : []
+  );
+
+  const isActiveDropdown = (item: NavItem) =>
+    item.children?.some((c) => location.pathname === c.path);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -37,12 +72,31 @@ const Navbar = () => {
 
   useEffect(() => {
     setMobileOpen(false);
+    setOpenDropdown(null);
   }, [location]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
+
+  const handleDropdownEnter = (label: string) => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setOpenDropdown(label);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => setOpenDropdown(null), 150);
+  };
+
+  const linkClass = (isActive: boolean) =>
+    `text-[10px] 2xl:text-[11px] font-body font-semibold uppercase tracking-[0.12em] transition-colors duration-300 hover:text-primary relative whitespace-nowrap ${
+      isActive
+        ? "text-primary"
+        : scrolled
+        ? "text-foreground/70"
+        : "text-primary-foreground/80"
+    }`;
 
   return (
     <>
@@ -67,34 +121,86 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden xl:flex items-center gap-5 2xl:gap-7">
-            {navLinks.map((link) =>
-              'external' in link && link.external ? (
-                <a
-                  key={link.path}
-                  href={link.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-[10px] 2xl:text-[11px] font-body font-semibold uppercase tracking-[0.12em] transition-colors duration-300 hover:text-primary whitespace-nowrap ${
-                    scrolled ? "text-foreground/70" : "text-primary-foreground/80"
-                  }`}
-                >
-                  {link.label}
-                </a>
-              ) : (
+          <div className="hidden xl:flex items-center gap-6 2xl:gap-8">
+            {navItems.map((item) => {
+              // Dropdown item
+              if (item.children) {
+                return (
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => handleDropdownEnter(item.label)}
+                    onMouseLeave={handleDropdownLeave}
+                  >
+                    <button
+                      className={`${linkClass(!!isActiveDropdown(item))} flex items-center gap-1`}
+                    >
+                      {item.label}
+                      <ChevronDown
+                        size={10}
+                        className={`transition-transform duration-200 ${openDropdown === item.label ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {isActiveDropdown(item) && (
+                      <motion.div
+                        layoutId="nav-indicator"
+                        className="absolute -bottom-1 left-0 right-0 h-[2px] bg-primary"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                    <AnimatePresence>
+                      {openDropdown === item.label && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 8 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 min-w-[180px] bg-background/95 backdrop-blur-md border border-border shadow-xl py-2"
+                        >
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.path}
+                              to={child.path}
+                              className={`block px-5 py-2.5 text-[11px] font-body font-semibold uppercase tracking-[0.1em] transition-colors duration-200 ${
+                                location.pathname === child.path
+                                  ? "text-primary bg-primary/5"
+                                  : "text-foreground/70 hover:text-primary hover:bg-primary/5"
+                              }`}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
+              // External link
+              if (item.external) {
+                return (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClass(false)}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+
+              // Regular link
+              return (
                 <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`text-[10px] 2xl:text-[11px] font-body font-semibold uppercase tracking-[0.12em] transition-colors duration-300 hover:text-primary relative whitespace-nowrap ${
-                    location.pathname === link.path
-                      ? "text-primary"
-                      : scrolled
-                      ? "text-foreground/70"
-                      : "text-primary-foreground/80"
-                  }`}
+                  key={item.path}
+                  to={item.path!}
+                  className={linkClass(location.pathname === item.path)}
                 >
-                  {link.label}
-                  {location.pathname === link.path && (
+                  {item.label}
+                  {location.pathname === item.path && (
                     <motion.div
                       layoutId="nav-indicator"
                       className="absolute -bottom-1 left-0 right-0 h-[2px] bg-primary"
@@ -102,8 +208,8 @@ const Navbar = () => {
                     />
                   )}
                 </Link>
-              )
-            )}
+              );
+            })}
 
             {/* Language Switcher */}
             <div className={`flex items-center gap-0.5 ml-1 pl-3 border-l ${
@@ -129,8 +235,7 @@ const Navbar = () => {
 
           {/* Tablet/Mobile: Language + Toggle */}
           <div className="flex xl:hidden items-center gap-2 relative z-50">
-            {/* Language switcher for tablet */}
-            <div className={`hidden md:flex items-center gap-0.5 mr-2 ${mobileOpen ? "" : ""}`}>
+            <div className="hidden md:flex items-center gap-0.5 mr-2">
               {languages.map((l) => (
                 <button
                   key={l.code}
@@ -171,43 +276,94 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-background"
           >
-            <div className="flex flex-col items-center justify-center h-full gap-6">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.path}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.04 }}
-                >
-                  {'external' in link && link.external ? (
-                    <a
-                      href={link.path}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-lg font-display font-semibold tracking-wide transition-colors hover:text-primary text-foreground/70"
+            <div className="flex flex-col items-center justify-center h-full gap-5">
+              {navItems.map((item, i) => {
+                // Dropdown in mobile → expandable
+                if (item.children) {
+                  return (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 + i * 0.04 }}
+                      className="text-center"
                     >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link
-                      to={link.path}
-                      className={`text-xl font-display font-semibold tracking-wide transition-colors hover:text-primary ${
-                        location.pathname === link.path
-                          ? "text-primary"
-                          : "text-foreground/70"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  )}
-                </motion.div>
-              ))}
+                      <button
+                        onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+                        className={`text-xl font-display font-semibold tracking-wide transition-colors hover:text-primary flex items-center gap-2 ${
+                          isActiveDropdown(item) ? "text-primary" : "text-foreground/70"
+                        }`}
+                      >
+                        {item.label}
+                        <ChevronDown
+                          size={16}
+                          className={`transition-transform duration-200 ${mobileExpanded === item.label ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {mobileExpanded === item.label && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="flex flex-col items-center gap-3 mt-3">
+                              {item.children.map((child) => (
+                                <Link
+                                  key={child.path}
+                                  to={child.path}
+                                  className={`text-base font-display tracking-wide transition-colors hover:text-primary ${
+                                    location.pathname === child.path ? "text-primary" : "text-foreground/50"
+                                  }`}
+                                >
+                                  {child.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                }
+
+                return (
+                  <motion.div
+                    key={item.path}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + i * 0.04 }}
+                  >
+                    {item.external ? (
+                      <a
+                        href={item.path}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-lg font-display font-semibold tracking-wide transition-colors hover:text-primary text-foreground/70"
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={item.path!}
+                        className={`text-xl font-display font-semibold tracking-wide transition-colors hover:text-primary ${
+                          location.pathname === item.path ? "text-primary" : "text-foreground/70"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    )}
+                  </motion.div>
+                );
+              })}
 
               {/* Mobile Language Switcher */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + navLinks.length * 0.04 }}
+                transition={{ delay: 0.1 + navItems.length * 0.04 }}
                 className="flex items-center gap-3 mt-4 pt-4 border-t border-border"
               >
                 {languages.map((l) => (
