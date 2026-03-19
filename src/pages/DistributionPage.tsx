@@ -7,7 +7,6 @@ import FadeIn from "@/components/shared/FadeIn";
 import { useLanguage } from "@/i18n/LanguageContext";
 import distributionHero from "@/assets/distribution-hero.jpg";
 import { Truck, Warehouse, ShoppingCart, UtensilsCrossed, MapPin, Globe, Store, Package } from "lucide-react";
-import BalticMap from "@/components/shared/BalticMap";
 
 const DistributionPage = () => {
   const { t } = useLanguage();
@@ -61,16 +60,6 @@ const DistributionPage = () => {
         </div>
       </section>
 
-      {/* Baltic Map */}
-      <section className="section-padding section-spacing">
-        <SectionHeading
-          label={t.distribution.infraLabel}
-          title="Our Baltic Presence"
-          subtitle="Interactive map showing our distribution network across Latvia, Lithuania, and Estonia."
-          align="center"
-        />
-        <BalticMap />
-      </section>
 
       <section className="section-padding section-spacing bg-secondary/50">
         <SectionHeading label={t.distribution.infraLabel} title={t.distribution.infraTitle} align="center" />
