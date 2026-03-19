@@ -40,7 +40,7 @@ const Index = () => {
       <SEO title="Vesper Group — Premium Beverage Distribution in the Baltics" description={`Vesper Group is the leading premium beverage distributor in the Baltic region. ${brands.length}+ brands, 600+ products from world-class producers.`} />
       {/* Hero */}
       <section className="relative h-screen flex items-center overflow-hidden noise-overlay">
-        <img src={heroBg} alt="Premium beverages" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 w-full h-full bg-cover bg-center bg-fixed" style={{ backgroundImage: `url(${heroBg})` }} role="img" aria-label="Premium beverages" />
         <div className="absolute inset-0 vesper-overlay" />
         <motion.div
           className="absolute inset-0 bg-vesper-dark/20"
