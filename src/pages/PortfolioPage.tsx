@@ -28,11 +28,11 @@ const PortfolioPage = () => {
 
   return (
     <Layout>
-      <SEO title="Brand Portfolio" description="Explore 37+ premium brands distributed by Vesper Group across the Baltics — wines, champagnes, spirits, and more from world-class producers." />
+      <SEO title={`${t.portfolio.label} — Vesper Group`} description={`Explore ${brands.length}+ premium brands distributed by Vesper Group across the Baltics — wines, champagnes, spirits, and more.`} />
       <PageHero
-        label="Brand Portfolio"
-        title="World-Class Brands, One Trusted Partner"
-        subtitle="Discover the premium brands we distribute across the Baltic region."
+        label={t.portfolio.label}
+        title={t.portfolio.title}
+        subtitle={t.portfolio.subtitle}
         image={portfolioHero}
       />
 
