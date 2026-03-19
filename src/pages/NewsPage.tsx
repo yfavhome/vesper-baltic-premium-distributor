@@ -54,7 +54,7 @@ const NewsPage = () => {
             <FadeIn key={article.title} delay={i * 0.08}>
               <div className="group cursor-pointer hover-lift">
                 <div className="overflow-hidden mb-6">
-                  <img src={newsPlaceholder} alt={article.title} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <img src={article.image} alt={article.title} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
                 <p className="text-label text-primary mb-2">{article.category}</p>
                 <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2">{article.title}</h3>
