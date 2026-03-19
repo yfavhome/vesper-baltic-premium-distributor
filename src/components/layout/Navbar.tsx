@@ -40,6 +40,7 @@ const Navbar = () => {
       children: [
         { label: t.nav.about, path: "/about" },
         { label: "Why Vesper", path: "/why-vesper" },
+        { label: "Brand Partnership", path: "/brand-partnership" },
       ],
     },
     { label: t.nav.portfolio, path: "/portfolio" },
