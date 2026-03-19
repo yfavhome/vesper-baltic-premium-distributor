@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageContext";
 import logoIcon from "@/assets/logo-icon.png";
 
 const AgeVerification = () => {
   const [visible, setVisible] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const verified = localStorage.getItem("vesper_age_verified");
@@ -38,31 +40,21 @@ const AgeVerification = () => {
           >
             <img src={logoIcon} alt="Vesper" className="w-16 h-16 mx-auto mb-6 object-contain" />
 
-            <h2 className="font-display text-2xl font-semibold text-foreground mb-3">
-              Age Verification
-            </h2>
-            <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
-              This website contains information about alcoholic beverages. You must be at least 18 years old to enter.
-            </p>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-3">{t.age.title}</h2>
+            <p className="text-sm text-muted-foreground mb-8 leading-relaxed">{t.age.description}</p>
 
             <div className="flex flex-col gap-3">
-              <button
-                onClick={handleConfirm}
-                className="w-full px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
-              >
-                I am 18 or older
+              <button onClick={handleConfirm}
+                className="w-full px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors">
+                {t.age.confirm}
               </button>
-              <button
-                onClick={handleDeny}
-                className="w-full px-8 py-4 border border-border text-muted-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-secondary transition-colors"
-              >
-                I am under 18
+              <button onClick={handleDeny}
+                className="w-full px-8 py-4 border border-border text-muted-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-secondary transition-colors">
+                {t.age.deny}
               </button>
             </div>
 
-            <p className="text-[11px] text-muted-foreground/60 mt-6">
-              By entering this site you agree to our Terms of Use and Privacy Policy.
-            </p>
+            <p className="text-[11px] text-muted-foreground/60 mt-6">{t.age.disclaimer}</p>
           </motion.div>
         </motion.div>
       )}
