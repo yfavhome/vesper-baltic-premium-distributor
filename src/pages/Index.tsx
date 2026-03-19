@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SEO from "@/components/shared/SEO";
 import { motion } from "framer-motion";
 import { ArrowRight, Truck, Wine, Users, ShieldCheck, ShoppingCart, Package, Globe, Store } from "lucide-react";
 import Layout from "@/components/layout/Layout";
