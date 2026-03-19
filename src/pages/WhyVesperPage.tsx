@@ -3,9 +3,39 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import FadeIn from "@/components/shared/FadeIn";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { motion } from "framer-motion";
-import { ShieldCheck, Wine, Truck, Headphones, Handshake, TrendingUp } from "lucide-react";
+import { ShieldCheck, Wine, Truck, Headphones, Handshake, TrendingUp, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+
+const FAQItem = ({ question, answer, index }: { question: string; answer: string; index: number }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <FadeIn delay={index * 0.06}>
+      <div className="border border-border hover:border-primary/20 transition-colors">
+        <button
+          onClick={() => setOpen(!open)}
+          className="w-full flex items-center justify-between p-6 text-left"
+        >
+          <span className="font-display text-lg font-semibold text-foreground pr-4">{question}</span>
+          <ChevronDown
+            size={20}
+            className={`shrink-0 text-primary transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          />
+        </button>
+        <motion.div
+          initial={false}
+          animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="overflow-hidden"
+        >
+          <p className="px-6 pb-6 text-body text-muted-foreground">{answer}</p>
+        </motion.div>
+      </div>
+    </FadeIn>
+  );
+};
 
 const WhyVesperPage = () => {
   const { t } = useLanguage();
@@ -17,6 +47,15 @@ const WhyVesperPage = () => {
     { icon: Headphones, title: t.whyVesper.professionalService, desc: t.whyVesper.professionalServiceDesc },
     { icon: Handshake, title: t.whyVesper.longTermPartnerships, desc: t.whyVesper.longTermPartnershipsDesc },
     { icon: TrendingUp, title: t.whyVesper.marketGrowth, desc: t.whyVesper.marketGrowthDesc },
+  ];
+
+  const faqItems = t.faq?.items || [
+    { q: "What regions do you distribute to?", a: "We distribute across all three Baltic states — Latvia, Lithuania, and Estonia — with additional logistics capabilities for broader European markets." },
+    { q: "What is the minimum order quantity?", a: "Minimum order quantities vary by product and channel. For HoReCa clients, we offer flexible ordering with low minimums. For retail chains, terms are agreed individually based on volume and distribution scope." },
+    { q: "How can I become a distribution partner?", a: "Simply contact us through our website or email info@vesper.group. Our team will arrange a meeting to discuss your needs, present our portfolio, and outline partnership terms." },
+    { q: "Do you offer tastings and brand presentations?", a: "Yes! We regularly organize tastings, brand presentations, and educational sessions for our partners. We can also arrange private tastings for your team or clients." },
+    { q: "What types of businesses do you work with?", a: "We work with retail chains, specialty wine shops, restaurants, bars, hotels, hospitality groups, and e-commerce platforms across the Baltic region." },
+    { q: "How do you ensure product quality during transport?", a: "All our logistics use temperature-controlled warehousing and transportation. We maintain strict quality control from import to final delivery, ensuring products arrive in perfect condition." },
   ];
 
   return (
@@ -51,7 +90,22 @@ const WhyVesperPage = () => {
         </div>
       </section>
 
-      <section className="bg-secondary/50 section-padding section-spacing text-center">
+      {/* FAQ Section */}
+      <section className="bg-secondary/30 section-padding section-spacing">
+        <SectionHeading
+          label={t.faq?.label || "FAQ"}
+          title={t.faq?.title || "Frequently Asked Questions"}
+          align="center"
+          subtitle={t.faq?.subtitle || "Find answers to common questions about working with Vesper Group."}
+        />
+        <div className="max-w-3xl mx-auto space-y-3">
+          {faqItems.map((item: { q: string; a: string }, i: number) => (
+            <FAQItem key={i} question={item.q} answer={item.a} index={i} />
+          ))}
+        </div>
+      </section>
+
+      <section className="section-padding section-spacing text-center">
         <SectionHeading label={t.whyVesper.ctaLabel} title={t.whyVesper.ctaTitle} align="center" subtitle={t.whyVesper.ctaSub} />
         <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all hover:gap-3">
           {t.whyVesper.getStarted} <ArrowRight size={16} />
