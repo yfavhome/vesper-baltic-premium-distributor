@@ -3,14 +3,19 @@ import { MessageCircle } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import AgeVerification from "@/components/shared/AgeVerification";
+import Preloader from "@/components/shared/Preloader";
+import ScrollToTop from "@/components/shared/ScrollToTop";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Preloader />
       <AgeVerification />
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
+
+      <ScrollToTop />
 
       {/* Floating WhatsApp Button */}
       <a
