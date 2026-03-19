@@ -1,16 +1,19 @@
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
 import FadeIn from "@/components/shared/FadeIn";
+import newsEvent from "@/assets/news-event.jpg";
+import newsPartnership from "@/assets/news-partnership.jpg";
+import newsBrands from "@/assets/news-brands.jpg";
 import newsPlaceholder from "@/assets/news-placeholder.jpg";
 import { motion } from "framer-motion";
 
 const articles = [
-  { title: "Events with Vesper Catering", date: "September 4, 2025", category: "Events", excerpt: "Vesper Group strengthens partnerships in the Baltic market. Our team took part in a business networking event bringing together leading companies and professionals from Latvia and beyond." },
-  { title: "Vesper Group Strengthens Baltic Market Partnerships", date: "2025", category: "Company News", excerpt: "This week, our team participated in a networking event bringing together leading companies and professionals from Latvia and beyond, discussing market trends and new opportunities." },
-  { title: "New Premium Brand Partnerships Announced", date: "2025", category: "Partnerships", excerpt: "Vesper Group continues to expand its portfolio with new exclusive brand partnerships, bringing world-class beverages to Baltic consumers." },
-  { title: "Dassai Sake Now Available in the Baltics", date: "2025", category: "Product Launch", excerpt: "We are proud to introduce Dassai, one of Japan's most renowned sake brands, to the Baltic market through our distribution network." },
-  { title: "Black Tears Dry Spiced Rum Arrives", date: "2025", category: "Product Launch", excerpt: "Cuban-crafted Black Tears Dry Spiced Rum is now available through Vesper Group's Baltic distribution channels." },
-  { title: "Vesper Online Shop alko.lv Expands Range", date: "2025", category: "Company News", excerpt: "Our e-commerce platform alko.lv continues to grow with an expanded selection of premium beverages available for convenient online ordering." },
+  { title: "Events with Vesper Catering", date: "September 4, 2025", category: "Events", excerpt: "Vesper Group strengthens partnerships in the Baltic market. Our team took part in a business networking event bringing together leading companies and professionals from Latvia and beyond.", image: newsEvent },
+  { title: "Vesper Group Strengthens Baltic Market Partnerships", date: "2025", category: "Company News", excerpt: "This week, our team participated in a networking event bringing together leading companies and professionals from Latvia and beyond, discussing market trends and new opportunities.", image: newsPartnership },
+  { title: "New Premium Brand Partnerships Announced", date: "2025", category: "Partnerships", excerpt: "Vesper Group continues to expand its portfolio with new exclusive brand partnerships, bringing world-class beverages to Baltic consumers.", image: newsBrands },
+  { title: "Dassai Sake Now Available in the Baltics", date: "2025", category: "Product Launch", excerpt: "We are proud to introduce Dassai, one of Japan's most renowned sake brands, to the Baltic market through our distribution network.", image: newsPlaceholder },
+  { title: "Black Tears Dry Spiced Rum Arrives", date: "2025", category: "Product Launch", excerpt: "Cuban-crafted Black Tears Dry Spiced Rum is now available through Vesper Group's Baltic distribution channels.", image: newsPlaceholder },
+  { title: "Vesper Online Shop alko.lv Expands Range", date: "2025", category: "Company News", excerpt: "Our e-commerce platform alko.lv continues to grow with an expanded selection of premium beverages available for convenient online ordering.", image: newsPlaceholder },
 ];
 
 const NewsPage = () => {
