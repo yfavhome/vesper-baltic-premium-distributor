@@ -55,10 +55,10 @@ const Index = () => {
             transition={{ duration: 1, delay: 0.3 }}
           >
             <p className="text-label text-primary mb-6">{t.home.heroLabel}</p>
-            <h1 className="text-display-xl text-primary-foreground max-w-4xl">
+            <h1 className="text-display-xl text-primary-foreground max-w-4xl" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}>
               {t.home.heroTitle}
             </h1>
-            <p className="text-body-lg text-primary-foreground/70 mt-8 max-w-2xl">
+            <p className="text-body-lg text-primary-foreground/80 mt-8 max-w-2xl font-normal" style={{ textShadow: '0 1px 10px rgba(0,0,0,0.6)' }}>
               {t.home.heroSubtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-10">
