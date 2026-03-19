@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
-import logoVesper from "@/assets/logo-vesper.png";
+import logoIcon from "@/assets/logo-v-icon.png";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -24,8 +24,11 @@ const Footer = () => {
       <div className="section-padding py-16 lg:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="lg:col-span-1">
-            <div className="flex items-center mb-6">
-              <img src={logoVesper} alt="Vesper Group" className="h-12 w-auto object-contain mix-blend-screen" />
+            <div className="flex items-center gap-2 mb-6">
+              <img src={logoIcon} alt="Vesper" className="h-10 w-auto object-contain mix-blend-screen" />
+              <span className="font-body text-[17px] font-bold tracking-[0.25em] uppercase text-primary-foreground">
+                VESPER
+              </span>
             </div>
             <p className="text-body text-primary-foreground/60 max-w-xs">{t.footer.tagline}</p>
           </div>
