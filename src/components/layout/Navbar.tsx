@@ -91,12 +91,12 @@ const Navbar = () => {
   };
 
   const linkClass = (isActive: boolean) =>
-    `text-[10px] 2xl:text-[11px] font-body font-semibold uppercase tracking-[0.12em] transition-colors duration-300 hover:text-primary relative whitespace-nowrap ${
+    `text-[10px] 2xl:text-[11px] font-body font-semibold uppercase tracking-[0.12em] transition-colors duration-300 hover:text-primary relative whitespace-nowrap after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:bg-primary after:transition-all after:duration-300 ${
       isActive
-        ? "text-primary"
+        ? "text-primary after:w-full"
         : scrolled
-        ? "text-foreground/70"
-        : "text-primary-foreground/80"
+        ? "text-foreground/70 after:w-0 hover:after:w-full"
+        : "text-primary-foreground/80 after:w-0 hover:after:w-full"
     }`;
 
   return (
