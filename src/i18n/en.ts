@@ -93,7 +93,7 @@ export const en = {
     storyTitle: "A Growing Force in Baltic Beverage Distribution",
     storyP1: "Vesper Group is an alcohol distributor based in Latvia, working across the Baltic region. We offer a wide range of beverages — from everyday drinks to exclusive premium brands — making sure that everyone can find the right choice.",
     storyP2: "Our portfolio lists the best brands on the market, ranging from loved and respected names with preserved heritage to modern newcomers. We continually increase the range of offered products across the Baltic States in quest of discovery of new exclusive brands.",
-    storyP3: "Today, we represent 37+ brands from countries including Italy, France, Cuba, Japan, Spain, Argentina, Chile, and many more — distributing across multiple product categories through our extensive retail and HoReCa network.",
+    storyP3: "Today, we represent brands from countries including Italy, France, Cuba, Japan, Spain, Argentina, Chile, and many more — distributing across multiple product categories through our extensive retail and HoReCa network.",
     brands: "Brands",
     productCategories: "Product Categories",
     balticMarkets: "Baltic Markets",
