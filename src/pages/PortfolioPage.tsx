@@ -44,7 +44,7 @@ const PortfolioPage = () => {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
             <Input
-              placeholder="Search brands..."
+              placeholder={t.portfolio.searchBrands}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="pl-10"
