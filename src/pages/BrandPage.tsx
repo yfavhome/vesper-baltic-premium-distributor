@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import SEO from "@/components/shared/SEO";
 import Layout from "@/components/layout/Layout";
 import { brands } from "@/data/brands";
 import { motion } from "framer-motion";
