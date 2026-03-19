@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { MessageCircle } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import AgeVerification from "@/components/shared/AgeVerification";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
