@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage, Language } from "@/i18n/LanguageContext";
+import logoFull from "@/assets/logo-full-cropped.png";
+import logoIcon from "@/assets/logo-icon-cropped.png";
 
 const languages: { code: Language; label: string }[] = [
   { code: "en", label: "EN" },
@@ -53,17 +55,19 @@ const Navbar = () => {
         }`}
       >
         <div className="section-padding flex items-center justify-between h-20 lg:h-24">
-          <Link to="/" className="flex items-center gap-1 relative z-50">
-            <span className="font-display text-3xl lg:text-4xl font-bold text-primary leading-none">V</span>
-            <span className="text-primary text-[8px] lg:text-[9px] -ml-0.5 -mt-3 leading-none">★</span>
-            <span className={`font-body text-[15px] lg:text-[17px] font-bold tracking-[0.25em] uppercase transition-colors duration-500 ml-1.5 ${
-              scrolled ? "text-foreground" : "text-primary-foreground"
-            }`}>
-              VESPER
-            </span>
+          {/* Logo */}
+          <Link to="/" className="relative z-50 shrink-0">
+            <img
+              src={logoFull}
+              alt="Vesper"
+              className={`h-8 lg:h-10 w-auto object-contain transition-all duration-500 ${
+                scrolled ? "brightness-0" : "brightness-0 invert"
+              }`}
+            />
           </Link>
 
-          <div className="hidden lg:flex items-center gap-7 xl:gap-8">
+          {/* Desktop Nav */}
+          <div className="hidden xl:flex items-center gap-5 2xl:gap-7">
             {navLinks.map((link) =>
               'external' in link && link.external ? (
                 <a
@@ -71,7 +75,7 @@ const Navbar = () => {
                   href={link.path}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-[11px] font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary ${
+                  className={`text-[10px] 2xl:text-[11px] font-body font-semibold uppercase tracking-[0.12em] transition-colors duration-300 hover:text-primary whitespace-nowrap ${
                     scrolled ? "text-foreground/70" : "text-primary-foreground/80"
                   }`}
                 >
@@ -81,7 +85,7 @@ const Navbar = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-[11px] font-body font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-primary relative ${
+                  className={`text-[10px] 2xl:text-[11px] font-body font-semibold uppercase tracking-[0.12em] transition-colors duration-300 hover:text-primary relative whitespace-nowrap ${
                     location.pathname === link.path
                       ? "text-primary"
                       : scrolled
@@ -102,12 +106,14 @@ const Navbar = () => {
             )}
 
             {/* Language Switcher */}
-            <div className="flex items-center gap-1 ml-2 border-l border-current/20 pl-4">
+            <div className={`flex items-center gap-0.5 ml-1 pl-3 border-l ${
+              scrolled ? "border-foreground/15" : "border-primary-foreground/20"
+            }`}>
               {languages.map((l) => (
                 <button
                   key={l.code}
                   onClick={() => setLang(l.code)}
-                  className={`text-[10px] font-body font-bold uppercase tracking-wider px-1.5 py-0.5 transition-all ${
+                  className={`text-[10px] font-body font-bold uppercase tracking-wider px-1.5 py-1 transition-all ${
                     lang === l.code
                       ? "text-primary"
                       : scrolled
@@ -121,15 +127,37 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className={`lg:hidden p-2 transition-colors relative z-50 ${
-              mobileOpen ? "text-foreground" : scrolled ? "text-foreground" : "text-primary-foreground"
-            }`}
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Tablet/Mobile: Language + Toggle */}
+          <div className="flex xl:hidden items-center gap-2 relative z-50">
+            {/* Language switcher for tablet */}
+            <div className={`hidden md:flex items-center gap-0.5 mr-2 ${mobileOpen ? "" : ""}`}>
+              {languages.map((l) => (
+                <button
+                  key={l.code}
+                  onClick={() => setLang(l.code)}
+                  className={`text-[10px] font-body font-bold uppercase tracking-wider px-1 py-0.5 transition-all ${
+                    lang === l.code
+                      ? "text-primary"
+                      : mobileOpen
+                      ? "text-foreground/40"
+                      : scrolled
+                      ? "text-foreground/40"
+                      : "text-primary-foreground/40"
+                  }`}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className={`p-2 transition-colors ${
+                mobileOpen ? "text-foreground" : scrolled ? "text-foreground" : "text-primary-foreground"
+              }`}
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </nav>
 

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
+import logoFull from "@/assets/logo-full-cropped.png";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -23,12 +24,8 @@ const Footer = () => {
       <div className="section-padding py-16 lg:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-1 mb-6">
-              <span className="font-display text-4xl font-bold text-primary leading-none">V</span>
-              <span className="text-primary text-[9px] -ml-0.5 -mt-3 leading-none">★</span>
-              <span className="font-body text-[17px] font-bold tracking-[0.25em] uppercase text-primary-foreground ml-1.5">
-                VESPER
-              </span>
+            <div className="mb-6">
+              <img src={logoFull} alt="Vesper" className="h-10 w-auto object-contain brightness-0 invert" />
             </div>
             <p className="text-body text-primary-foreground/60 max-w-xs">{t.footer.tagline}</p>
           </div>
