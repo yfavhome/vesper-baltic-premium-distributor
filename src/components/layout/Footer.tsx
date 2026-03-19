@@ -37,18 +37,19 @@ const Footer = () => {
             {/* Social icons moved here */}
             <div className="flex gap-3 mt-8">
               {[
-                { label: "Ig", href: "https://www.instagram.com/vespergroup/" },
-                { label: "Fb", href: "https://www.facebook.com/vespergroup/" },
-                { label: "Wa", href: "https://wa.me/37122100200" },
+                { icon: Instagram, href: "https://www.instagram.com/vespergroup/", label: "Instagram" },
+                { icon: Facebook, href: "https://www.facebook.com/vespergroup/", label: "Facebook" },
+                { icon: MessageCircle, href: "https://wa.me/37122100200", label: "WhatsApp" },
               ].map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center border border-primary-foreground/20 text-xs font-semibold uppercase tracking-widest text-primary-foreground/50 hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-300"
+                  aria-label={s.label}
+                  className="w-10 h-10 flex items-center justify-center border border-primary-foreground/20 text-primary-foreground/50 hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-300"
                 >
-                  {s.label}
+                  <s.icon size={16} />
                 </a>
               ))}
             </div>
