@@ -54,7 +54,7 @@ export const ru: Translations = {
     showroom: "Шоурум",
     showroomDesc: "Магазин Vesper в Тирайне, Латвия",
     portfolioLabel: "Наше портфолио",
-    portfolioTitle: "37+ брендов со всего мира",
+    portfolioTitle: "Бренды мирового класса со всего мира",
     portfolioSubtitle: "Мы сотрудничаем с лучшими производителями от Аргентины до Японии, привнося исключительные напитки на Балтийский рынок.",
     viewFullPortfolio: "Полное портфолио",
     distLabel: "Дистрибуция и логистика",
