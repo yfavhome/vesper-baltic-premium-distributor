@@ -55,13 +55,8 @@ const Navbar = () => {
       >
         <div className="section-padding flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 relative z-50 shrink-0">
-            <img src={logoV} alt="" className="h-7 lg:h-8 w-auto object-contain" />
-            <span className={`font-body text-[14px] lg:text-[16px] font-bold tracking-[0.25em] uppercase transition-colors duration-500 ${
-              scrolled ? "text-foreground" : "text-primary-foreground"
-            }`}>
-              VESPER
-            </span>
+          <Link to="/" className="flex items-center relative z-50 shrink-0">
+            <img src={logoVesper} alt="Vesper Group" className="h-10 lg:h-12 w-auto object-contain" />
           </Link>
 
           {/* Desktop Nav */}
