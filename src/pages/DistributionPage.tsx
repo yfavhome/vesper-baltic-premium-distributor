@@ -66,7 +66,7 @@ const DistributionPage = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {features.map((f, i) => (
             <FadeIn key={f.title} delay={i * 0.1}>
-              <div className="text-center p-8 bg-background border border-border hover:border-primary/20 transition-all">
+              <div className="text-center p-8 bg-background border border-border hover:border-primary/20 transition-all h-full">
                 <div className="w-12 h-12 flex items-center justify-center bg-primary/5 mx-auto mb-4">
                   <f.icon className="w-6 h-6 text-primary" />
                 </div>
