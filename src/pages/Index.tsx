@@ -69,7 +69,7 @@ const Index = () => {
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/10 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary-foreground/10 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/20 backdrop-blur-sm transition-colors"
               >
                 {t.home.becomePartner}
               </Link>
@@ -77,7 +77,7 @@ const Index = () => {
                 href="https://www.alko.lv/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/10 transition-all hover:gap-3"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary-foreground/10 border border-primary-foreground/30 text-primary-foreground font-body font-semibold text-sm uppercase tracking-widest hover:bg-primary-foreground/20 backdrop-blur-sm transition-all hover:gap-3"
               >
                 {t.home.shopOnline} <ArrowRight size={16} />
               </a>
