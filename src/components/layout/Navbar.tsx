@@ -56,7 +56,7 @@ const Navbar = () => {
         <div className="section-padding flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center relative z-50 shrink-0">
-            <img src={logoVesper} alt="Vesper Group" className="h-10 lg:h-12 w-auto object-contain" />
+            <img src={logoFull} alt="Vesper Group" className="h-10 lg:h-12 w-auto object-contain" />
           </Link>
 
           {/* Desktop Nav */}

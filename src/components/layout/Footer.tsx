@@ -25,7 +25,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
-              <img src={logoVesper} alt="Vesper Group" className="h-10 w-auto object-contain" />
+              <img src={logoFull} alt="Vesper Group" className="h-10 w-auto object-contain" />
             </div>
             <p className="text-body text-primary-foreground/60 max-w-xs">{t.footer.tagline}</p>
           </div>
