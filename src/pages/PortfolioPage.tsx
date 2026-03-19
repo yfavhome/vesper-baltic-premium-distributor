@@ -5,8 +5,8 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import BrandCard from "@/components/shared/BrandCard";
 import portfolioHero from "@/assets/portfolio-hero.jpg";
 import { brands, productCategories, countries } from "@/data/brands";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, Search } from "lucide-react";
+import { Search } from "lucide-react";
+
 import { Input } from "@/components/ui/input";
 
 const categories = ["All", ...productCategories];
