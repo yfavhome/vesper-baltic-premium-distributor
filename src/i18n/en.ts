@@ -335,47 +335,6 @@ export const en = {
     cookies: "Cookie Policy",
   },
 
-  // Portfolio page
-  portfolio: {
-    label: "Brand Portfolio",
-    title: "World-Class Brands, One Trusted Partner",
-    subtitle: "Discover the premium brands we distribute across the Baltic region.",
-    ourBrands: "Our Brands",
-    brandsFromWorld: "Brands From Around the World",
-    searchBrands: "Search brands...",
-    all: "All",
-    allCountries: "All Countries",
-    brandsFound: "brands found",
-    brandFound: "brand found",
-    clearFilters: "Clear all filters",
-    clearSearch: "Clear filters",
-    noMatch: "No brands match the selected filters.",
-  },
-
-  // Products page
-  products: {
-    label: "Product Categories",
-    title: "A Curated Selection of Fine Beverages",
-    subtitle: "Explore our comprehensive range of premium spirits, wines, and more — carefully sourced from the world's finest producers.",
-    categories: "Categories",
-    discoverRange: "Discover Our Range",
-    searchProducts: "Search products, brands...",
-    filters: "Filters",
-    category: "Category",
-    country: "Country",
-    productType: "Product Type",
-    activeFilters: "Active filters:",
-    clearAll: "Clear all",
-    productsFound: "Products Found",
-    filteredResults: "Filtered results",
-    noProducts: "No products match your filters",
-    noCategories: "No categories match",
-    brands: "Brands",
-    products2: "Products",
-    brand: "brand",
-    brands2: "brands",
-  },
-
   // Brand page
   brand: {
     notFound: "Brand Not Found",

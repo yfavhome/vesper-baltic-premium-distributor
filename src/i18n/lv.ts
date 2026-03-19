@@ -323,4 +323,17 @@ export const lv: Translations = {
     terms: "Lietošanas noteikumi",
     cookies: "Sīkdatņu politika",
   },
+
+  brand: {
+    notFound: "Zīmols nav atrasts",
+    backToPortfolio: "Atpakaļ uz portfolio",
+    aboutBrand: "Par zīmolu",
+    products: "Produkti",
+    product: "produkts",
+    productsAvailable: "produkti pieejami",
+    productAvailable: "produkts pieejams",
+    moreIn: "Vairāk kategorijā",
+    discoverOther: "Atklājiet citus zīmolus mūsu portfolio",
+    buyOnline: "Pirkt tiešsaistē",
+  },
 };

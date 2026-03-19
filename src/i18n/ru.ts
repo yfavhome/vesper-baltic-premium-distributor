@@ -323,4 +323,17 @@ export const ru: Translations = {
     terms: "Условия использования",
     cookies: "Политика cookies",
   },
+
+  brand: {
+    notFound: "Бренд не найден",
+    backToPortfolio: "Назад к портфолио",
+    aboutBrand: "О бренде",
+    products: "Продукты",
+    product: "продукт",
+    productsAvailable: "продуктов доступно",
+    productAvailable: "продукт доступен",
+    moreIn: "Ещё в категории",
+    discoverOther: "Откройте другие бренды в нашем портфолио",
+    buyOnline: "Купить онлайн",
+  },
 };
