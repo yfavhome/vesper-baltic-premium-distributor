@@ -12,9 +12,11 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { Input } from "@/components/ui/input";
 
 const PortfolioPage = () => {
-  const [filter, setFilter] = useState("All");
-  const [countryFilter, setCountryFilter] = useState("All Countries");
-  
+  const { t } = useLanguage();
+  const categories = [t.portfolio.all, ...productCategories];
+  const countryList = [t.portfolio.allCountries, ...countries];
+  const [filter, setFilter] = useState(t.portfolio.all);
+  const [countryFilter, setCountryFilter] = useState(t.portfolio.allCountries);
   const [search, setSearch] = useState("");
 
   const filtered = brands.filter((b) => {
