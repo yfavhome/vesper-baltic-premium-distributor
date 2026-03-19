@@ -243,7 +243,7 @@ export const en = {
     title: "The Vesper Advantage",
     subtitle: "Discover why leading brands and retailers choose Vesper Group as their distribution partner in the Baltics.",
     premiumPortfolio: "Premium Product Portfolio",
-    premiumPortfolioDesc: "Access to over 37 world-class brands and hundreds of products, carefully curated for the Baltic market. From prestigious wines to artisanal spirits.",
+    premiumPortfolioDesc: "Access to world-class brands and hundreds of products, carefully curated for the Baltic market. From prestigious wines to artisanal spirits.",
     reliableNetwork: "Reliable Distribution Network",
     reliableNetworkDesc: "Logistics infrastructure spanning all three Baltic states, with temperature-controlled warehousing and professional handling.",
     qualityAssurance: "Quality Assurance",
