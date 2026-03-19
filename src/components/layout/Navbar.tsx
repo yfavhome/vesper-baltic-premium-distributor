@@ -3,8 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage, Language } from "@/i18n/LanguageContext";
-import logoFull from "@/assets/logo-full-cropped.png";
-import logoIcon from "@/assets/logo-icon-cropped.png";
+import logoVesper from "@/assets/logo-vesper.png";
 
 const languages: { code: Language; label: string }[] = [
   { code: "en", label: "EN" },
