@@ -118,12 +118,12 @@ const PortfolioPage = () => {
 
         {filtered.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-muted-foreground">No brands match the selected filters.</p>
+            <p className="text-muted-foreground">{t.portfolio.noMatch}</p>
             <button
-              onClick={() => { setFilter("All"); setCountryFilter("All Countries"); setSearch(""); }}
+              onClick={() => { setFilter(t.portfolio.all); setCountryFilter(t.portfolio.allCountries); setSearch(""); }}
               className="text-primary text-sm mt-2 hover:underline"
             >
-              Clear filters
+              {t.portfolio.clearBtn}
             </button>
           </div>
         )}
