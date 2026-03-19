@@ -254,6 +254,20 @@ export const lv: Translations = {
     getStarted: "Sākt",
   },
 
+  faq: {
+    label: "BUJ",
+    title: "Bieži uzdotie jautājumi",
+    subtitle: "Atrodiet atbildes uz biežāk uzdotajiem jautājumiem par sadarbību ar Vesper Group.",
+    items: [
+      { q: "Kādos reģionos jūs izplatāt?", a: "Mēs izplatām visās trijās Baltijas valstīs — Latvijā, Lietuvā un Igaunijā — ar papildu loģistikas iespējām plašākam Eiropas tirgum." },
+      { q: "Kāds ir minimālais pasūtījuma apjoms?", a: "Minimālais pasūtījuma apjoms atšķiras atkarībā no produkta un kanāla. HoReCa klientiem mēs piedāvājam elastīgu pasūtīšanu ar zemiem minimumiem." },
+      { q: "Kā es varu kļūt par izplatīšanas partneri?", a: "Vienkārši sazinieties ar mums caur mūsu mājaslapu vai rakstiet uz info@vesper.group. Mūsu komanda organizēs tikšanos, lai pārrunātu jūsu vajadzības." },
+      { q: "Vai jūs piedāvājat degustācijas un zīmolu prezentācijas?", a: "Jā! Mēs regulāri organizējam degustācijas, zīmolu prezentācijas un izglītojošas sesijas mūsu partneriem." },
+      { q: "Ar kāda veida uzņēmumiem jūs strādājat?", a: "Mēs strādājam ar mazumtirdzniecības ķēdēm, specializētiem vīna veikaliem, restorāniem, bāriem, viesnīcām un e-komercijas platformām." },
+      { q: "Kā jūs nodrošināt produktu kvalitāti transportēšanas laikā?", a: "Visa mūsu loģistika izmanto temperatūras kontrolētu uzglabāšanu un transportēšanu, nodrošinot produktu nonākšanu nevainojamā stāvoklī." },
+    ],
+  },
+
   news: {
     label: "Jaunumi un ieskati",
     title: "Jaunākais no Vesper Group",

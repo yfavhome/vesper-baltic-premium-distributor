@@ -260,6 +260,21 @@ export const en = {
     getStarted: "Get Started",
   },
 
+  // FAQ
+  faq: {
+    label: "FAQ",
+    title: "Frequently Asked Questions",
+    subtitle: "Find answers to common questions about working with Vesper Group.",
+    items: [
+      { q: "What regions do you distribute to?", a: "We distribute across all three Baltic states — Latvia, Lithuania, and Estonia — with additional logistics capabilities for broader European markets." },
+      { q: "What is the minimum order quantity?", a: "Minimum order quantities vary by product and channel. For HoReCa clients, we offer flexible ordering with low minimums. For retail chains, terms are agreed individually based on volume and distribution scope." },
+      { q: "How can I become a distribution partner?", a: "Simply contact us through our website or email info@vesper.group. Our team will arrange a meeting to discuss your needs, present our portfolio, and outline partnership terms." },
+      { q: "Do you offer tastings and brand presentations?", a: "Yes! We regularly organize tastings, brand presentations, and educational sessions for our partners. We can also arrange private tastings for your team or clients." },
+      { q: "What types of businesses do you work with?", a: "We work with retail chains, specialty wine shops, restaurants, bars, hotels, hospitality groups, and e-commerce platforms across the Baltic region." },
+      { q: "How do you ensure product quality during transport?", a: "All our logistics use temperature-controlled warehousing and transportation. We maintain strict quality control from import to final delivery, ensuring products arrive in perfect condition." },
+    ],
+  },
+
   // News page
   news: {
     label: "News & Insights",

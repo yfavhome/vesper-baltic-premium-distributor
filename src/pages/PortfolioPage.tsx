@@ -5,8 +5,8 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import BrandCard from "@/components/shared/BrandCard";
 import portfolioHero from "@/assets/portfolio-hero.jpg";
 import { brands, productCategories, countries } from "@/data/brands";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, Search } from "lucide-react";
+import { Search } from "lucide-react";
+
 import { Input } from "@/components/ui/input";
 
 const categories = ["All", ...productCategories];
@@ -15,7 +15,7 @@ const countryList = ["All Countries", ...countries];
 const PortfolioPage = () => {
   const [filter, setFilter] = useState("All");
   const [countryFilter, setCountryFilter] = useState("All Countries");
-  const [selected, setSelected] = useState<typeof brands[0] | null>(null);
+  
   const [search, setSearch] = useState("");
 
   const filtered = brands.filter((b) => {
@@ -103,14 +103,13 @@ const PortfolioPage = () => {
           </div>
         )}
 
-        {/* Brand grid - using extracted BrandCard component (fixes hooks-in-loop bug) */}
+        {/* Brand grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filtered.map((brand, i) => (
             <BrandCard
               key={brand.name}
               brand={brand}
               index={i}
-              onClick={() => setSelected(brand)}
             />
           ))}
         </div>
@@ -127,55 +126,6 @@ const PortfolioPage = () => {
           </div>
         )}
       </section>
-
-      {/* Brand detail modal */}
-      <AnimatePresence>
-        {selected && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[hsl(var(--vesper-dark))]/80 backdrop-blur-sm p-4"
-            onClick={() => setSelected(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ type: "spring", damping: 25 }}
-              className="bg-background p-10 max-w-lg w-full relative max-h-[80vh] overflow-y-auto shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button onClick={() => setSelected(null)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors">
-                <X size={20} />
-              </button>
-              <div className="w-20 h-20 rounded-full bg-secondary mx-auto mb-6 flex items-center justify-center">
-                <span className="font-display text-3xl font-bold text-primary">{selected.name[0]}</span>
-              </div>
-              <h3 className="font-display text-2xl font-bold text-foreground text-center mb-2">{selected.name}</h3>
-              <p className="text-label text-primary text-center mb-1">{selected.category} · {selected.country}</p>
-              {selected.est && <p className="text-xs text-muted-foreground text-center mb-4">Established {selected.est}</p>}
-              <p className="text-body text-muted-foreground text-center mt-4">{selected.desc}</p>
-              {selected.products && selected.products.length > 0 && (
-                <div className="mt-6 pt-6 border-t border-border">
-                  <p className="text-label text-primary mb-3">Products ({selected.products.length})</p>
-                  <div className="space-y-2">
-                    {selected.products.map((p, i) => (
-                      <div key={`${p.name}-${i}`} className="text-sm text-muted-foreground flex justify-between items-center py-1.5 border-b border-border/50 last:border-0">
-                        <span className="flex-1">{p.name}</span>
-                        <div className="flex items-center gap-3 text-xs shrink-0 ml-3">
-                          {p.volume && <span>{p.volume}</span>}
-                          {p.abv && <span className="text-primary/70">{p.abv}</span>}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </Layout>
   );
 };

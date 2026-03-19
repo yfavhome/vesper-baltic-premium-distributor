@@ -16,6 +16,7 @@ import PartnersPage from "./pages/PartnersPage";
 import WhyVesperPage from "./pages/WhyVesperPage";
 import NewsPage from "./pages/NewsPage";
 import ContactPage from "./pages/ContactPage";
+import BrandPage from "./pages/BrandPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,6 +47,7 @@ const App = () => (
             <Route path="/why-vesper" element={<WhyVesperPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/brand/:brandSlug" element={<BrandPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
