@@ -7,6 +7,7 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import AnimatedCounter from "@/components/shared/AnimatedCounter";
 import FadeIn from "@/components/shared/FadeIn";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { brands, productCategories, countries } from "@/data/brands";
 import heroBg from "@/assets/hero-bg.jpg";
 import portfolioHero from "@/assets/portfolio-hero.jpg";
 import distributionHero from "@/assets/distribution-hero.jpg";
@@ -35,7 +36,7 @@ const Index = () => {
 
   return (
     <Layout>
-      <SEO title="Vesper Group — Premium Beverage Distribution in the Baltics" description="Vesper Group is the leading premium beverage distributor in the Baltic region. 37+ brands, 600+ products from world-class producers." />
+      <SEO title="Vesper Group — Premium Beverage Distribution in the Baltics" description={`Vesper Group is the leading premium beverage distributor in the Baltic region. ${brands.length}+ brands, 600+ products from world-class producers.`} />
       {/* Hero */}
       <section className="relative h-screen flex items-center overflow-hidden">
         <img src={heroBg} alt="Premium beverages" className="absolute inset-0 w-full h-full object-cover" />
@@ -111,8 +112,8 @@ const Index = () => {
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-8">
-            <AnimatedCounter end={37} suffix="+" label={t.home.brands} />
-            <AnimatedCounter end={16} label={t.home.productCategories} />
+            <AnimatedCounter end={brands.length} suffix="+" label={t.home.brands} />
+            <AnimatedCounter end={productCategories.length} label={t.home.productCategories} />
             <AnimatedCounter end={3} label={t.home.balticMarkets} />
             <AnimatedCounter end={6} label={t.home.services} />
           </div>
@@ -144,7 +145,7 @@ const Index = () => {
         <div className="relative z-10 section-padding">
           <SectionHeading
             label={t.home.portfolioLabel}
-            title={t.home.portfolioTitle}
+            title={t.home.portfolioTitle.replace("37+", `${brands.length}+`)}
             subtitle={t.home.portfolioSubtitle}
             light
           />

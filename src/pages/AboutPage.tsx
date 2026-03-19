@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import { brands, productCategories } from "@/data/brands";
 import SEO from "@/components/shared/SEO";
 import PageHero from "@/components/shared/PageHero";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -13,7 +14,7 @@ const AboutPage = () => {
 
   return (
     <Layout>
-      <SEO title="About Vesper Group" description="Learn about Vesper Group — a premium beverage distributor in the Baltics with 10+ years of experience, 37+ brands, and a commitment to quality." />
+      <SEO title="About Vesper Group" description={`Learn about Vesper Group — a premium beverage distributor in the Baltics with ${brands.length}+ brands and a commitment to quality.`} />
       <PageHero label={t.about.label} title={t.about.title} subtitle={t.about.subtitle} image={aboutHero} />
 
       <section className="section-padding section-spacing">
@@ -27,8 +28,8 @@ const AboutPage = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-8 content-center">
-            <AnimatedCounter end={37} suffix="+" label={t.about.brands} />
-            <AnimatedCounter end={16} label={t.about.productCategories} />
+            <AnimatedCounter end={brands.length} suffix="+" label={t.about.brands} />
+            <AnimatedCounter end={productCategories.length} label={t.about.productCategories} />
             <AnimatedCounter end={3} label={t.about.balticMarkets} />
             <AnimatedCounter end={6} label={t.about.coreServices} />
           </div>
