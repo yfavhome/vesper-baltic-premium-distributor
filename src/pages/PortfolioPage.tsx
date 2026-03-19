@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SEO from "@/components/shared/SEO";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -27,6 +28,7 @@ const PortfolioPage = () => {
 
   return (
     <Layout>
+      <SEO title="Brand Portfolio" description="Explore 37+ premium brands distributed by Vesper Group across the Baltics — wines, champagnes, spirits, and more from world-class producers." />
       <PageHero
         label="Brand Portfolio"
         title="World-Class Brands, One Trusted Partner"

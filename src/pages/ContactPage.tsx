@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SEO from "@/components/shared/SEO";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -18,6 +19,7 @@ const ContactPage = () => {
 
   return (
     <Layout>
+      <SEO title="Contact Us" description="Get in touch with Vesper Group. Email info@vesper.group or call +371 22100200. Visit our showroom in Tīraine, Latvia." />
       <section className="vesper-gradient pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="section-padding">
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-label text-primary mb-4">

@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/shared/SEO";
 import SectionHeading from "@/components/shared/SectionHeading";
 import FadeIn from "@/components/shared/FadeIn";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -60,6 +61,7 @@ const WhyVesperPage = () => {
 
   return (
     <Layout>
+      <SEO title="Why Vesper" description="Discover the Vesper advantage — premium portfolio, reliable distribution, quality assurance, and professional service across the Baltic region." />
       <section className="vesper-gradient pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="section-padding">
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-label text-primary mb-4">

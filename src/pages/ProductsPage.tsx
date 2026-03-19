@@ -1,4 +1,5 @@
 import { useState, useRef, useMemo } from "react";
+import SEO from "@/components/shared/SEO";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
@@ -172,6 +173,7 @@ const ProductsPage = () => {
 
   return (
     <Layout>
+      <SEO title="Products" description="Browse our curated selection of premium beverages — champagne, wine, whisky, rum, gin, vodka, and more. 600+ products from 37+ brands." />
       <PageHero
         label="Product Categories"
         title="A Curated Selection of Fine Beverages"

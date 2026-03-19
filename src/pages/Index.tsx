@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SEO from "@/components/shared/SEO";
 import { motion } from "framer-motion";
 import { ArrowRight, Truck, Wine, Users, ShieldCheck, ShoppingCart, Package, Globe, Store } from "lucide-react";
 import Layout from "@/components/layout/Layout";
@@ -34,6 +35,7 @@ const Index = () => {
 
   return (
     <Layout>
+      <SEO title="Vesper Group — Premium Beverage Distribution in the Baltics" description="Vesper Group is the leading premium beverage distributor in the Baltic region. 37+ brands, 600+ products from world-class producers." />
       {/* Hero */}
       <section className="relative h-screen flex items-center overflow-hidden">
         <img src={heroBg} alt="Premium beverages" className="absolute inset-0 w-full h-full object-cover" />

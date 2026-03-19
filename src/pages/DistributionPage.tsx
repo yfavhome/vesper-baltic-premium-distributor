@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/shared/SEO";
 import PageHero from "@/components/shared/PageHero";
 import SectionHeading from "@/components/shared/SectionHeading";
 import AnimatedCounter from "@/components/shared/AnimatedCounter";
@@ -28,6 +29,7 @@ const DistributionPage = () => {
 
   return (
     <Layout>
+      <SEO title="Distribution" description="Vesper Group's distribution network covers Latvia, Lithuania, and Estonia. Temperature-controlled logistics, wholesale and retail coverage." />
       <PageHero label={t.distribution.label} title={t.distribution.title} subtitle={t.distribution.subtitle} image={distributionHero} />
 
       <section className="vesper-gradient section-padding py-16">

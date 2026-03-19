@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/shared/SEO";
 import PageHero from "@/components/shared/PageHero";
 import SectionHeading from "@/components/shared/SectionHeading";
 import FadeIn from "@/components/shared/FadeIn";
@@ -26,6 +27,7 @@ const PartnersPage = () => {
 
   return (
     <Layout>
+      <SEO title="Partners & HoReCa" description="Vesper Group partners with leading retail chains, restaurants, bars, and hotels across the Baltics. Become a partner today." />
       <PageHero label={t.partners.label} title={t.partners.title} subtitle={t.partners.subtitle} image={partnersHero} />
 
       <section className="section-padding section-spacing">
