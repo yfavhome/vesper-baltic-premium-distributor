@@ -54,7 +54,7 @@ export const lv: Translations = {
     showroom: "Šovtelpa",
     showroomDesc: "Vesper veikals Tīrainē, Latvijā",
     portfolioLabel: "Mūsu portfolio",
-    portfolioTitle: "37+ zīmoli no visas pasaules",
+    portfolioTitle: "Pasaules klases zīmoli no visas pasaules",
     portfolioSubtitle: "Mēs sadarbojamies ar labākajiem ražotājiem no Argentīnas līdz Japānai, piedāvājot izcilus dzērienus Baltijas tirgum.",
     viewFullPortfolio: "Skatīt pilnu portfolio",
     distLabel: "Izplatīšana un loģistika",
