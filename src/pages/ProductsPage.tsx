@@ -71,12 +71,20 @@ const CategoryCard = ({ cat, index }: { cat: CategoryData; index: number }) => {
         to={`/products/${encodeURIComponent(cat.name)}`}
         className="group relative block overflow-hidden cursor-pointer"
       >
-        <div className="aspect-[4/5] overflow-hidden">
+        <div className="aspect-[4/5] overflow-hidden relative">
+          <div className="absolute inset-0 bg-secondary animate-pulse" />
           <img
             src={cat.image}
             alt={cat.name}
             loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 relative z-[1]"
+            style={{ opacity: 1 }}
+            onLoad={(e) => {
+              const target = e.currentTarget;
+              target.style.opacity = '1';
+              const skeleton = target.previousElementSibling as HTMLElement;
+              if (skeleton) skeleton.style.display = 'none';
+            }}
           />
         </div>
         {/* Overlay with enhanced hover */}
