@@ -69,28 +69,39 @@ const CategoryCard = ({ cat, index }: { cat: CategoryData; index: number }) => {
     >
       <Link
         to={`/products/${encodeURIComponent(cat.name)}`}
-        className="group relative block overflow-hidden cursor-pointer hover-lift"
+        className="group relative block overflow-hidden cursor-pointer"
       >
         <div className="aspect-[4/5] overflow-hidden">
           <img
             src={cat.image}
             alt={cat.name}
+            loading="lazy"
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--vesper-dark))]/90 via-[hsl(var(--vesper-dark))]/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-8">
+        {/* Overlay with enhanced hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--vesper-dark))]/90 via-[hsl(var(--vesper-dark))]/20 to-transparent group-hover:from-[hsl(var(--vesper-dark))]/95 group-hover:via-[hsl(var(--vesper-dark))]/40 transition-all duration-500" />
+        
+        {/* Content */}
+        <div className="absolute bottom-0 left-0 right-0 p-8 transform group-hover:translate-y-[-4px] transition-transform duration-500">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-[10px] uppercase tracking-widest text-primary font-semibold">
               {cat.brandCount} {cat.brandCount === 1 ? "brand" : "brands"} · {cat.productCount} products
             </span>
           </div>
-          <h3 className="font-display text-2xl font-bold text-primary-foreground mb-2">{cat.name}</h3>
-          <p className="text-sm text-primary-foreground/60">{cat.desc}</p>
+          <h3 className="font-display text-2xl font-bold text-primary-foreground mb-2 group-hover:text-primary transition-colors duration-300">{cat.name}</h3>
+          <p className="text-sm text-primary-foreground/60 group-hover:text-primary-foreground/80 transition-colors duration-300">{cat.desc}</p>
           <div className="flex items-center gap-2 mt-4">
             <div className="w-8 h-[2px] bg-primary group-hover:w-16 transition-all duration-500" />
             <ArrowRight size={14} className="text-primary opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-500" />
           </div>
+        </div>
+
+        {/* Top corner badge on hover */}
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+          <span className="px-3 py-1.5 bg-primary/90 text-primary-foreground text-[10px] uppercase tracking-widest font-semibold backdrop-blur-sm">
+            Explore
+          </span>
         </div>
       </Link>
     </motion.div>

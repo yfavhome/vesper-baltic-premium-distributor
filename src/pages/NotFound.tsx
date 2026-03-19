@@ -1,5 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import SEO from "@/components/shared/SEO";
+import Layout from "@/components/layout/Layout";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -9,15 +13,25 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
-        <a href="/" className="text-primary underline hover:text-primary/90">
-          Return to Home
-        </a>
+    <Layout>
+      <SEO title="Page Not Found — 404" description="The page you're looking for doesn't exist. Return to Vesper Group's homepage to explore our premium beverage distribution services." />
+      <div className="flex min-h-[60vh] items-center justify-center section-padding">
+        <div className="text-center">
+          <p className="text-label text-primary mb-4">404 Error</p>
+          <h1 className="text-display-md text-foreground mb-4">Page Not Found</h1>
+          <p className="text-body-lg text-muted-foreground mb-8 max-w-md mx-auto">
+            The page you're looking for doesn't exist or has been moved.
+          </p>
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
+          >
+            <ArrowLeft size={16} />
+            Return to Home
+          </Link>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
