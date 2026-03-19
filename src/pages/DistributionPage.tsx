@@ -7,6 +7,7 @@ import FadeIn from "@/components/shared/FadeIn";
 import { useLanguage } from "@/i18n/LanguageContext";
 import distributionHero from "@/assets/distribution-hero.jpg";
 import { Truck, Warehouse, ShoppingCart, UtensilsCrossed, MapPin, Globe, Store, Package } from "lucide-react";
+import BalticMap from "@/components/shared/BalticMap";
 
 const DistributionPage = () => {
   const { t } = useLanguage();
