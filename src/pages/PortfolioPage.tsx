@@ -94,13 +94,13 @@ const PortfolioPage = () => {
         {(filter !== "All" || countryFilter !== "All Countries" || search) && (
           <div className="flex items-center justify-center gap-3 mb-8">
             <span className="text-sm text-muted-foreground">
-              {filtered.length} {filtered.length === 1 ? "brand" : "brands"} found
+              {filtered.length} {filtered.length === 1 ? t.portfolio.brandFound : t.portfolio.brandsFound}
             </span>
             <button
-              onClick={() => { setFilter("All"); setCountryFilter("All Countries"); setSearch(""); }}
+              onClick={() => { setFilter(t.portfolio.all); setCountryFilter(t.portfolio.allCountries); setSearch(""); }}
               className="text-xs text-primary hover:underline"
             >
-              Clear all filters
+              {t.portfolio.clearFilters}
             </button>
           </div>
         )}
