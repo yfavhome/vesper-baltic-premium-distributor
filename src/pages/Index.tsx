@@ -259,7 +259,7 @@ const Index = () => {
               <Link to="/news" className="group block hover-lift">
                 <div className="overflow-hidden mb-6">
                   <img
-                    src={newsPlaceholder}
+                    src={item.image}
                     alt={item.title}
                     className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
                   />
