@@ -31,25 +31,27 @@ const ScrollToTop = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/products/:category" element={<ProductCategoryPage />} />
-          <Route path="/distribution" element={<DistributionPage />} />
-          <Route path="/partners" element={<PartnersPage />} />
-          <Route path="/why-vesper" element={<WhyVesperPage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <LanguageProvider>
+      <TooltipProvider>
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/:category" element={<ProductCategoryPage />} />
+            <Route path="/distribution" element={<DistributionPage />} />
+            <Route path="/partners" element={<PartnersPage />} />
+            <Route path="/why-vesper" element={<WhyVesperPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 
