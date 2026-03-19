@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage, Language } from "@/i18n/LanguageContext";
-import logoV from "@/assets/logo-v.png";
+import logoVesper from "@/assets/logo-vesper.png";
 
 const languages: { code: Language; label: string }[] = [
   { code: "en", label: "EN" },
@@ -55,13 +55,10 @@ const Navbar = () => {
       >
         <div className="section-padding flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 relative z-50 shrink-0">
-            <img src={logoV} alt="" className="h-7 lg:h-8 w-auto object-contain" />
-            <span className={`font-body text-[14px] lg:text-[16px] font-bold tracking-[0.25em] uppercase transition-colors duration-500 ${
-              scrolled ? "text-foreground" : "text-primary-foreground"
-            }`}>
-              VESPER
-            </span>
+          <Link to="/" className="flex items-center relative z-50 shrink-0">
+            <img src={logoVesper} alt="Vesper Group" className={`h-12 lg:h-14 w-auto object-contain transition-all duration-500 ${
+              scrolled ? "" : "mix-blend-screen"
+            }`} />
           </Link>
 
           {/* Desktop Nav */}
