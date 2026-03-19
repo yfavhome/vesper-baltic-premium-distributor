@@ -24,8 +24,11 @@ const Footer = () => {
       <div className="section-padding py-16 lg:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="lg:col-span-1">
-            <div className="mb-6">
-              <img src={logoVesper} alt="Vesper" className="h-10 w-auto object-contain brightness-0 invert" />
+            <div className="flex items-center gap-2 mb-6">
+              <img src={logoV} alt="" className="h-8 w-auto object-contain" />
+              <span className="font-body text-[17px] font-bold tracking-[0.25em] uppercase text-primary-foreground">
+                VESPER
+              </span>
             </div>
             <p className="text-body text-primary-foreground/60 max-w-xs">{t.footer.tagline}</p>
           </div>
