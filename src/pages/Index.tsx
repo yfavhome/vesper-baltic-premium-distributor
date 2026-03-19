@@ -96,6 +96,9 @@ const Index = () => {
         </motion.div>
       </section>
 
+      {/* Trusted By */}
+      <TrustedBy />
+
       {/* About Preview */}
       <section className="section-padding section-spacing">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
