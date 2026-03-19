@@ -53,7 +53,7 @@ export const en = {
     showroom: "Showroom",
     showroomDesc: "Vesper shop in Tīraine, Latvia",
     portfolioLabel: "Our Portfolio",
-    portfolioTitle: "37+ Brands From Around the World",
+    portfolioTitle: "World-Class Brands From Around the Globe",
     portfolioSubtitle: "We partner with the finest producers from Argentina to Japan, bringing exceptional beverages to the Baltic market.",
     viewFullPortfolio: "View Full Portfolio",
     distLabel: "Distribution & Logistics",
