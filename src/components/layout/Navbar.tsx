@@ -58,10 +58,10 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="relative z-50 shrink-0">
             <img
-              src={logoFull}
+              src={scrolled ? logoFull : logoFull}
               alt="Vesper"
               className={`h-8 lg:h-10 w-auto object-contain transition-all duration-500 ${
-                scrolled ? "brightness-0" : "brightness-0 invert"
+                scrolled ? "" : "brightness-0 invert"
               }`}
             />
           </Link>
