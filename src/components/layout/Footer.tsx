@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
-import logoV from "@/assets/logo-v.png";
+import logoVesper from "@/assets/logo-vesper.png";
 
 const Footer = () => {
   const { t } = useLanguage();
