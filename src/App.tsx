@@ -17,6 +17,7 @@ import WhyVesperPage from "./pages/WhyVesperPage";
 import NewsPage from "./pages/NewsPage";
 import ContactPage from "./pages/ContactPage";
 import BrandPage from "./pages/BrandPage";
+import BrandPartnershipPage from "./pages/BrandPartnershipPage";
 import NotFound from "./pages/NotFound";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
