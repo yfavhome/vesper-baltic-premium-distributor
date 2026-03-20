@@ -308,8 +308,8 @@ export const lv: Translations = {
     event: { title: "Pasākumi ar Vesper Catering", category: "Pasākumi", excerpt: "Vesper Group stiprina partnerības Baltijas tirgū. Mūsu komanda piedalījās biznesa sadarbības pasākumā, kas pulcēja vadošos uzņēmumus un profesionāļus no Latvijas un ārpus tās." },
     partnerships: { title: "Vesper Group stiprina Baltijas tirgus partnerības", category: "Uzņēmuma jaunumi", excerpt: "Šonedēļ mūsu komanda piedalījās sadarbības pasākumā, kas pulcēja vadošos uzņēmumus un profesionāļus no Latvijas un ārpus tās, apspriežot tirgus tendences un jaunas iespējas." },
     brands: { title: "Paziņotas jaunas premium zīmolu partnerības", category: "Partnerības", excerpt: "Vesper Group turpina paplašināt savu portfolio ar jaunām ekskluzīvām zīmolu partnerībām, piedāvājot pasaules klases dzērienus Baltijas patērētājiem." },
-    sake: { title: "Dassai Sake tagad pieejams Baltijā", category: "Produkta izlaišana", excerpt: "Mēs lepojamies, ka varam ieviest Dassai — vienu no Japānas atzītākajiem saké zīmoliem — Baltijas tirgū caur mūsu izplatīšanas tīklu." },
-    rum: { title: "Ierodas Black Tears Dry Spiced Rum", category: "Produkta izlaišana", excerpt: "Kubas amatnieciskais Black Tears Dry Spiced Rum tagad ir pieejams caur Vesper Group Baltijas izplatīšanas kanāliem." },
+    sake: { title: "Dassai Sake tagad pieejams Baltijā", category: "Jauns produkts", excerpt: "Mēs lepojamies, ka varam ieviest Dassai — vienu no Japānas atzītākajiem saké zīmoliem — Baltijas tirgū caur mūsu izplatīšanas tīklu." },
+    rum: { title: "Ierodas Black Tears Dry Spiced Rum", category: "Jauns produkts", excerpt: "Kubas amatnieciskais Black Tears Dry Spiced Rum tagad ir pieejams caur Vesper Group Baltijas izplatīšanas kanāliem." },
     shop: { title: "Vesper tiešsaistes veikals alko.lv paplašina klāstu", category: "Uzņēmuma jaunumi", excerpt: "Mūsu e-komercijas platforma alko.lv turpina augt ar paplašinātu premium dzērienu atlasi, kas pieejama ērtai tiešsaistes pasūtīšanai." },
   },
 
