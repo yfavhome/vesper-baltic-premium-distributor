@@ -29,24 +29,7 @@ const categoryImages: Record<string, string> = {
   Cognac: catWhisky, Brandy: catWhisky, Liqueurs: catLiqueurs, Mixers: catMixers,
 };
 
-const categoryDescriptions: Record<string, string> = {
-  Champagne: "Prestige cuvées and grower champagnes",
-  Prosecco: "Italian sparkling wines from Veneto",
-  "Sparkling Wine": "Crémant, Cava, and sparkling wines from around the globe",
-  "White Wine": "Crisp and aromatic whites from top producers worldwide",
-  "Rosé Wine": "Elegant rosé wines from Provence, Sicily, and beyond",
-  "Red Wine": "From Bordeaux to Barolo, Amarone to Malbec",
-  Whisky: "Scotch, Japanese, Indian, American, and world whiskies",
-  Rum: "Caribbean, Martinique rhum agricole, and craft rums",
-  Gin: "Craft and classic dry gins",
-  Vodka: "Premium vodkas",
-  Tequila: "Artisanal tequila and mezcal from Mexico",
-  Sake: "Premium Japanese sake including Dassai",
-  Cognac: "Fine French cognacs and aged eaux-de-vie",
-  Brandy: "Armagnac, Calvados, and premium brandies",
-  Liqueurs: "Amaretto, Limoncello, vermouth, pisco, and aperitivi",
-  Mixers: "Premium tonics, syrups, and mineral water",
-};
+// categoryDescriptions moved to i18n
 
 interface CategoryData {
   name: string;
@@ -56,7 +39,7 @@ interface CategoryData {
   productCount: number;
 }
 
-const CategoryCard = ({ cat, index }: { cat: CategoryData; index: number }) => {
+const CategoryCard = ({ cat, index, t }: { cat: CategoryData; index: number; t: any }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -94,7 +77,7 @@ const CategoryCard = ({ cat, index }: { cat: CategoryData; index: number }) => {
         <div className="absolute bottom-0 left-0 right-0 z-[3] p-8 transform group-hover:translate-y-[-4px] transition-transform duration-500">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-[10px] uppercase tracking-widest text-primary font-semibold">
-              {cat.brandCount} {cat.brandCount === 1 ? "brand" : "brands"} · {cat.productCount} products
+              {cat.brandCount} {cat.brandCount === 1 ? t.products.brand : t.products.brands} · {cat.productCount} {t.products.productsLabel.toLowerCase()}
             </span>
           </div>
           <h3 className="font-display text-2xl font-bold text-primary-foreground mb-2 group-hover:text-primary transition-colors duration-300">{cat.name}</h3>
@@ -108,7 +91,7 @@ const CategoryCard = ({ cat, index }: { cat: CategoryData; index: number }) => {
         {/* Top corner badge on hover */}
         <div className="absolute top-4 right-4 z-[3] opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
           <span className="px-3 py-1.5 bg-primary/90 text-primary-foreground text-[10px] uppercase tracking-widest font-semibold backdrop-blur-sm">
-            Explore
+            {t.products.explore}
           </span>
         </div>
       </Link>
@@ -136,11 +119,11 @@ const ProductsPage = () => {
     productCategories.map(cat => ({
       name: cat,
       image: categoryImages[cat] || catWine,
-      desc: categoryDescriptions[cat] || "",
+      desc: (t.products.categoryDescriptions as Record<string, string>)[cat] || "",
       brandCount: brands.filter(b => b.category === cat).length,
       productCount: getCategoryProductCount(cat),
     })).filter(cat => cat.brandCount > 0),
-    []
+    [t]
   );
 
   // Filter categories based on search
@@ -210,7 +193,7 @@ const ProductsPage = () => {
               <Wine size={18} className="text-primary" />
               <div>
                 <span className="font-display text-2xl font-bold text-foreground">{categoriesWithData.length}</span>
-                <span className="text-xs text-muted-foreground ml-2">Categories</span>
+                <span className="text-xs text-muted-foreground ml-2">{t.products.categoriesLabel}</span>
               </div>
             </div>
             <div className="w-px h-8 bg-border" />
@@ -218,14 +201,14 @@ const ProductsPage = () => {
               <Package size={18} className="text-primary" />
               <div>
                 <span className="font-display text-2xl font-bold text-foreground">{totalBrands}</span>
-                <span className="text-xs text-muted-foreground ml-2">Brands</span>
+                <span className="text-xs text-muted-foreground ml-2">{t.products.brandsLabel}</span>
               </div>
             </div>
             <div className="w-px h-8 bg-border hidden md:block" />
             <div className="hidden md:flex items-center gap-3">
               <div>
                 <span className="font-display text-2xl font-bold text-foreground">{totalProducts}+</span>
-                <span className="text-xs text-muted-foreground ml-2">Products</span>
+                <span className="text-xs text-muted-foreground ml-2">{t.products.productsLabel}</span>
               </div>
             </div>
           </div>
@@ -233,7 +216,7 @@ const ProductsPage = () => {
             <div className="relative flex-1 md:w-72">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
               <Input
-                placeholder="Search products, brands..."
+                placeholder={t.products.searchPlaceholder}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="pl-10"
@@ -248,7 +231,7 @@ const ProductsPage = () => {
               }`}
             >
               <Filter size={14} />
-              Filters
+              {t.products.filters}
               {hasActiveFilters && (
                 <span className="w-5 h-5 flex items-center justify-center rounded-full bg-primary-foreground text-primary text-[10px] font-bold">
                   {[categoryFilter !== "All", countryFilter !== "All", typeFilter !== "All"].filter(Boolean).length}
@@ -269,7 +252,7 @@ const ProductsPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Category */}
               <div>
-                <label className="text-label text-muted-foreground mb-3 block">Category</label>
+                <label className="text-label text-muted-foreground mb-3 block">{t.products.category}</label>
                 <div className="flex flex-wrap gap-1.5">
                   {["All", ...productCategories].map((cat) => (
                     <button
@@ -289,7 +272,7 @@ const ProductsPage = () => {
 
               {/* Country */}
               <div>
-                <label className="text-label text-muted-foreground mb-3 block">Country</label>
+                <label className="text-label text-muted-foreground mb-3 block">{t.products.country}</label>
                 <div className="flex flex-wrap gap-1.5">
                   {["All", ...countries].map((c) => (
                     <button
@@ -309,7 +292,7 @@ const ProductsPage = () => {
 
               {/* Type */}
               <div>
-                <label className="text-label text-muted-foreground mb-3 block">Product Type</label>
+                <label className="text-label text-muted-foreground mb-3 block">{t.products.productType}</label>
                 <div className="flex flex-wrap gap-1.5 max-h-40 overflow-y-auto">
                   {allTypes.map((type) => (
                     <button
@@ -330,7 +313,7 @@ const ProductsPage = () => {
 
             {hasActiveFilters && (
               <div className="mt-4 pt-4 border-t border-border flex items-center gap-3">
-                <span className="text-sm text-muted-foreground">Active filters:</span>
+                <span className="text-sm text-muted-foreground">{t.products.activeFilters}</span>
                 {categoryFilter !== "All" && (
                   <span className="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary text-xs">
                     {categoryFilter}
@@ -350,7 +333,7 @@ const ProductsPage = () => {
                   </span>
                 )}
                 <button onClick={clearFilters} className="text-xs text-primary hover:underline ml-auto">
-                  Clear all
+                  {t.products.clearAll}
                 </button>
               </div>
             )}
@@ -365,9 +348,9 @@ const ProductsPage = () => {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="font-display text-2xl font-bold text-foreground">
-                  {filteredProducts!.length} Products Found
+                  {filteredProducts!.length} {t.products.productsFound}
                 </h2>
-                <p className="text-sm text-muted-foreground mt-1">Filtered results</p>
+                <p className="text-sm text-muted-foreground mt-1">{t.products.filteredResults}</p>
               </div>
             </div>
 
@@ -401,29 +384,29 @@ const ProductsPage = () => {
             {filteredProducts!.length === 0 && (
               <div className="text-center py-20">
                 <Wine className="mx-auto text-muted-foreground/30 mb-4" size={48} />
-                <p className="text-muted-foreground">No products match your filters</p>
+                <p className="text-muted-foreground">{t.products.noMatch}</p>
                 <button onClick={clearFilters} className="text-primary text-sm mt-2 hover:underline">
-                  Clear all filters
+                  {t.products.clearAll}
                 </button>
               </div>
             )}
           </>
         ) : (
           <>
-            <SectionHeading label="Categories" title="Discover Our Range" align="center" />
+            <SectionHeading label={t.products.categoriesLabel} title={t.products.discoverRange} align="center" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredCategories.map((cat, i) => (
-                <CategoryCard key={cat.name} cat={cat} index={i} />
+                <CategoryCard key={cat.name} cat={cat} index={i} t={t} />
               ))}
             </div>
 
             {filteredCategories.length === 0 && (
               <div className="text-center py-20">
                 <Wine className="mx-auto text-muted-foreground/30 mb-4" size={48} />
-                <p className="text-muted-foreground">No categories match "{search}"</p>
+                <p className="text-muted-foreground">{t.products.noMatch} "{search}"</p>
                 <button onClick={() => setSearch("")} className="text-primary text-sm mt-2 hover:underline">
-                  Clear search
+                  {t.products.clearSearch}
                 </button>
               </div>
             )}

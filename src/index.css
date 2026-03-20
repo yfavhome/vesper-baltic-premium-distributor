@@ -173,6 +173,13 @@
   }
 }
 
+/* iOS/touch: disable background-attachment: fixed */
+@supports (-webkit-touch-callout: none) {
+  .bg-fixed {
+    background-attachment: scroll !important;
+  }
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;

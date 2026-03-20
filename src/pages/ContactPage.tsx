@@ -120,7 +120,7 @@ const ContactPage = () => {
 
             <div className="w-full h-72 border border-border overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2175.5!2d24.1!3d56.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTbCsDU3JzAwLjAiTiAyNMKwMDYnMDAuMCJF!5e0!3m2!1sen!2slv!4v1600000000000!5m2!1sen!2slv"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2180.0!2d24.0515!3d56.9195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eec5e0a6c0c3c1%3A0x3c0c1e8e6e0e0e0e!2sJelgavas%20ce%C4%BC%C5%A1%2020%2C%20T%C4%ABraine%2C%20M%C4%81rupes%20novads%2C%20LV-2167!5e0!3m2!1sen!2slv!4v1700000000000!5m2!1sen!2slv"
                 width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade" title="Vesper Group Location" />
             </div>
