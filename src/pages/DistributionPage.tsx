@@ -29,7 +29,7 @@ const DistributionPage = () => {
 
   return (
     <Layout>
-      <SEO title="Distribution" description="Vesper Group's distribution network covers Latvia, Lithuania, and Estonia. Temperature-controlled logistics, wholesale and retail coverage." />
+      <SEO title={t.seo.distributionTitle} description={t.seo.distributionDesc} />
       <PageHero label={t.distribution.label} title={t.distribution.title} subtitle={t.distribution.subtitle} image={distributionHero} size="default" align="center" />
 
       <section className="vesper-gradient section-padding py-16">
