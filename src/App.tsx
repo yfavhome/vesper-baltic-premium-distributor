@@ -24,6 +24,14 @@ import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
 import CookiePage from "./pages/CookiePage";
 
+// Admin
+import AdminLayout from "./admin/components/AdminLayout";
+import AdminDashboard from "./admin/pages/AdminDashboard";
+import AdminBrands from "./admin/pages/AdminBrands";
+import AdminProducts from "./admin/pages/AdminProducts";
+import AdminNews from "./admin/pages/AdminNews";
+import AdminCategories from "./admin/pages/AdminCategories";
+
 const queryClient = new QueryClient();
 
 const ScrollToTop = () => {
@@ -58,6 +66,14 @@ const App = () => (
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/cookies" element={<CookiePage />} />
+            {/* Admin */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path="brands" element={<AdminBrands />} />
+              <Route path="products" element={<AdminProducts />} />
+              <Route path="news" element={<AdminNews />} />
+              <Route path="categories" element={<AdminCategories />} />
+            </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
