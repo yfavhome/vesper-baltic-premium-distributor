@@ -42,29 +42,40 @@ export default function AdminCategories() {
     await apiCategories.delete(c.id); toast.success(t.categories.categoryDeleted); load();
   };
 
+  const duplicate = async (c: AdminCategory) => {
+    const { id, ...rest } = c;
+    await apiCategories.create({ ...rest, name: `${rest.name} (copy)`, slug: `${rest.slug}-copy` });
+    toast.success(t.categories.duplicated); load();
+  };
+
+  const bulkDelete = async (ids: string[]) => {
+    if (!confirm(`${t.common.confirmDelete} ${ids.length} ${t.common.items}?`)) return;
+    await Promise.all(ids.map((id) => apiCategories.delete(id)));
+    toast.success(`${ids.length} deleted`); load();
+  };
+
   const columns: Column<AdminCategory>[] = [
     { key: "name", header: t.common.name, render: (c) => (
-      <span className="font-medium text-foreground">{c.name}</span>
+      <div className="flex items-center gap-3">
+        <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+          <span className="text-xs font-bold text-emerald-600">{c.name[0]}</span>
+        </div>
+        <span className="font-medium text-foreground">{c.name}</span>
+      </div>
     )},
-    { key: "slug", header: t.categories.slug, render: (c) => (
-      <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">{c.slug}</code>
-    )},
-    { key: "description", header: t.common.description, render: (c) => (
-      <span className="text-muted-foreground text-sm line-clamp-1">{c.description}</span>
-    )},
-    { key: "brandCount", header: t.categories.brandsCount, render: (c) => (
-      <Badge variant="secondary" className="font-normal">{c.brandCount}</Badge>
-    )},
+    { key: "slug", header: t.categories.slug, render: (c) => <code className="text-[11px] bg-muted px-1.5 py-0.5 rounded font-mono">{c.slug}</code> },
+    { key: "description", header: t.common.description, render: (c) => <span className="text-muted-foreground text-sm line-clamp-1 max-w-[220px]">{c.description}</span> },
+    { key: "brandCount", header: t.categories.brandsCount, render: (c) => <Badge variant="secondary" className="font-normal">{c.brandCount}</Badge> },
   ];
 
   const set = (key: string, val: string) => setForm((f) => ({ ...f, [key]: val }));
 
   return (
-    <div className="space-y-6 max-w-6xl">
+    <div className="space-y-6 max-w-7xl">
       <div className="flex items-center justify-between">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-2xl md:text-3xl font-display font-bold text-foreground tracking-tight">{t.categories.title}</h1>
-          <p className="text-muted-foreground mt-1">{t.categories.subtitle}</p>
+          <p className="text-muted-foreground mt-1">{t.categories.subtitle} · {data.length} {t.common.items}</p>
         </motion.div>
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
           <Button onClick={openCreate} className="gap-2 shadow-sm">
@@ -73,7 +84,7 @@ export default function AdminCategories() {
         </motion.div>
       </div>
 
-      <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={remove} loading={loading} />
+      <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={remove} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-lg">
