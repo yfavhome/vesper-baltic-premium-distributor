@@ -231,7 +231,7 @@ const ProductsPage = () => {
               }`}
             >
               <Filter size={14} />
-              Filters
+              {t.products.filters}
               {hasActiveFilters && (
                 <span className="w-5 h-5 flex items-center justify-center rounded-full bg-primary-foreground text-primary text-[10px] font-bold">
                   {[categoryFilter !== "All", countryFilter !== "All", typeFilter !== "All"].filter(Boolean).length}
