@@ -397,7 +397,7 @@ const ProductsPage = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredCategories.map((cat, i) => (
-                <CategoryCard key={cat.name} cat={cat} index={i} />
+                <CategoryCard key={cat.name} cat={cat} index={i} t={t} />
               ))}
             </div>
 
