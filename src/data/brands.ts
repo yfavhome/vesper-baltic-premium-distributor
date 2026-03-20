@@ -61,6 +61,7 @@ export const brands: Brand[] = [
   // ══════════════════════════════════════
   {
     name: "Sutto", category: "Prosecco", country: "Italy", est: "1933",
+    logo: "https://vesper.lv/uploads/file-1759354346391-41266234.jpg",
     desc: "Family-run Prosecco and wine estate from Veneto.",
     products: [
       { name: "Sutto Prosecco DOC Brut", type: "Prosecco", volume: "0.75L", abv: "11%" },
