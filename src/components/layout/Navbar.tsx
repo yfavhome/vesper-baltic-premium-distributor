@@ -39,8 +39,8 @@ const Navbar = () => {
       label: t.nav.about,
       children: [
         { label: t.nav.about, path: "/about" },
-        { label: "Why Vesper", path: "/why-vesper" },
-        { label: "Brand Partnership", path: "/brand-partnership" },
+        { label: t.nav.whyVesper, path: "/why-vesper" },
+        { label: t.nav.brandPartnership, path: "/brand-partnership" },
       ],
     },
     { label: t.nav.portfolio, path: "/portfolio" },
