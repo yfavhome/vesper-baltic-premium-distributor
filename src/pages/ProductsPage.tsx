@@ -208,7 +208,7 @@ const ProductsPage = () => {
             <div className="hidden md:flex items-center gap-3">
               <div>
                 <span className="font-display text-2xl font-bold text-foreground">{totalProducts}+</span>
-                <span className="text-xs text-muted-foreground ml-2">Products</span>
+                <span className="text-xs text-muted-foreground ml-2">{t.products.productsLabel}</span>
               </div>
             </div>
           </div>
