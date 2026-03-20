@@ -40,11 +40,14 @@ const TrustedBy = () => {
               key={`${brand.name}-${i}`}
               className="flex items-center gap-3 shrink-0"
             >
-              <div className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center shrink-0">
-                <span className="font-display text-sm font-bold text-primary">
-                  {brand.name[0]}
-                </span>
-              </div>
+              <div className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center shrink-0 overflow-hidden">
+                {brand.logo ? (
+                  <img src={brand.logo} alt={`${brand.name} logo`} className="w-full h-full object-contain p-1" loading="lazy" />
+                ) : (
+                  <span className="font-display text-sm font-bold text-primary">
+                    {brand.name[0]}
+                  </span>
+                )}
               <div className="flex flex-col">
                 <span className="text-sm font-display font-semibold text-foreground">
                   {brand.name}
