@@ -23,6 +23,7 @@ export const brands: Brand[] = [
   // ══════════════════════════════════════
   {
     name: "Duval-Leroy", category: "Champagne", country: "France", est: "1859",
+    logo: "https://vesper.lv/uploads/file-1759354137593-78717973.png",
     desc: "Prestigious French Champagne house with organic vineyards and a woman-led vision.",
     products: [
       { name: "Duval-Leroy Brut Réserve", type: "Champagne", volume: "0.75L", abv: "12%" },
