@@ -282,6 +282,7 @@ export const brands: Brand[] = [
   },
   {
     name: "Forte Alto", category: "White Wine", country: "Italy", est: "1999",
+    logo: "https://vesper.lv/uploads/file-1759445467230-593747472.png",
     desc: "Modern Italian wines from Trentino — Pinot Grigio, Merlot, Teroldego.",
     products: [
       { name: "Forte Alto Pinot Grigio Vigneti delle Dolomiti IGT", type: "White Wine", volume: "0.75L", abv: "12%" },
