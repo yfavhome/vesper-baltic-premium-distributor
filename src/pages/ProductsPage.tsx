@@ -193,7 +193,7 @@ const ProductsPage = () => {
               <Wine size={18} className="text-primary" />
               <div>
                 <span className="font-display text-2xl font-bold text-foreground">{categoriesWithData.length}</span>
-                <span className="text-xs text-muted-foreground ml-2">Categories</span>
+                <span className="text-xs text-muted-foreground ml-2">{t.products.categoriesLabel}</span>
               </div>
             </div>
             <div className="w-px h-8 bg-border" />
