@@ -48,6 +48,7 @@ const TrustedBy = () => {
                     {brand.name[0]}
                   </span>
                 )}
+              </div>
               <div className="flex flex-col">
                 <span className="text-sm font-display font-semibold text-foreground">
                   {brand.name}
