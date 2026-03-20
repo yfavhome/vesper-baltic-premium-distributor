@@ -7,10 +7,11 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { DataTable, Column } from "@/admin/components/DataTable";
 import { AdminNewsArticle, apiNews } from "@/admin/api/stubs";
-import { Plus, Calendar } from "lucide-react";
+import { Plus, Calendar, ExternalLink, Wand2 } from "lucide-react";
 import { toast } from "sonner";
 import { useAdminI18n } from "@/admin/i18n";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const emptyArticle: Omit<AdminNewsArticle, "id"> = { slug: "", title: "", excerpt: "", category: "", date: "", image: "", content: "" };
 
@@ -25,7 +26,7 @@ export default function AdminNews() {
   const load = () => { setLoading(true); apiNews.list().then((d) => { setData(d); setLoading(false); }); };
   useEffect(load, []);
 
-  const openCreate = () => { setEditing(null); setForm(emptyArticle); setOpen(true); };
+  const openCreate = () => { setEditing(null); setForm({ ...emptyArticle, date: new Date().toISOString().slice(0, 10) }); setOpen(true); };
   const openEdit = (n: AdminNewsArticle) => { setEditing(n); setForm(n); setOpen(true); };
 
   const save = async () => {
@@ -41,35 +42,60 @@ export default function AdminNews() {
     await apiNews.delete(n.id); toast.success(t.news.articleDeleted); load();
   };
 
+  const duplicate = async (n: AdminNewsArticle) => {
+    const { id, ...rest } = n;
+    await apiNews.create({ ...rest, title: `${rest.title} (copy)`, slug: `${rest.slug}-copy` });
+    toast.success(t.news.duplicated); load();
+  };
+
+  const bulkDelete = async (ids: string[]) => {
+    if (!confirm(`${t.common.confirmDelete} ${ids.length} ${t.common.items}?`)) return;
+    await Promise.all(ids.map((id) => apiNews.delete(id)));
+    toast.success(`${ids.length} deleted`); load();
+  };
+
+  const generateSlug = () => {
+    const slug = form.title
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .trim();
+    setForm((f) => ({ ...f, slug }));
+  };
+
   const columns: Column<AdminNewsArticle>[] = [
     { key: "title", header: t.news.articleTitle, render: (n) => (
-      <div>
-        <span className="font-medium text-foreground">{n.title}</span>
-        {n.excerpt && <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{n.excerpt}</p>}
+      <div className="max-w-[280px]">
+        <span className="font-medium text-foreground line-clamp-1">{n.title}</span>
+        {n.excerpt && <p className="text-[11px] text-muted-foreground mt-0.5 line-clamp-1">{n.excerpt}</p>}
       </div>
     )},
-    { key: "category", header: t.common.category, render: (n) => (
-      <Badge variant="secondary" className="font-normal">{n.category}</Badge>
-    )},
+    { key: "category", header: t.common.category, render: (n) => <Badge variant="secondary" className="font-normal">{n.category}</Badge> },
     { key: "date", header: t.news.date, render: (n) => (
       <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
         <Calendar className="h-3.5 w-3.5" />
         {n.date}
       </div>
     )},
-    { key: "slug", header: t.news.slug, render: (n) => (
-      <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">{n.slug}</code>
+    { key: "slug", header: t.news.slug, render: (n) => <code className="text-[11px] bg-muted px-1.5 py-0.5 rounded font-mono">{n.slug}</code> },
+    { key: "preview", header: "", render: (n) => (
+      <Link to={`/news/${n.slug}`} target="_blank">
+        <Button variant="ghost" size="icon" className="h-7 w-7" title={t.news.previewArticle}>
+          <ExternalLink className="h-3.5 w-3.5" />
+        </Button>
+      </Link>
     )},
   ];
 
   const set = (key: string, val: string) => setForm((f) => ({ ...f, [key]: val }));
 
   return (
-    <div className="space-y-6 max-w-6xl">
+    <div className="space-y-6 max-w-7xl">
       <div className="flex items-center justify-between">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-2xl md:text-3xl font-display font-bold text-foreground tracking-tight">{t.news.title}</h1>
-          <p className="text-muted-foreground mt-1">{t.news.subtitle}</p>
+          <p className="text-muted-foreground mt-1">{t.news.subtitle} · {data.length} {t.common.items}</p>
         </motion.div>
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
           <Button onClick={openCreate} className="gap-2 shadow-sm">
@@ -78,7 +104,7 @@ export default function AdminNews() {
         </motion.div>
       </div>
 
-      <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={remove} loading={loading} />
+      <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={remove} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto">
@@ -89,13 +115,26 @@ export default function AdminNews() {
           <div className="space-y-4 mt-2">
             <div><Label>{t.news.articleTitle} *</Label><Input value={form.title} onChange={(e) => set("title", e.target.value)} className="mt-1.5" /></div>
             <div className="grid grid-cols-2 gap-4">
-              <div><Label>{t.news.slug} *</Label><Input value={form.slug} onChange={(e) => set("slug", e.target.value)} placeholder="my-article-slug" className="mt-1.5 font-mono text-sm" /></div>
+              <div>
+                <Label>{t.news.slug} *</Label>
+                <div className="flex gap-1.5 mt-1.5">
+                  <Input value={form.slug} onChange={(e) => set("slug", e.target.value)} placeholder="my-article-slug" className="font-mono text-sm" />
+                  <Button type="button" variant="outline" size="icon" onClick={generateSlug} title={t.news.generateSlug} className="shrink-0">
+                    <Wand2 className="h-3.5 w-3.5" />
+                  </Button>
+                </div>
+              </div>
               <div><Label>{t.common.category}</Label><Input value={form.category} onChange={(e) => set("category", e.target.value)} className="mt-1.5" /></div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div><Label>{t.news.date}</Label><Input type="date" value={form.date} onChange={(e) => set("date", e.target.value)} className="mt-1.5" /></div>
               <div><Label>{t.common.imageUrl}</Label><Input value={form.image || ""} onChange={(e) => set("image", e.target.value)} className="mt-1.5" /></div>
             </div>
+            {form.image && (
+              <div className="p-3 bg-muted/30 rounded-lg">
+                <img src={form.image} alt="" className="w-full h-32 object-cover rounded border" />
+              </div>
+            )}
             <div><Label>{t.news.excerpt}</Label><Textarea value={form.excerpt} onChange={(e) => set("excerpt", e.target.value)} rows={2} className="mt-1.5" /></div>
             <div><Label>{t.news.content}</Label><Textarea value={form.content} onChange={(e) => set("content", e.target.value)} rows={8} className="mt-1.5 font-mono text-sm" /></div>
             <div className="flex justify-end gap-2 pt-3 border-t">
