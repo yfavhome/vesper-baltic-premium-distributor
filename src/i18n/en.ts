@@ -84,6 +84,7 @@ export const en = {
     ctaTitle: "Ready to Partner with Vesper Group?",
     contactUs: "Contact Us",
     whatsappUs: "WhatsApp Us",
+    trustedByBrands: "Trusted by {{count}}+ brands worldwide",
   },
 
   // About page

@@ -1,15 +1,18 @@
 import { motion } from "framer-motion";
 import { brands } from "@/data/brands";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 // Get unique brand names for the marquee
 const marqueBrands = brands.slice(0, 20);
 
 const TrustedBy = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative overflow-hidden py-12 md:py-16 border-y border-border bg-secondary/30">
       <div className="section-padding mb-8">
         <p className="text-label text-muted-foreground text-center">
-          Trusted by {brands.length}+ brands worldwide
+          {t.home.trustedByBrands.replace("{{count}}", String(brands.length))}
         </p>
       </div>
 

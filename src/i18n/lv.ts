@@ -85,6 +85,7 @@ export const lv: Translations = {
     ctaTitle: "Gatavi sadarboties ar Vesper Group?",
     contactUs: "Sazināties ar mums",
     whatsappUs: "Rakstīt WhatsApp",
+    trustedByBrands: "Mums uzticas {{count}}+ zīmoli visā pasaulē",
   },
 
   about: {

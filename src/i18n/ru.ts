@@ -85,6 +85,7 @@ export const ru: Translations = {
     ctaTitle: "Готовы к сотрудничеству с Vesper Group?",
     contactUs: "Связаться с нами",
     whatsappUs: "Написать в WhatsApp",
+    trustedByBrands: "Нам доверяют {{count}}+ брендов по всему миру",
   },
 
   about: {
