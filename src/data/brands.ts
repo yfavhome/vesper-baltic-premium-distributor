@@ -206,6 +206,7 @@ export const brands: Brand[] = [
   },
   {
     name: "Tenuta Angoris", category: "White Wine", country: "Italy", est: "1648",
+    logo: "https://vesper.lv/uploads/file-1759442408415-148984540.png",
     desc: "Historic Italian winery in Friuli Venezia Giulia — Pinot Grigio, Sauvignon, and Metodo Charmat.",
     products: [
       { name: "Villa Locatelli Pinot Grigio", type: "White Wine", volume: "0.75L", abv: "12.5%" },
