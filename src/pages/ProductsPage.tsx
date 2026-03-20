@@ -119,7 +119,7 @@ const ProductsPage = () => {
     productCategories.map(cat => ({
       name: cat,
       image: categoryImages[cat] || catWine,
-      desc: categoryDescriptions[cat] || "",
+      desc: (t.products.categoryDescriptions as Record<string, string>)[cat] || "",
       brandCount: brands.filter(b => b.category === cat).length,
       productCount: getCategoryProductCount(cat),
     })).filter(cat => cat.brandCount > 0),
