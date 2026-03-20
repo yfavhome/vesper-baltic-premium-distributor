@@ -6,8 +6,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { DataTable, Column } from "@/admin/components/DataTable";
-import { AdminBrand, apiBrands } from "@/admin/api/stubs";
-import { Plus, Eye } from "lucide-react";
+import { DragList } from "@/admin/components/DragList";
+import { ImageUpload } from "@/admin/components/ImageUpload";
+import { MultiLangField } from "@/admin/components/MultiLangField";
+import { AdminBrand, apiBrands, apiNotifications } from "@/admin/api/stubs";
+import { Plus, Eye, ArrowUpDown } from "lucide-react";
 import { toast } from "sonner";
 import { useAdminI18n } from "@/admin/i18n";
 import { motion } from "framer-motion";
@@ -23,17 +26,26 @@ export default function AdminBrands() {
   const [editing, setEditing] = useState<AdminBrand | null>(null);
   const [form, setForm] = useState(emptyBrand);
   const [preview, setPreview] = useState<AdminBrand | null>(null);
+  const [reorderMode, setReorderMode] = useState(false);
+  const [descLangs, setDescLangs] = useState({ en: "", lv: "", ru: "" });
 
   const load = () => { setLoading(true); apiBrands.list().then((d) => { setData(d); setLoading(false); }); };
   useEffect(load, []);
 
-  const openCreate = () => { setEditing(null); setForm(emptyBrand); setOpen(true); };
-  const openEdit = (b: AdminBrand) => { setEditing(b); setForm(b); setOpen(true); };
+  const openCreate = () => { setEditing(null); setForm(emptyBrand); setDescLangs({ en: "", lv: "", ru: "" }); setOpen(true); };
+  const openEdit = (b: AdminBrand) => { setEditing(b); setForm(b); setDescLangs({ en: b.desc, lv: "", ru: "" }); setOpen(true); };
 
   const save = async () => {
     if (!form.name.trim()) { toast.error(t.brands.nameRequired); return; }
-    if (editing) { await apiBrands.update(editing.id, form); toast.success(t.brands.brandUpdated); }
-    else { await apiBrands.create(form); toast.success(t.brands.brandCreated); }
+    const payload = { ...form, desc: descLangs.en || form.desc };
+    if (editing) { await apiBrands.update(editing.id, payload); toast.success(t.brands.brandUpdated); }
+    else {
+      await apiBrands.create(payload);
+      toast.success(t.brands.brandCreated);
+      apiNotifications.send("brand_created", payload.name).then((r) => {
+        if (r.success) toast.info(t.common.emailSent);
+      });
+    }
     setOpen(false); load();
   };
 
@@ -51,7 +63,13 @@ export default function AdminBrands() {
   const bulkDelete = async (ids: string[]) => {
     if (!confirm(`${t.common.confirmDelete} ${ids.length} ${t.common.items}?`)) return;
     await Promise.all(ids.map((id) => apiBrands.delete(id)));
-    toast.success(`${ids.length} ${t.common.items} ${t.common.delete.toLowerCase()}`); load();
+    toast.success(`${ids.length} ${t.common.items} deleted`); load();
+  };
+
+  const handleReorder = async (ids: string[]) => {
+    await apiBrands.reorder(ids);
+    toast.success(t.brands.orderSaved);
+    load();
   };
 
   const columns: Column<AdminBrand>[] = [
@@ -70,15 +88,9 @@ export default function AdminBrands() {
         </div>
       </button>
     )},
-    { key: "category", header: t.common.category, render: (b) => (
-      <Badge variant="secondary" className="font-normal">{b.category}</Badge>
-    )},
-    { key: "country", header: t.common.country, render: (b) => (
-      <span className="text-muted-foreground">{b.country}</span>
-    )},
-    { key: "desc", header: t.common.description, render: (b) => (
-      <span className="text-muted-foreground text-xs line-clamp-1 max-w-[200px]">{b.desc}</span>
-    )},
+    { key: "category", header: t.common.category, render: (b) => <Badge variant="secondary" className="font-normal">{b.category}</Badge> },
+    { key: "country", header: t.common.country, render: (b) => <span className="text-muted-foreground">{b.country}</span> },
+    { key: "desc", header: t.common.description, render: (b) => <span className="text-muted-foreground text-xs line-clamp-1 max-w-[200px]">{b.desc}</span> },
   ];
 
   const set = (key: string, val: string) => setForm((f) => ({ ...f, [key]: val }));
@@ -90,18 +102,45 @@ export default function AdminBrands() {
           <h1 className="text-2xl md:text-3xl font-display font-bold text-foreground tracking-tight">{t.brands.title}</h1>
           <p className="text-muted-foreground mt-1">{t.brands.subtitle} · {data.length} {t.common.items}</p>
         </motion.div>
-        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }} className="flex gap-2">
+          <Button variant={reorderMode ? "default" : "outline"} onClick={() => setReorderMode(!reorderMode)} className="gap-2" size="sm">
+            <ArrowUpDown className="h-3.5 w-3.5" />
+            {reorderMode ? t.brands.reorderDone : t.brands.reorderMode}
+          </Button>
           <Button onClick={openCreate} className="gap-2 shadow-sm">
             <Plus className="h-4 w-4" /> {t.brands.addBrand}
           </Button>
         </motion.div>
       </div>
 
-      <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={remove} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
+      {reorderMode ? (
+        <div>
+          <p className="text-xs text-muted-foreground mb-3">{t.common.reorder}</p>
+          <DragList
+            items={data}
+            onReorder={handleReorder}
+            renderItem={(b) => (
+              <div className="flex items-center gap-3">
+                {b.logo ? (
+                  <img src={b.logo} alt="" className="h-8 w-8 object-contain rounded border bg-background" />
+                ) : (
+                  <div className="h-8 w-8 rounded bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">{b.name[0]}</div>
+                )}
+                <div>
+                  <span className="text-sm font-medium">{b.name}</span>
+                  <span className="text-xs text-muted-foreground ml-2">{b.category}</span>
+                </div>
+              </div>
+            )}
+          />
+        </div>
+      ) : (
+        <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={remove} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
+      )}
 
       {/* Create/Edit Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-lg">
+        <DialogContent className="sm:max-w-lg max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-display">{editing ? t.brands.editBrand : t.brands.newBrand}</DialogTitle>
             <DialogDescription>{t.brands.subtitle}</DialogDescription>
@@ -112,17 +151,27 @@ export default function AdminBrands() {
               <div><Label>{t.common.category}</Label><Input value={form.category} onChange={(e) => set("category", e.target.value)} className="mt-1.5" /></div>
               <div><Label>{t.common.country}</Label><Input value={form.country} onChange={(e) => set("country", e.target.value)} className="mt-1.5" /></div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div><Label>{t.common.year}</Label><Input value={form.est} onChange={(e) => set("est", e.target.value)} className="mt-1.5" /></div>
-              <div><Label>{t.common.logoUrl}</Label><Input value={form.logo || ""} onChange={(e) => set("logo", e.target.value)} className="mt-1.5" /></div>
-            </div>
-            {form.logo && (
-              <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
-                <img src={form.logo} alt="" className="h-12 w-12 object-contain rounded border bg-background" />
-                <span className="text-xs text-muted-foreground">{t.common.preview}</span>
+            <div><Label>{t.common.year}</Label><Input value={form.est} onChange={(e) => set("est", e.target.value)} className="mt-1.5" /></div>
+
+            {/* Image upload */}
+            <div>
+              <Label>{t.common.image}</Label>
+              <ImageUpload value={form.logo || ""} onChange={(v) => set("logo", v)} className="mt-1.5" />
+              <div className="flex items-center gap-2 mt-2">
+                <span className="text-[10px] text-muted-foreground">{t.common.orEnterUrl}:</span>
+                <Input value={form.logo || ""} onChange={(e) => set("logo", e.target.value)} className="h-7 text-xs" placeholder="https://..." />
               </div>
-            )}
-            <div><Label>{t.common.description}</Label><Textarea value={form.desc} onChange={(e) => set("desc", e.target.value)} rows={3} className="mt-1.5" /></div>
+            </div>
+
+            {/* Multilingual description */}
+            <MultiLangField
+              label={t.common.description}
+              value={descLangs}
+              onChange={setDescLangs}
+              multiline
+              rows={3}
+            />
+
             <div className="flex justify-end gap-2 pt-3 border-t">
               <Button variant="outline" onClick={() => setOpen(false)}>{t.common.cancel}</Button>
               <Button onClick={save}>{editing ? t.common.save : t.common.create}</Button>
