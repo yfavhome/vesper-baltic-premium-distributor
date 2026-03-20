@@ -13,6 +13,8 @@ export const lv: Translations = {
     news: "Jaunumi",
     contact: "Kontakti",
     shop: "Veikals",
+    whyVesper: "Kāpēc Vesper",
+    brandPartnership: "Zīmolu partnerība",
   },
 
   age: {

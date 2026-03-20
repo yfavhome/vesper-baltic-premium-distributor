@@ -13,6 +13,8 @@ export const ru: Translations = {
     news: "Новости",
     contact: "Контакты",
     shop: "Магазин",
+    whyVesper: "Почему Vesper",
+    brandPartnership: "Партнёрство брендов",
   },
 
   age: {
