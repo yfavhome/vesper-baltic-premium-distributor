@@ -404,9 +404,9 @@ const ProductsPage = () => {
             {filteredCategories.length === 0 && (
               <div className="text-center py-20">
                 <Wine className="mx-auto text-muted-foreground/30 mb-4" size={48} />
-                <p className="text-muted-foreground">No categories match "{search}"</p>
+                <p className="text-muted-foreground">{t.products.noMatch} "{search}"</p>
                 <button onClick={() => setSearch("")} className="text-primary text-sm mt-2 hover:underline">
-                  Clear search
+                  {t.products.clearSearch}
                 </button>
               </div>
             )}
