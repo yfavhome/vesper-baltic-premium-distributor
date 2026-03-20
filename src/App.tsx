@@ -15,6 +15,7 @@ import DistributionPage from "./pages/DistributionPage";
 import PartnersPage from "./pages/PartnersPage";
 import WhyVesperPage from "./pages/WhyVesperPage";
 import NewsPage from "./pages/NewsPage";
+import NewsArticlePage from "./pages/NewsArticlePage";
 import ContactPage from "./pages/ContactPage";
 import BrandPage from "./pages/BrandPage";
 import BrandPartnershipPage from "./pages/BrandPartnershipPage";
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/partners" element={<PartnersPage />} />
             <Route path="/why-vesper" element={<WhyVesperPage />} />
             <Route path="/news" element={<NewsPage />} />
+            <Route path="/news/:slug" element={<NewsArticlePage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/brand/:brandSlug" element={<BrandPage />} />
             <Route path="/brand-partnership" element={<BrandPartnershipPage />} />

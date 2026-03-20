@@ -175,7 +175,7 @@ const ProductsPage = () => {
 
   return (
     <Layout>
-      <SEO title="Products" description="Browse our curated selection of premium beverages — champagne, wine, whisky, rum, gin, vodka, and more. 600+ products from 37+ brands." />
+      <SEO title={t.seo.productsTitle} description={t.seo.productsDesc} />
       <PageHero
         label={t.products.label}
         title={t.products.title}

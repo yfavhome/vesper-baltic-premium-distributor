@@ -28,7 +28,7 @@ const PortfolioPage = () => {
 
   return (
     <Layout>
-      <SEO title={`${t.portfolio.label} — Vesper Group`} description={`Explore ${brands.length}+ premium brands distributed by Vesper Group across the Baltics — wines, champagnes, spirits, and more.`} />
+      <SEO title={t.seo.portfolioTitle} description={t.seo.portfolioDesc} />
       <PageHero
         label={t.portfolio.label}
         title={t.portfolio.title}
