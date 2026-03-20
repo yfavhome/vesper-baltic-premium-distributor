@@ -96,6 +96,7 @@ export const brands: Brand[] = [
   },
   {
     name: "De Bernard", category: "Prosecco", country: "Italy", est: "1948",
+    logo: "https://vesper.lv/uploads/file-1759442281388-781786605.jpg",
     desc: "Italian sparkling wine producer known for premium Prosecco DOC.",
     products: [
       { name: "De Bernard Cuvée Millesimato Extra Dry", type: "Prosecco", volume: "0.75L", abv: "11%" },
