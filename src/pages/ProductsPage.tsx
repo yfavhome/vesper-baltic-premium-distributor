@@ -123,7 +123,7 @@ const ProductsPage = () => {
       brandCount: brands.filter(b => b.category === cat).length,
       productCount: getCategoryProductCount(cat),
     })).filter(cat => cat.brandCount > 0),
-    []
+    [t]
   );
 
   // Filter categories based on search
