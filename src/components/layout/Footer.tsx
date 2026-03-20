@@ -45,7 +45,7 @@ const Footer = () => {
               {[
                 { icon: Instagram, href: "https://www.instagram.com/vespergroup/", label: "Instagram" },
                 { icon: Facebook, href: "https://www.facebook.com/vespergroup/", label: "Facebook" },
-                { icon: MessageCircle, href: "https://wa.me/37122100200", label: "WhatsApp" },
+                { icon: WhatsAppIcon, href: "https://wa.me/37122100200", label: "WhatsApp" },
               ].map((s) => (
                 <a
                   key={s.label}
