@@ -3,15 +3,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { DataTable, Column } from "@/admin/components/DataTable";
 import { AdminCategory, apiCategories } from "@/admin/api/stubs";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
+import { useAdminI18n } from "@/admin/i18n";
+import { motion } from "framer-motion";
 
 const emptyCategory: Omit<AdminCategory, "id"> = { name: "", slug: "", description: "", brandCount: 0 };
 
 export default function AdminCategories() {
+  const t = useAdminI18n();
   const [data, setData] = useState<AdminCategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -25,36 +29,48 @@ export default function AdminCategories() {
   const openEdit = (c: AdminCategory) => { setEditing(c); setForm(c); setOpen(true); };
 
   const save = async () => {
-    if (!form.name.trim()) { toast.error("Название обязательно"); return; }
+    if (!form.name.trim()) { toast.error(t.categories.nameRequired); return; }
     const slug = form.slug || form.name.toLowerCase().replace(/\s+/g, "-");
     const payload = { ...form, slug };
-    if (editing) { await apiCategories.update(editing.id, payload); toast.success("Категория обновлена"); }
-    else { await apiCategories.create(payload); toast.success("Категория создана"); }
+    if (editing) { await apiCategories.update(editing.id, payload); toast.success(t.categories.categoryUpdated); }
+    else { await apiCategories.create(payload); toast.success(t.categories.categoryCreated); }
     setOpen(false); load();
   };
 
   const remove = async (c: AdminCategory) => {
-    if (!confirm(`Удалить категорию "${c.name}"?`)) return;
-    await apiCategories.delete(c.id); toast.success("Категория удалена"); load();
+    if (!confirm(`${t.common.confirmDelete} "${c.name}"?`)) return;
+    await apiCategories.delete(c.id); toast.success(t.categories.categoryDeleted); load();
   };
 
   const columns: Column<AdminCategory>[] = [
-    { key: "name", header: "Название", render: (c) => <span className="font-medium">{c.name}</span> },
-    { key: "slug", header: "Slug" },
-    { key: "description", header: "Описание" },
-    { key: "brandCount", header: "Брендов" },
+    { key: "name", header: t.common.name, render: (c) => (
+      <span className="font-medium text-foreground">{c.name}</span>
+    )},
+    { key: "slug", header: t.categories.slug, render: (c) => (
+      <code className="text-xs bg-muted px-1.5 py-0.5 rounded font-mono">{c.slug}</code>
+    )},
+    { key: "description", header: t.common.description, render: (c) => (
+      <span className="text-muted-foreground text-sm line-clamp-1">{c.description}</span>
+    )},
+    { key: "brandCount", header: t.categories.brandsCount, render: (c) => (
+      <Badge variant="secondary" className="font-normal">{c.brandCount}</Badge>
+    )},
   ];
 
   const set = (key: string, val: string) => setForm((f) => ({ ...f, [key]: val }));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-6xl">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-display font-bold">Категории</h1>
-          <p className="text-muted-foreground mt-1">{data.length} категорий</p>
-        </div>
-        <Button onClick={openCreate}><Plus className="h-4 w-4 mr-2" /> Добавить категорию</Button>
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+          <h1 className="text-2xl md:text-3xl font-display font-bold text-foreground tracking-tight">{t.categories.title}</h1>
+          <p className="text-muted-foreground mt-1">{t.categories.subtitle}</p>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
+          <Button onClick={openCreate} className="gap-2 shadow-sm">
+            <Plus className="h-4 w-4" /> {t.categories.addCategory}
+          </Button>
+        </motion.div>
       </div>
 
       <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={remove} loading={loading} />
@@ -62,15 +78,16 @@ export default function AdminCategories() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle>{editing ? "Редактировать категорию" : "Новая категория"}</DialogTitle>
+            <DialogTitle className="font-display">{editing ? t.categories.editCategory : t.categories.newCategory}</DialogTitle>
+            <DialogDescription>{t.categories.subtitle}</DialogDescription>
           </DialogHeader>
           <div className="space-y-4 mt-2">
-            <div><Label>Название *</Label><Input value={form.name} onChange={(e) => set("name", e.target.value)} /></div>
-            <div><Label>Slug</Label><Input value={form.slug} onChange={(e) => set("slug", e.target.value)} placeholder="auto-generated" /></div>
-            <div><Label>Описание</Label><Textarea value={form.description} onChange={(e) => set("description", e.target.value)} rows={3} /></div>
-            <div className="flex justify-end gap-2 pt-2">
-              <Button variant="outline" onClick={() => setOpen(false)}>Отмена</Button>
-              <Button onClick={save}>{editing ? "Сохранить" : "Создать"}</Button>
+            <div><Label>{t.common.name} *</Label><Input value={form.name} onChange={(e) => set("name", e.target.value)} className="mt-1.5" /></div>
+            <div><Label>{t.categories.slug}</Label><Input value={form.slug} onChange={(e) => set("slug", e.target.value)} placeholder={t.categories.slugAuto} className="mt-1.5 font-mono text-sm" /></div>
+            <div><Label>{t.common.description}</Label><Textarea value={form.description} onChange={(e) => set("description", e.target.value)} rows={3} className="mt-1.5" /></div>
+            <div className="flex justify-end gap-2 pt-3 border-t">
+              <Button variant="outline" onClick={() => setOpen(false)}>{t.common.cancel}</Button>
+              <Button onClick={save}>{editing ? t.common.save : t.common.create}</Button>
             </div>
           </div>
         </DialogContent>
