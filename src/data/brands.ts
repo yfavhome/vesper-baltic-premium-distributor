@@ -108,6 +108,7 @@ export const brands: Brand[] = [
   },
   {
     name: "Rotari", category: "Sparkling Wine", country: "Italy", est: "1977",
+    logo: "https://www.rotari.it/media/bnijnkmy/rotarilogo.png",
     desc: "Italian Trento DOC sparkling wine — Metodo Classico.",
     products: [
       { name: "Rotari Brut Platinum Classico", type: "Sparkling Wine", volume: "0.75L", abv: "12.5%" },
