@@ -1,8 +1,9 @@
-import { LayoutDashboard, Wine, Package, Newspaper, FolderTree, ArrowLeft, Globe, ChevronDown } from "lucide-react";
+import { LayoutDashboard, Wine, Package, Newspaper, FolderTree, ArrowLeft, Globe, ChevronDown, Moon, Sun, History } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, Link } from "react-router-dom";
 import { useLanguage, Language } from "@/i18n/LanguageContext";
 import { useAdminI18n } from "@/admin/i18n";
+import { useState, useEffect } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -31,6 +32,17 @@ export function AdminSidebar() {
   const location = useLocation();
   const { lang, setLang } = useLanguage();
   const t = useAdminI18n();
+  const [dark, setDark] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("admin_dark") === "true" || document.documentElement.classList.contains("dark");
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+    localStorage.setItem("admin_dark", String(dark));
+  }, [dark]);
 
   const items = [
     { title: t.sidebar.dashboard, url: "/admin", icon: LayoutDashboard },
@@ -38,6 +50,7 @@ export function AdminSidebar() {
     { title: t.sidebar.products, url: "/admin/products", icon: Package },
     { title: t.sidebar.news, url: "/admin/news", icon: Newspaper },
     { title: t.sidebar.categories, url: "/admin/categories", icon: FolderTree },
+    { title: t.sidebar.auditLog, url: "/admin/audit", icon: History },
   ];
 
   const isActive = (path: string) =>
@@ -46,13 +59,12 @@ export function AdminSidebar() {
       : location.pathname.startsWith(path);
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-border/50 bg-sidebar">
+    <Sidebar collapsible="icon" className="border-r border-border/50">
       <SidebarContent className="pt-2">
-        {/* Logo area */}
         <div className="px-4 py-3 mb-2">
           {!collapsed ? (
             <div className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center">
+              <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center shadow-sm">
                 <span className="text-primary-foreground font-display font-bold text-sm">V</span>
               </div>
               <div>
@@ -61,7 +73,7 @@ export function AdminSidebar() {
               </div>
             </div>
           ) : (
-            <div className="h-9 w-9 mx-auto rounded-lg bg-primary flex items-center justify-center">
+            <div className="h-9 w-9 mx-auto rounded-lg bg-primary flex items-center justify-center shadow-sm">
               <span className="text-primary-foreground font-display font-bold text-sm">V</span>
             </div>
           )}
@@ -93,7 +105,16 @@ export function AdminSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="p-3 space-y-2 border-t border-border/50">
+      <SidebarFooter className="p-3 space-y-1 border-t border-border/50">
+        {/* Dark mode toggle */}
+        <button
+          onClick={() => setDark(!dark)}
+          className="flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
+        >
+          {dark ? <Sun className="h-4 w-4 shrink-0" /> : <Moon className="h-4 w-4 shrink-0" />}
+          {!collapsed && <span>{dark ? t.sidebar.lightMode : t.sidebar.darkMode}</span>}
+        </button>
+
         {/* Language switcher */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
