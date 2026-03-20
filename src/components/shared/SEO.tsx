@@ -1,30 +1,43 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 interface SEOProps {
   title: string;
   description: string;
+  ogImage?: string;
 }
 
-const SEO = ({ title, description }: SEOProps) => {
+const SITE_URL = "https://vesper-baltic-premium-distributor.lovable.app";
+
+const SEO = ({ title, description, ogImage }: SEOProps) => {
+  const location = useLocation();
+
   useEffect(() => {
     const fullTitle = title.includes("Vesper") ? title : `${title} | Vesper Group`;
     document.title = fullTitle;
 
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute("content", description);
+    const setMeta = (selector: string, content: string) => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute("content", content);
+    };
 
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", fullTitle);
+    setMeta('meta[name="description"]', description);
+    setMeta('meta[property="og:title"]', fullTitle);
+    setMeta('meta[property="og:description"]', description);
+    setMeta('meta[name="twitter:title"]', fullTitle);
+    setMeta('meta[name="twitter:description"]', description);
 
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute("content", description);
+    if (ogImage) {
+      setMeta('meta[property="og:image"]', ogImage);
+      setMeta('meta[name="twitter:image"]', ogImage);
+    }
 
-    const twTitle = document.querySelector('meta[name="twitter:title"]');
-    if (twTitle) twTitle.setAttribute("content", fullTitle);
-
-    const twDesc = document.querySelector('meta[name="twitter:description"]');
-    if (twDesc) twDesc.setAttribute("content", description);
-  }, [title, description]);
+    // Update canonical URL
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute("href", `${SITE_URL}${location.pathname}`);
+    }
+  }, [title, description, ogImage, location.pathname]);
 
   return null;
 };
