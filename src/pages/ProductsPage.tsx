@@ -333,7 +333,7 @@ const ProductsPage = () => {
                   </span>
                 )}
                 <button onClick={clearFilters} className="text-xs text-primary hover:underline ml-auto">
-                  Clear all
+                  {t.products.clearAll}
                 </button>
               </div>
             )}
