@@ -21,7 +21,7 @@ const Footer = () => {
 
   const companyItems = [
     { label: t.nav.partners, path: "/partners" },
-    { label: "Why Vesper", path: "/why-vesper" },
+    { label: t.nav.whyVesper, path: "/why-vesper" },
     { label: t.nav.news, path: "/news" },
     { label: t.nav.contact, path: "/contact" },
   ];

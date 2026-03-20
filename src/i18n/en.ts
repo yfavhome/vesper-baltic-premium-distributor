@@ -10,6 +10,8 @@ export const en = {
     news: "News",
     contact: "Contact",
     shop: "Shop",
+    whyVesper: "Why Vesper",
+    brandPartnership: "Brand Partnership",
   },
 
   // Age verification
