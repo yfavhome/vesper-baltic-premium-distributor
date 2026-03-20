@@ -272,7 +272,7 @@ const ProductsPage = () => {
 
               {/* Country */}
               <div>
-                <label className="text-label text-muted-foreground mb-3 block">Country</label>
+                <label className="text-label text-muted-foreground mb-3 block">{t.products.country}</label>
                 <div className="flex flex-wrap gap-1.5">
                   {["All", ...countries].map((c) => (
                     <button
