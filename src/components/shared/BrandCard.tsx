@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { getBrandSlug } from "@/pages/BrandPage";
 import { MapPin } from "lucide-react";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 
 interface BrandCardProps {
   brand: {
@@ -10,6 +11,7 @@ interface BrandCardProps {
     country: string;
     est: string;
     category: string;
+    logo?: string;
   };
   index: number;
   onClick?: () => void;
@@ -34,9 +36,18 @@ const BrandCard = ({ brand, index, onClick }: BrandCardProps) => {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:via-primary/3 group-hover:to-transparent transition-all duration-500" />
         
         <div className="relative z-10">
-          {/* Brand initial */}
-          <div className="w-16 h-16 rounded-full bg-secondary mx-auto mb-4 flex items-center justify-center group-hover:bg-primary/15 group-hover:scale-110 transition-all duration-300">
-            <span className="font-display text-xl font-bold text-primary group-hover:scale-110 transition-transform duration-300">{brand.name[0]}</span>
+          {/* Brand logo or initial */}
+          <div className="w-16 h-16 rounded-full bg-secondary mx-auto mb-4 flex items-center justify-center group-hover:bg-primary/15 group-hover:scale-110 transition-all duration-300 overflow-hidden">
+            {brand.logo ? (
+              <img
+                src={brand.logo}
+                alt={`${brand.name} logo`}
+                className="w-full h-full object-contain p-1.5"
+                loading="lazy"
+              />
+            ) : (
+              <span className="font-display text-xl font-bold text-primary group-hover:scale-110 transition-transform duration-300">{brand.name[0]}</span>
+            )}
           </div>
           
           {/* Brand name */}
