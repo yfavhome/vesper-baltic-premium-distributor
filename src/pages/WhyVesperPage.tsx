@@ -50,14 +50,7 @@ const WhyVesperPage = () => {
     { icon: TrendingUp, title: t.whyVesper.marketGrowth, desc: t.whyVesper.marketGrowthDesc },
   ];
 
-  const faqItems = (t as any).faq?.items || [
-    { q: "What regions do you distribute to?", a: "We distribute across all three Baltic states — Latvia, Lithuania, and Estonia." },
-    { q: "What is the minimum order quantity?", a: "Minimum order quantities vary by product and channel." },
-    { q: "How can I become a distribution partner?", a: "Contact us through our website or email info@vesper.group." },
-    { q: "Do you offer tastings and brand presentations?", a: "Yes! We regularly organize tastings and educational sessions." },
-    { q: "What types of businesses do you work with?", a: "We work with retail chains, restaurants, bars, hotels, and e-commerce platforms." },
-    { q: "How do you ensure product quality during transport?", a: "All our logistics use temperature-controlled warehousing and transportation." },
-  ];
+  const faqItems = t.faq.items;
 
   return (
     <Layout>
@@ -95,10 +88,10 @@ const WhyVesperPage = () => {
       {/* FAQ Section */}
       <section className="bg-secondary/30 section-padding section-spacing">
         <SectionHeading
-          label={(t as any).faq?.label || "FAQ"}
-          title={(t as any).faq?.title || "Frequently Asked Questions"}
+          label={t.faq.label}
+          title={t.faq.title}
           align="center"
-          subtitle={(t as any).faq?.subtitle || "Find answers to common questions about working with Vesper Group."}
+          subtitle={t.faq.subtitle}
         />
         <div className="max-w-3xl mx-auto space-y-3">
           {faqItems.map((item: { q: string; a: string }, i: number) => (

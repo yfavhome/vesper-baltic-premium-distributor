@@ -4,6 +4,7 @@ export interface Brand {
   country: string;
   est: string;
   desc: string;
+  logo?: string;
   products?: Product[];
 }
 
@@ -22,6 +23,7 @@ export const brands: Brand[] = [
   // ══════════════════════════════════════
   {
     name: "Duval-Leroy", category: "Champagne", country: "France", est: "1859",
+    logo: "https://vesper.lv/uploads/file-1759354137593-78717973.png",
     desc: "Prestigious French Champagne house with organic vineyards and a woman-led vision.",
     products: [
       { name: "Duval-Leroy Brut Réserve", type: "Champagne", volume: "0.75L", abv: "12%" },
@@ -59,6 +61,7 @@ export const brands: Brand[] = [
   // ══════════════════════════════════════
   {
     name: "Sutto", category: "Prosecco", country: "Italy", est: "1933",
+    logo: "https://vesper.lv/uploads/file-1759354346391-41266234.jpg",
     desc: "Family-run Prosecco and wine estate from Veneto.",
     products: [
       { name: "Sutto Prosecco DOC Brut", type: "Prosecco", volume: "0.75L", abv: "11%" },
@@ -93,6 +96,7 @@ export const brands: Brand[] = [
   },
   {
     name: "De Bernard", category: "Prosecco", country: "Italy", est: "1948",
+    logo: "https://vesper.lv/uploads/file-1759442281388-781786605.jpg",
     desc: "Italian sparkling wine producer known for premium Prosecco DOC.",
     products: [
       { name: "De Bernard Cuvée Millesimato Extra Dry", type: "Prosecco", volume: "0.75L", abv: "11%" },
@@ -104,6 +108,7 @@ export const brands: Brand[] = [
   },
   {
     name: "Rotari", category: "Sparkling Wine", country: "Italy", est: "1977",
+    logo: "https://www.rotari.it/media/bnijnkmy/rotarilogo.png",
     desc: "Italian Trento DOC sparkling wine — Metodo Classico.",
     products: [
       { name: "Rotari Brut Platinum Classico", type: "Sparkling Wine", volume: "0.75L", abv: "12.5%" },
@@ -201,6 +206,7 @@ export const brands: Brand[] = [
   },
   {
     name: "Tenuta Angoris", category: "White Wine", country: "Italy", est: "1648",
+    logo: "https://vesper.lv/uploads/file-1759442408415-148984540.png",
     desc: "Historic Italian winery in Friuli Venezia Giulia — Pinot Grigio, Sauvignon, and Metodo Charmat.",
     products: [
       { name: "Villa Locatelli Pinot Grigio", type: "White Wine", volume: "0.75L", abv: "12.5%" },
@@ -276,6 +282,7 @@ export const brands: Brand[] = [
   },
   {
     name: "Forte Alto", category: "White Wine", country: "Italy", est: "1999",
+    logo: "https://vesper.lv/uploads/file-1759445467230-593747472.png",
     desc: "Modern Italian wines from Trentino — Pinot Grigio, Merlot, Teroldego.",
     products: [
       { name: "Forte Alto Pinot Grigio Vigneti delle Dolomiti IGT", type: "White Wine", volume: "0.75L", abv: "12%" },
