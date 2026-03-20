@@ -4,6 +4,7 @@ export interface Brand {
   country: string;
   est: string;
   desc: string;
+  logo?: string;
   products?: Product[];
 }
 
