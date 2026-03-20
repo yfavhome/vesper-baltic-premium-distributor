@@ -51,6 +51,7 @@ const App = () => (
             <Route path="/partners" element={<PartnersPage />} />
             <Route path="/why-vesper" element={<WhyVesperPage />} />
             <Route path="/news" element={<NewsPage />} />
+            <Route path="/news/:slug" element={<NewsArticlePage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/brand/:brandSlug" element={<BrandPage />} />
             <Route path="/brand-partnership" element={<BrandPartnershipPage />} />
