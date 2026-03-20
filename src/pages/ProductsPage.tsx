@@ -252,7 +252,7 @@ const ProductsPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Category */}
               <div>
-                <label className="text-label text-muted-foreground mb-3 block">Category</label>
+                <label className="text-label text-muted-foreground mb-3 block">{t.products.category}</label>
                 <div className="flex flex-wrap gap-1.5">
                   {["All", ...productCategories].map((cat) => (
                     <button
