@@ -91,7 +91,7 @@ const CategoryCard = ({ cat, index, t }: { cat: CategoryData; index: number; t: 
         {/* Top corner badge on hover */}
         <div className="absolute top-4 right-4 z-[3] opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
           <span className="px-3 py-1.5 bg-primary/90 text-primary-foreground text-[10px] uppercase tracking-widest font-semibold backdrop-blur-sm">
-            Explore
+            {t.products.explore}
           </span>
         </div>
       </Link>
