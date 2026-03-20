@@ -24,6 +24,14 @@ import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
 import CookiePage from "./pages/CookiePage";
 
+// Admin
+import AdminLayout from "./admin/components/AdminLayout";
+import AdminDashboard from "./admin/pages/AdminDashboard";
+import AdminBrands from "./admin/pages/AdminBrands";
+import AdminProducts from "./admin/pages/AdminProducts";
+import AdminNews from "./admin/pages/AdminNews";
+import AdminCategories from "./admin/pages/AdminCategories";
+
 const queryClient = new QueryClient();
 
 const ScrollToTop = () => {
