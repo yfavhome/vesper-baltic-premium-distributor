@@ -77,7 +77,7 @@ const CategoryCard = ({ cat, index, t }: { cat: CategoryData; index: number; t: 
         <div className="absolute bottom-0 left-0 right-0 z-[3] p-8 transform group-hover:translate-y-[-4px] transition-transform duration-500">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-[10px] uppercase tracking-widest text-primary font-semibold">
-              {cat.brandCount} {cat.brandCount === 1 ? "brand" : "brands"} · {cat.productCount} products
+              {cat.brandCount} {cat.brandCount === 1 ? t.products.brand : t.products.brands} · {cat.productCount} {t.products.productsLabel.toLowerCase()}
             </span>
           </div>
           <h3 className="font-display text-2xl font-bold text-primary-foreground mb-2 group-hover:text-primary transition-colors duration-300">{cat.name}</h3>
