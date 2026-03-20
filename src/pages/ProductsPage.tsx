@@ -292,7 +292,7 @@ const ProductsPage = () => {
 
               {/* Type */}
               <div>
-                <label className="text-label text-muted-foreground mb-3 block">Product Type</label>
+                <label className="text-label text-muted-foreground mb-3 block">{t.products.productType}</label>
                 <div className="flex flex-wrap gap-1.5 max-h-40 overflow-y-auto">
                   {allTypes.map((type) => (
                     <button
