@@ -39,7 +39,7 @@ interface CategoryData {
   productCount: number;
 }
 
-const CategoryCard = ({ cat, index }: { cat: CategoryData; index: number }) => {
+const CategoryCard = ({ cat, index, t }: { cat: CategoryData; index: number; t: any }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
