@@ -27,7 +27,7 @@ const PartnersPage = () => {
 
   return (
     <Layout>
-      <SEO title="Partners & HoReCa" description="Vesper Group partners with leading retail chains, restaurants, bars, and hotels across the Baltics. Become a partner today." />
+      <SEO title={t.seo.partnersTitle} description={t.seo.partnersDesc} />
       <PageHero label={t.partners.label} title={t.partners.title} subtitle={t.partners.subtitle} image={partnersHero} size="compact" />
 
       <section className="section-padding section-spacing">
