@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { GripVertical } from "lucide-react";
 
-interface DragItem {
-  id: string;
-  [key: string]: unknown;
+interface DragListProps<T extends { id: string }> {
+  items: T[];
+  onReorder: (newOrder: string[]) => void;
+  renderItem: (item: T, index: number) => React.ReactNode;
+  className?: string;
 }
 
+export function DragList<T extends { id: string }>({ items, onReorder, renderItem, className = "" }: DragListProps<T>) {
 interface DragListProps<T extends DragItem> {
   items: T[];
   onReorder: (newOrder: string[]) => void;
