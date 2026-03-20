@@ -393,7 +393,7 @@ const ProductsPage = () => {
           </>
         ) : (
           <>
-            <SectionHeading label="Categories" title="Discover Our Range" align="center" />
+            <SectionHeading label={t.products.categoriesLabel} title={t.products.discoverRange} align="center" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredCategories.map((cat, i) => (
