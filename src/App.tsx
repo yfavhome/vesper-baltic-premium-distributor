@@ -15,6 +15,7 @@ import DistributionPage from "./pages/DistributionPage";
 import PartnersPage from "./pages/PartnersPage";
 import WhyVesperPage from "./pages/WhyVesperPage";
 import NewsPage from "./pages/NewsPage";
+import NewsArticlePage from "./pages/NewsArticlePage";
 import ContactPage from "./pages/ContactPage";
 import BrandPage from "./pages/BrandPage";
 import BrandPartnershipPage from "./pages/BrandPartnershipPage";
