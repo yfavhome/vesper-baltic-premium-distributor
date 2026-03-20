@@ -176,7 +176,7 @@ export const lv: Translations = {
       Gin: "Amatnieku un klasiskā sausā džina",
       Vodka: "Premium degvīni",
       Tequila: "Amatnieku tekila un meskals no Meksikas",
-      Sake: "Premium japāņu sake, tostarp Dassai",
+      Sake: "Premium japāņu sake, ieskaitot Dassai",
       Cognac: "Franču konjaki un nogatavināti eaux-de-vie",
       Brandy: "Armanjaks, Kalvados un premium brendiji",
       Liqueurs: "Amaretto, Limončello, vermuts, pisko un aperitīvi",
