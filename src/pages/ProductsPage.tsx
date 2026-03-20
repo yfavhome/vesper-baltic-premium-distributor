@@ -313,7 +313,7 @@ const ProductsPage = () => {
 
             {hasActiveFilters && (
               <div className="mt-4 pt-4 border-t border-border flex items-center gap-3">
-                <span className="text-sm text-muted-foreground">Active filters:</span>
+                <span className="text-sm text-muted-foreground">{t.products.activeFilters}</span>
                 {categoryFilter !== "All" && (
                   <span className="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary text-xs">
                     {categoryFilter}
