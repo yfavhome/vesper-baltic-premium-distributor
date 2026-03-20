@@ -306,6 +306,28 @@ export const en = {
     ],
   },
 
+  // SEO
+  seo: {
+    homeTitle: "Vesper Group — Premium Beverage Distribution in the Baltics",
+    homeDesc: "Vesper Group is the leading premium beverage distributor in the Baltic region. {{count}}+ brands, 600+ products from world-class producers.",
+    aboutTitle: "About Vesper Group — Baltic Beverage Distributor",
+    aboutDesc: "Learn about Vesper Group — a premium beverage distributor in the Baltics with a commitment to quality and partnership.",
+    portfolioTitle: "Brand Portfolio — Vesper Group",
+    portfolioDesc: "Discover the premium brands we distribute across the Baltic region. World-class wines, spirits, and beverages.",
+    productsTitle: "Products — Premium Beverages",
+    productsDesc: "Browse our curated selection of premium beverages — champagne, wine, whisky, rum, gin, vodka, and more.",
+    distributionTitle: "Distribution & Logistics — Vesper Group",
+    distributionDesc: "Vesper Group's distribution network covers Latvia, Lithuania, and Estonia. Temperature-controlled logistics.",
+    partnersTitle: "Partners & HoReCa — Vesper Group",
+    partnersDesc: "Vesper Group partners with leading retail chains, restaurants, bars, and hotels across the Baltics.",
+    whyVesperTitle: "Why Vesper — The Vesper Advantage",
+    whyVesperDesc: "Discover the Vesper advantage — premium portfolio, reliable distribution, quality assurance, and professional service.",
+    newsTitle: "News & Insights — Vesper Group",
+    newsDesc: "Stay up to date with the latest news, events, and product launches from Vesper Group.",
+    contactTitle: "Contact Us — Vesper Group",
+    contactDesc: "Get in touch with Vesper Group. Email info@vesper.group or call +371 22100200.",
+  },
+
   // News page
   news: {
     label: "News & Insights",
@@ -313,6 +335,14 @@ export const en = {
     featured: "Featured",
     allArticles: "All Articles",
     stayInformed: "Stay Informed",
+    backToNews: "Back to News",
+    articleNotFound: "Article Not Found",
+    moreContentSoon: "Full article content coming soon. Stay tuned for more updates from Vesper Group.",
+    prevArticle: "Previous",
+    nextArticle: "Next",
+    relatedArticles: "Related",
+    moreFromVesper: "More from Vesper Group",
+    readMore: "Read more",
   },
 
   // News articles
