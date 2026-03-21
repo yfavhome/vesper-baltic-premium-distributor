@@ -40,7 +40,6 @@ export function AdminSidebar() {
   });
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
     localStorage.setItem("admin_dark", String(dark));
   }, [dark]);
 
