@@ -6,8 +6,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { DataTable, Column } from "@/admin/components/DataTable";
+import { DragList } from "@/admin/components/DragList";
 import { AdminCategory, apiCategories } from "@/admin/api/stubs";
-import { Plus } from "lucide-react";
+import { Plus, ArrowUpDown } from "lucide-react";
 import { toast } from "sonner";
 import { useAdminI18n } from "@/admin/i18n";
 import { motion } from "framer-motion";
@@ -21,6 +22,7 @@ export default function AdminCategories() {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<AdminCategory | null>(null);
   const [form, setForm] = useState(emptyCategory);
+  const [reorderMode, setReorderMode] = useState(false);
 
   const load = () => { setLoading(true); apiCategories.list().then((d) => { setData(d); setLoading(false); }); };
   useEffect(load, []);
@@ -54,6 +56,12 @@ export default function AdminCategories() {
     toast.success(`${ids.length} deleted`); load();
   };
 
+  const handleReorder = async (ids: string[]) => {
+    await apiCategories.reorder(ids);
+    toast.success(t.categories.orderSaved);
+    load();
+  };
+
   const columns: Column<AdminCategory>[] = [
     { key: "name", header: t.common.name, render: (c) => (
       <div className="flex items-center gap-3">
@@ -77,14 +85,39 @@ export default function AdminCategories() {
           <h1 className="text-2xl md:text-3xl font-display font-bold text-foreground tracking-tight">{t.categories.title}</h1>
           <p className="text-muted-foreground mt-1">{t.categories.subtitle} · {data.length} {t.common.items}</p>
         </motion.div>
-        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }} className="flex gap-2">
+          <Button variant={reorderMode ? "default" : "outline"} onClick={() => setReorderMode(!reorderMode)} className="gap-2" size="sm">
+            <ArrowUpDown className="h-3.5 w-3.5" />
+            {reorderMode ? t.categories.reorderDone : t.categories.reorderMode}
+          </Button>
           <Button onClick={openCreate} className="gap-2 shadow-sm">
             <Plus className="h-4 w-4" /> {t.categories.addCategory}
           </Button>
         </motion.div>
       </div>
 
-      <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={remove} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
+      {reorderMode ? (
+        <div>
+          <p className="text-xs text-muted-foreground mb-3">{t.common.reorder}</p>
+          <DragList
+            items={data}
+            onReorder={handleReorder}
+            renderItem={(c) => (
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                  <span className="text-xs font-bold text-emerald-600">{c.name[0]}</span>
+                </div>
+                <div>
+                  <span className="text-sm font-medium">{c.name}</span>
+                  <span className="text-xs text-muted-foreground ml-2">{c.brandCount} brands</span>
+                </div>
+              </div>
+            )}
+          />
+        </div>
+      ) : (
+        <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={remove} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
+      )}
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-lg">
