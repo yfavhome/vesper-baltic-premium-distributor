@@ -31,6 +31,7 @@ import AdminBrands from "./admin/pages/AdminBrands";
 import AdminProducts from "./admin/pages/AdminProducts";
 import AdminNews from "./admin/pages/AdminNews";
 import AdminCategories from "./admin/pages/AdminCategories";
+import AdminAuditLog from "./admin/pages/AdminAuditLog";
 
 const queryClient = new QueryClient();
 
