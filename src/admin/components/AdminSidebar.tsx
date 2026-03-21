@@ -3,7 +3,6 @@ import { NavLink } from "@/components/NavLink";
 import { useLocation, Link } from "react-router-dom";
 import { useLanguage, Language } from "@/i18n/LanguageContext";
 import { useAdminI18n } from "@/admin/i18n";
-import { useState, useEffect } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -26,22 +25,17 @@ import {
 const langLabels: Record<Language, string> = { en: "English", lv: "Latviešu", ru: "Русский" };
 const langFlags: Record<Language, string> = { en: "🇬🇧", lv: "🇱🇻", ru: "🇷🇺" };
 
-export function AdminSidebar() {
+interface AdminSidebarProps {
+  dark: boolean;
+  onToggleDark: () => void;
+}
+
+export function AdminSidebar({ dark, onToggleDark }: AdminSidebarProps) {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
   const { lang, setLang } = useLanguage();
   const t = useAdminI18n();
-  const [dark, setDark] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("admin_dark") === "true" || document.documentElement.classList.contains("dark");
-    }
-    return false;
-  });
-
-  useEffect(() => {
-    localStorage.setItem("admin_dark", String(dark));
-  }, [dark]);
 
   const items = [
     { title: t.sidebar.dashboard, url: "/admin", icon: LayoutDashboard },
@@ -107,7 +101,7 @@ export function AdminSidebar() {
       <SidebarFooter className="p-3 space-y-1 border-t border-border/50">
         {/* Dark mode toggle */}
         <button
-          onClick={() => setDark(!dark)}
+          onClick={onToggleDark}
           className="flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
         >
           {dark ? <Sun className="h-4 w-4 shrink-0" /> : <Moon className="h-4 w-4 shrink-0" />}
