@@ -31,6 +31,7 @@ import AdminBrands from "./admin/pages/AdminBrands";
 import AdminProducts from "./admin/pages/AdminProducts";
 import AdminNews from "./admin/pages/AdminNews";
 import AdminCategories from "./admin/pages/AdminCategories";
+import AdminAuditLog from "./admin/pages/AdminAuditLog";
 
 const queryClient = new QueryClient();
 
@@ -73,6 +74,7 @@ const App = () => (
               <Route path="products" element={<AdminProducts />} />
               <Route path="news" element={<AdminNews />} />
               <Route path="categories" element={<AdminCategories />} />
+              <Route path="audit" element={<AdminAuditLog />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

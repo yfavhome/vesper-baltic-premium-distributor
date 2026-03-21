@@ -3,8 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Wine, Package, Newspaper, FolderTree, Plus, TrendingUp, AlertTriangle, Database, HardDrive, Shield, Clock, ExternalLink, BarChart3 } from "lucide-react";
-import { apiBrands, apiProducts, apiNews, apiCategories, AdminBrand, AdminProduct, AdminNewsArticle } from "@/admin/api/stubs";
+import { Wine, Package, Newspaper, FolderTree, Plus, TrendingUp, TrendingDown, AlertTriangle, Database, HardDrive, Shield, Clock, ExternalLink, BarChart3, Eye, ArrowUpRight } from "lucide-react";
+import { apiBrands, apiProducts, apiNews, apiCategories, apiPageViews, AdminBrand, AdminProduct, AdminNewsArticle, PageView } from "@/admin/api/stubs";
 import { Link } from "react-router-dom";
 import { useAdminI18n } from "@/admin/i18n";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -35,10 +35,11 @@ export default function AdminDashboard() {
   const [products, setProducts] = useState<AdminProduct[]>([]);
   const [news, setNews] = useState<AdminNewsArticle[]>([]);
   const [catCount, setCatCount] = useState(0);
+  const [pageViews, setPageViews] = useState<PageView[]>([]);
 
   useEffect(() => {
-    Promise.all([apiBrands.list(), apiProducts.list(), apiNews.list(), apiCategories.list()]).then(
-      ([b, p, n, c]) => { setBrands(b); setProducts(p); setNews(n); setCatCount(c.length); }
+    Promise.all([apiBrands.list(), apiProducts.list(), apiNews.list(), apiCategories.list(), apiPageViews.list()]).then(
+      ([b, p, n, c, pv]) => { setBrands(b); setProducts(p); setNews(n); setCatCount(c.length); setPageViews(pv); }
     );
   }, []);
 
@@ -60,6 +61,8 @@ export default function AdminDashboard() {
   const today = new Date().toLocaleDateString(lang === "lv" ? "lv-LV" : lang === "ru" ? "ru-RU" : "en-GB", {
     weekday: "long", year: "numeric", month: "long", day: "numeric",
   });
+
+  const totalViews = useMemo(() => pageViews.reduce((s, p) => s + p.views, 0), [pageViews]);
 
   const stats = [
     { label: t.dashboard.totalBrands, value: brands.length, icon: Wine, href: "/admin/brands", color: "bg-primary/10 text-primary", ring: "ring-primary/20" },
@@ -202,6 +205,42 @@ export default function AdminDashboard() {
         </motion.div>
       </div>
 
+      {/* Page Views Statistics */}
+      {pageViews.length > 0 && (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.38 }}>
+          <Card className="border-border/50">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center gap-2">
+                  <Eye className="h-4 w-4 text-muted-foreground" />
+                  <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider">{t.dashboard.pageViews}</h2>
+                </div>
+                <Badge variant="secondary" className="text-xs font-mono">
+                  {totalViews.toLocaleString()} {t.dashboard.views}
+                </Badge>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                {pageViews.slice(0, 8).map((pv, i) => (
+                  <div key={pv.path} className="flex items-center justify-between p-3 rounded-lg border border-border/50 hover:bg-muted/20 transition-colors">
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-foreground truncate">{pv.title}</p>
+                      <p className="text-[10px] text-muted-foreground font-mono truncate">{pv.path}</p>
+                    </div>
+                    <div className="text-right ml-3 shrink-0">
+                      <p className="text-sm font-bold tabular-nums text-foreground">{pv.views.toLocaleString()}</p>
+                      <div className={`flex items-center gap-0.5 justify-end ${pv.trend >= 0 ? "text-emerald-600" : "text-destructive"}`}>
+                        {pv.trend >= 0 ? <TrendingUp className="h-2.5 w-2.5" /> : <TrendingDown className="h-2.5 w-2.5" />}
+                        <span className="text-[10px] font-medium">{pv.trend > 0 ? "+" : ""}{pv.trend}%</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      )}
+
       {/* Bottom row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Quick actions */}
@@ -257,16 +296,16 @@ export default function AdminDashboard() {
 
         {/* Stub warning */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-          <Card className="border-amber-200/60 bg-gradient-to-br from-amber-50/50 to-orange-50/30 h-full">
+          <Card className="border-amber-200/60 bg-gradient-to-br from-amber-50/50 to-orange-50/30 dark:from-amber-950/20 dark:to-orange-950/10 dark:border-amber-800/30 h-full">
             <CardContent className="p-6">
               <div className="flex items-center gap-2 mb-3">
-                <AlertTriangle className="h-4 w-4 text-amber-600" />
-                <h2 className="text-sm font-semibold text-amber-800">{t.dashboard.stubWarning}</h2>
+                <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                <h2 className="text-sm font-semibold text-amber-800 dark:text-amber-300">{t.dashboard.stubWarning}</h2>
               </div>
-              <p className="text-xs text-amber-700/80 leading-relaxed mb-4">
+              <p className="text-xs text-amber-700/80 dark:text-amber-400/70 leading-relaxed mb-4">
                 {t.dashboard.stubDesc}
               </p>
-              <Button size="sm" variant="outline" className="w-full border-amber-300 text-amber-800 hover:bg-amber-100 gap-2">
+              <Button size="sm" variant="outline" className="w-full border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/30 gap-2">
                 <Database className="h-3.5 w-3.5" />
                 {t.dashboard.connectCloud}
               </Button>
@@ -287,7 +326,7 @@ export default function AdminDashboard() {
                 </Link>
               </div>
               <div className="space-y-3">
-                {news.slice(0, 3).map((n, i) => (
+                {news.slice(0, 3).map((n) => (
                   <div key={n.id} className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted/30 transition-colors">
                     <div className="h-8 w-8 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-600 shrink-0">
                       <Newspaper className="h-4 w-4" />

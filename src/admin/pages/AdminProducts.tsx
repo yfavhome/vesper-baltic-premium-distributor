@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { DataTable, Column } from "@/admin/components/DataTable";
+import { ImageUpload } from "@/admin/components/ImageUpload";
 import { AdminProduct, AdminBrand, apiProducts, apiBrands } from "@/admin/api/stubs";
 import { Plus, Filter } from "lucide-react";
 import { toast } from "sonner";
@@ -73,7 +74,18 @@ export default function AdminProducts() {
   };
 
   const columns: Column<AdminProduct>[] = [
-    { key: "name", header: t.common.name, render: (p) => <span className="font-medium text-foreground">{p.name}</span> },
+    { key: "name", header: t.common.name, render: (p) => (
+      <div className="flex items-center gap-3">
+        {p.image ? (
+          <img src={p.image} alt="" className="h-9 w-9 object-contain rounded-lg border bg-background p-0.5" />
+        ) : (
+          <div className="h-9 w-9 rounded-lg bg-blue-500/10 flex items-center justify-center">
+            <span className="text-xs font-bold text-blue-600">{p.name[0]}</span>
+          </div>
+        )}
+        <span className="font-medium text-foreground">{p.name}</span>
+      </div>
+    )},
     { key: "brandName", header: t.products.brand, render: (p) => <Badge variant="outline" className="font-normal">{p.brandName}</Badge> },
     { key: "type", header: t.products.type, render: (p) => <span className="text-muted-foreground text-sm">{p.type}</span> },
     { key: "volume", header: t.products.volume, render: (p) => <Badge variant="secondary" className="font-normal text-xs">{p.volume}</Badge> },
@@ -123,7 +135,7 @@ export default function AdminProducts() {
       <DataTable data={filtered} columns={columns} onEdit={openEdit} onDelete={remove} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-lg">
+        <DialogContent className="sm:max-w-lg max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-display">{editing ? t.products.editProduct : t.products.newProduct}</DialogTitle>
             <DialogDescription>{t.products.subtitle}</DialogDescription>
@@ -144,7 +156,17 @@ export default function AdminProducts() {
               <div><Label>{t.products.volume}</Label><Input value={form.volume || ""} onChange={(e) => set("volume", e.target.value)} placeholder="0.75L" className="mt-1.5" /></div>
               <div><Label>{t.products.abv}</Label><Input value={form.abv || ""} onChange={(e) => set("abv", e.target.value)} placeholder="12%" className="mt-1.5" /></div>
             </div>
-            <div><Label>{t.common.imageUrl}</Label><Input value={form.image || ""} onChange={(e) => set("image", e.target.value)} className="mt-1.5" /></div>
+
+            {/* Image upload */}
+            <div>
+              <Label>{t.common.image}</Label>
+              <ImageUpload value={form.image || ""} onChange={(v) => set("image", v)} className="mt-1.5" />
+              <div className="flex items-center gap-2 mt-2">
+                <span className="text-[10px] text-muted-foreground">{t.common.orEnterUrl}:</span>
+                <Input value={form.image || ""} onChange={(e) => set("image", e.target.value)} className="h-7 text-xs" placeholder="https://..." />
+              </div>
+            </div>
+
             <div><Label>{t.products.shopUrl}</Label><Input value={form.shopUrl || ""} onChange={(e) => set("shopUrl", e.target.value)} className="mt-1.5" /></div>
             <div className="flex justify-end gap-2 pt-3 border-t">
               <Button variant="outline" onClick={() => setOpen(false)}>{t.common.cancel}</Button>
