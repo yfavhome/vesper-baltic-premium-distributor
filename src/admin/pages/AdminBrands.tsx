@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { DataTable, Column } from "@/admin/components/DataTable";
 import { DragList } from "@/admin/components/DragList";
 import { ImageUpload } from "@/admin/components/ImageUpload";
 import { MultiLangField } from "@/admin/components/MultiLangField";
 import { AdminBrand, apiBrands, apiNotifications } from "@/admin/api/stubs";
+import { useUnsavedChanges } from "@/admin/hooks/useUnsavedChanges";
 import { Plus, Eye, ArrowUpDown } from "lucide-react";
 import { toast } from "sonner";
 import { useAdminI18n } from "@/admin/i18n";
@@ -25,51 +26,93 @@ export default function AdminBrands() {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<AdminBrand | null>(null);
   const [form, setForm] = useState(emptyBrand);
+  const [initialForm, setInitialForm] = useState(emptyBrand);
   const [preview, setPreview] = useState<AdminBrand | null>(null);
   const [reorderMode, setReorderMode] = useState(false);
   const [descLangs, setDescLangs] = useState({ en: "", lv: "", ru: "" });
+  const [saving, setSaving] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<AdminBrand | null>(null);
 
-  const load = () => { setLoading(true); apiBrands.list().then((d) => { setData(d); setLoading(false); }); };
+  const isDirty = open && JSON.stringify(form) !== JSON.stringify(initialForm);
+  useUnsavedChanges(isDirty);
+
+  const load = () => {
+    setLoading(true);
+    apiBrands.list()
+      .then((d) => { setData(d); setLoading(false); })
+      .catch(() => { toast.error(t.common.errorLoading); setLoading(false); });
+  };
   useEffect(load, []);
 
-  const openCreate = () => { setEditing(null); setForm(emptyBrand); setDescLangs({ en: "", lv: "", ru: "" }); setOpen(true); };
-  const openEdit = (b: AdminBrand) => { setEditing(b); setForm(b); setDescLangs({ en: b.desc, lv: "", ru: "" }); setOpen(true); };
+  const openCreate = () => { setEditing(null); setForm(emptyBrand); setInitialForm(emptyBrand); setDescLangs({ en: "", lv: "", ru: "" }); setOpen(true); };
+  const openEdit = (b: AdminBrand) => { setEditing(b); setForm(b); setInitialForm(b); setDescLangs({ en: b.desc, lv: "", ru: "" }); setOpen(true); };
+
+  const handleClose = () => {
+    if (isDirty && !confirm(t.common.unsavedWarning)) return;
+    setOpen(false);
+  };
 
   const save = async () => {
     if (!form.name.trim()) { toast.error(t.brands.nameRequired); return; }
-    const payload = { ...form, desc: descLangs.en || form.desc };
-    if (editing) { await apiBrands.update(editing.id, payload); toast.success(t.brands.brandUpdated); }
-    else {
-      await apiBrands.create(payload);
-      toast.success(t.brands.brandCreated);
-      apiNotifications.send("brand_created", payload.name).then((r) => {
-        if (r.success) toast.info(t.common.emailSent);
-      });
+    setSaving(true);
+    try {
+      const payload = { ...form, desc: descLangs.en || form.desc };
+      if (editing) { await apiBrands.update(editing.id, payload); toast.success(t.brands.brandUpdated); }
+      else {
+        await apiBrands.create(payload);
+        toast.success(t.brands.brandCreated);
+        apiNotifications.send("brand_created", payload.name).then((r) => {
+          if (r.success) toast.info(t.common.emailSent);
+        });
+      }
+      setOpen(false); load();
+    } catch {
+      toast.error(t.common.errorSaving);
+    } finally {
+      setSaving(false);
     }
-    setOpen(false); load();
   };
 
-  const remove = async (b: AdminBrand) => {
-    if (!confirm(`${t.common.confirmDelete} "${b.name}"?`)) return;
-    await apiBrands.delete(b.id); toast.success(t.brands.brandDeleted); load();
+  const confirmDelete = async () => {
+    if (!deleteTarget) return;
+    try {
+      await apiBrands.delete(deleteTarget.id);
+      toast.success(t.brands.brandDeleted);
+      load();
+    } catch {
+      toast.error(t.common.errorDeleting);
+    }
+    setDeleteTarget(null);
   };
 
   const duplicate = async (b: AdminBrand) => {
-    const { id, ...rest } = b;
-    await apiBrands.create({ ...rest, name: `${rest.name} (copy)` });
-    toast.success(t.brands.duplicated); load();
+    try {
+      const { id, ...rest } = b;
+      await apiBrands.create({ ...rest, name: `${rest.name} (copy)` });
+      toast.success(t.brands.duplicated); load();
+    } catch {
+      toast.error(t.common.errorSaving);
+    }
   };
 
   const bulkDelete = async (ids: string[]) => {
     if (!confirm(`${t.common.confirmDelete} ${ids.length} ${t.common.items}?`)) return;
-    await Promise.all(ids.map((id) => apiBrands.delete(id)));
-    toast.success(`${ids.length} ${t.common.items} deleted`); load();
+    try {
+      await Promise.all(ids.map((id) => apiBrands.delete(id)));
+      toast.success(`${ids.length} ${t.common.items} deleted`); load();
+    } catch {
+      toast.error(t.common.errorDeleting);
+    }
   };
 
   const handleReorder = async (ids: string[]) => {
-    await apiBrands.reorder(ids);
-    toast.success(t.brands.orderSaved);
-    load();
+    try {
+      await apiBrands.reorder(ids);
+      toast.success(t.brands.orderSaved);
+      load();
+    } catch {
+      toast.error(t.common.errorSaving);
+    }
   };
 
   const columns: Column<AdminBrand>[] = [
@@ -97,7 +140,7 @@ export default function AdminBrands() {
 
   return (
     <div className="space-y-6 max-w-7xl">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-2xl md:text-3xl font-display font-bold text-foreground tracking-tight">{t.brands.title}</h1>
           <p className="text-muted-foreground mt-1">{t.brands.subtitle} · {data.length} {t.common.items}</p>
@@ -105,10 +148,10 @@ export default function AdminBrands() {
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }} className="flex gap-2">
           <Button variant={reorderMode ? "default" : "outline"} onClick={() => setReorderMode(!reorderMode)} className="gap-2" size="sm">
             <ArrowUpDown className="h-3.5 w-3.5" />
-            {reorderMode ? t.brands.reorderDone : t.brands.reorderMode}
+            <span className="hidden sm:inline">{reorderMode ? t.brands.reorderDone : t.brands.reorderMode}</span>
           </Button>
           <Button onClick={openCreate} className="gap-2 shadow-sm">
-            <Plus className="h-4 w-4" /> {t.brands.addBrand}
+            <Plus className="h-4 w-4" /> <span className="hidden sm:inline">{t.brands.addBrand}</span>
           </Button>
         </motion.div>
       </div>
@@ -116,35 +159,36 @@ export default function AdminBrands() {
       {reorderMode ? (
         <div>
           <p className="text-xs text-muted-foreground mb-3">{t.common.reorder}</p>
-          <DragList
-            items={data}
-            onReorder={handleReorder}
-            renderItem={(b) => (
-              <div className="flex items-center gap-3">
-                {b.logo ? (
-                  <img src={b.logo} alt="" className="h-8 w-8 object-contain rounded border bg-background" />
-                ) : (
-                  <div className="h-8 w-8 rounded bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">{b.name[0]}</div>
-                )}
-                <div>
-                  <span className="text-sm font-medium">{b.name}</span>
-                  <span className="text-xs text-muted-foreground ml-2">{b.category}</span>
-                </div>
+          <DragList items={data} onReorder={handleReorder} renderItem={(b) => (
+            <div className="flex items-center gap-3">
+              {b.logo ? (
+                <img src={b.logo} alt="" className="h-8 w-8 object-contain rounded border bg-background" />
+              ) : (
+                <div className="h-8 w-8 rounded bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">{b.name[0]}</div>
+              )}
+              <div>
+                <span className="text-sm font-medium">{b.name}</span>
+                <span className="text-xs text-muted-foreground ml-2">{b.category}</span>
               </div>
-            )}
-          />
+            </div>
+          )} />
         </div>
       ) : (
-        <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={remove} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
+        <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={(b) => setDeleteTarget(b)} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
       )}
 
       {/* Create/Edit Dialog */}
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={(v) => { if (!v) handleClose(); else setOpen(v); }}>
         <DialogContent className="sm:max-w-lg max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-display">{editing ? t.brands.editBrand : t.brands.newBrand}</DialogTitle>
             <DialogDescription>{t.brands.subtitle}</DialogDescription>
           </DialogHeader>
+          {isDirty && (
+            <div className="px-3 py-1.5 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 text-xs">
+              {t.common.unsavedChanges}
+            </div>
+          )}
           <div className="space-y-4 mt-2">
             <div><Label>{t.common.name} *</Label><Input value={form.name} onChange={(e) => set("name", e.target.value)} className="mt-1.5" /></div>
             <div className="grid grid-cols-2 gap-4">
@@ -152,8 +196,6 @@ export default function AdminBrands() {
               <div><Label>{t.common.country}</Label><Input value={form.country} onChange={(e) => set("country", e.target.value)} className="mt-1.5" /></div>
             </div>
             <div><Label>{t.common.year}</Label><Input value={form.est} onChange={(e) => set("est", e.target.value)} className="mt-1.5" /></div>
-
-            {/* Image upload */}
             <div>
               <Label>{t.common.image}</Label>
               <ImageUpload value={form.logo || ""} onChange={(v) => set("logo", v)} className="mt-1.5" />
@@ -162,23 +204,32 @@ export default function AdminBrands() {
                 <Input value={form.logo || ""} onChange={(e) => set("logo", e.target.value)} className="h-7 text-xs" placeholder="https://..." />
               </div>
             </div>
-
-            {/* Multilingual description */}
-            <MultiLangField
-              label={t.common.description}
-              value={descLangs}
-              onChange={setDescLangs}
-              multiline
-              rows={3}
-            />
-
+            <MultiLangField label={t.common.description} value={descLangs} onChange={setDescLangs} multiline rows={3} />
             <div className="flex justify-end gap-2 pt-3 border-t">
-              <Button variant="outline" onClick={() => setOpen(false)}>{t.common.cancel}</Button>
-              <Button onClick={save}>{editing ? t.common.save : t.common.create}</Button>
+              <Button variant="outline" onClick={handleClose}>{t.common.cancel}</Button>
+              <Button onClick={save} disabled={saving}>{saving ? t.common.loading : editing ? t.common.save : t.common.create}</Button>
             </div>
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Delete Confirmation */}
+      <AlertDialog open={!!deleteTarget} onOpenChange={(v) => !v && setDeleteTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t.common.confirmDelete}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t.common.deleteDescription} "{deleteTarget?.name}"? {t.common.deleteIrreversible}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t.common.cancel}</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              {t.common.delete}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       {/* Detail Preview Dialog */}
       <Dialog open={!!preview} onOpenChange={() => setPreview(null)}>

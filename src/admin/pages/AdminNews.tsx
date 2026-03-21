@@ -4,17 +4,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { DataTable, Column } from "@/admin/components/DataTable";
 import { MarkdownEditor } from "@/admin/components/MarkdownEditor";
 import { ImageUpload } from "@/admin/components/ImageUpload";
 import { MultiLangField } from "@/admin/components/MultiLangField";
 import { AdminNewsArticle, apiNews, apiNotifications } from "@/admin/api/stubs";
+import { useUnsavedChanges } from "@/admin/hooks/useUnsavedChanges";
 import { Plus, Calendar, ExternalLink, Wand2 } from "lucide-react";
 import { toast } from "sonner";
 import { useAdminI18n } from "@/admin/i18n";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const emptyArticle: Omit<AdminNewsArticle, "id"> = { slug: "", title: "", excerpt: "", category: "", date: "", image: "", content: "" };
 
@@ -25,24 +26,38 @@ export default function AdminNews() {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<AdminNewsArticle | null>(null);
   const [form, setForm] = useState(emptyArticle);
+  const [initialForm, setInitialForm] = useState(emptyArticle);
   const [titleLangs, setTitleLangs] = useState({ en: "", lv: "", ru: "" });
   const [excerptLangs, setExcerptLangs] = useState({ en: "", lv: "", ru: "" });
+  const [saving, setSaving] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<AdminNewsArticle | null>(null);
 
-  const load = () => { setLoading(true); apiNews.list().then((d) => { setData(d); setLoading(false); }); };
+  const isDirty = open && JSON.stringify(form) !== JSON.stringify(initialForm);
+  useUnsavedChanges(isDirty);
+
+  const load = () => {
+    setLoading(true);
+    apiNews.list()
+      .then((d) => { setData(d); setLoading(false); })
+      .catch(() => { toast.error(t.common.errorLoading); setLoading(false); });
+  };
   useEffect(load, []);
 
   const openCreate = () => {
-    setEditing(null);
-    setForm({ ...emptyArticle, date: new Date().toISOString().slice(0, 10) });
-    setTitleLangs({ en: "", lv: "", ru: "" });
-    setExcerptLangs({ en: "", lv: "", ru: "" });
+    const initial = { ...emptyArticle, date: new Date().toISOString().slice(0, 10) };
+    setEditing(null); setForm(initial); setInitialForm(initial);
+    setTitleLangs({ en: "", lv: "", ru: "" }); setExcerptLangs({ en: "", lv: "", ru: "" });
     setOpen(true);
   };
   const openEdit = (n: AdminNewsArticle) => {
-    setEditing(n); setForm(n);
-    setTitleLangs({ en: n.title, lv: "", ru: "" });
-    setExcerptLangs({ en: n.excerpt, lv: "", ru: "" });
+    setEditing(n); setForm(n); setInitialForm(n);
+    setTitleLangs({ en: n.title, lv: "", ru: "" }); setExcerptLangs({ en: n.excerpt, lv: "", ru: "" });
     setOpen(true);
+  };
+
+  const handleClose = () => {
+    if (isDirty && !confirm(t.common.unsavedWarning)) return;
+    setOpen(false);
   };
 
   const save = async () => {
@@ -50,33 +65,54 @@ export default function AdminNews() {
     const excerpt = excerptLangs.en || form.excerpt;
     if (!title.trim()) { toast.error(t.news.titleRequired); return; }
     if (!form.slug.trim()) { toast.error(t.news.slugRequired); return; }
-    const payload = { ...form, title, excerpt };
-    if (editing) { await apiNews.update(editing.id, payload); toast.success(t.news.articleUpdated); }
-    else {
-      await apiNews.create(payload);
-      toast.success(t.news.articleCreated);
-      apiNotifications.send("article_created", payload.title).then((r) => {
-        if (r.success) toast.info(t.common.emailSent);
-      });
+    setSaving(true);
+    try {
+      const payload = { ...form, title, excerpt };
+      if (editing) { await apiNews.update(editing.id, payload); toast.success(t.news.articleUpdated); }
+      else {
+        await apiNews.create(payload);
+        toast.success(t.news.articleCreated);
+        apiNotifications.send("article_created", payload.title).then((r) => {
+          if (r.success) toast.info(t.common.emailSent);
+        });
+      }
+      setOpen(false); load();
+    } catch {
+      toast.error(t.common.errorSaving);
+    } finally {
+      setSaving(false);
     }
-    setOpen(false); load();
   };
 
-  const remove = async (n: AdminNewsArticle) => {
-    if (!confirm(`${t.common.confirmDelete} "${n.title}"?`)) return;
-    await apiNews.delete(n.id); toast.success(t.news.articleDeleted); load();
+  const confirmDelete = async () => {
+    if (!deleteTarget) return;
+    try {
+      await apiNews.delete(deleteTarget.id);
+      toast.success(t.news.articleDeleted); load();
+    } catch {
+      toast.error(t.common.errorDeleting);
+    }
+    setDeleteTarget(null);
   };
 
   const duplicate = async (n: AdminNewsArticle) => {
-    const { id, ...rest } = n;
-    await apiNews.create({ ...rest, title: `${rest.title} (copy)`, slug: `${rest.slug}-copy` });
-    toast.success(t.news.duplicated); load();
+    try {
+      const { id, ...rest } = n;
+      await apiNews.create({ ...rest, title: `${rest.title} (copy)`, slug: `${rest.slug}-copy` });
+      toast.success(t.news.duplicated); load();
+    } catch {
+      toast.error(t.common.errorSaving);
+    }
   };
 
   const bulkDelete = async (ids: string[]) => {
     if (!confirm(`${t.common.confirmDelete} ${ids.length} ${t.common.items}?`)) return;
-    await Promise.all(ids.map((id) => apiNews.delete(id)));
-    toast.success(`${ids.length} deleted`); load();
+    try {
+      await Promise.all(ids.map((id) => apiNews.delete(id)));
+      toast.success(`${ids.length} deleted`); load();
+    } catch {
+      toast.error(t.common.errorDeleting);
+    }
   };
 
   const generateSlug = () => {
@@ -112,7 +148,7 @@ export default function AdminNews() {
 
   return (
     <div className="space-y-6 max-w-7xl">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-2xl md:text-3xl font-display font-bold text-foreground tracking-tight">{t.news.title}</h1>
           <p className="text-muted-foreground mt-1">{t.news.subtitle} · {data.length} {t.common.items}</p>
@@ -124,19 +160,22 @@ export default function AdminNews() {
         </motion.div>
       </div>
 
-      <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={remove} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
+      <DataTable data={data} columns={columns} onEdit={openEdit} onDelete={(n) => setDeleteTarget(n)} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
 
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={(v) => { if (!v) handleClose(); else setOpen(v); }}>
         <DialogContent className="sm:max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-display">{editing ? t.news.editArticle : t.news.newArticle}</DialogTitle>
             <DialogDescription>{t.news.subtitle}</DialogDescription>
           </DialogHeader>
+          {isDirty && (
+            <div className="px-3 py-1.5 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 text-xs">
+              {t.common.unsavedChanges}
+            </div>
+          )}
           <div className="space-y-4 mt-2">
-            {/* Multilingual title */}
             <MultiLangField label={`${t.news.articleTitle} *`} value={titleLangs} onChange={setTitleLangs} />
-
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label>{t.news.slug} *</Label>
                 <div className="flex gap-1.5 mt-1.5">
@@ -148,31 +187,42 @@ export default function AdminNews() {
               </div>
               <div><Label>{t.common.category}</Label><Input value={form.category} onChange={(e) => set("category", e.target.value)} className="mt-1.5" /></div>
             </div>
-
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div><Label>{t.news.date}</Label><Input type="date" value={form.date} onChange={(e) => set("date", e.target.value)} className="mt-1.5" /></div>
               <div>
                 <Label>{t.common.image}</Label>
                 <ImageUpload value={form.image || ""} onChange={(v) => set("image", v)} className="mt-1.5" />
               </div>
             </div>
-
-            {/* Multilingual excerpt */}
             <MultiLangField label={t.news.excerpt} value={excerptLangs} onChange={setExcerptLangs} multiline rows={2} />
-
-            {/* Markdown editor for content */}
             <div>
               <Label className="mb-1.5 block">{t.news.content} ({t.news.markdown})</Label>
               <MarkdownEditor value={form.content} onChange={(v) => set("content", v)} rows={12} />
             </div>
-
             <div className="flex justify-end gap-2 pt-3 border-t">
-              <Button variant="outline" onClick={() => setOpen(false)}>{t.common.cancel}</Button>
-              <Button onClick={save}>{editing ? t.common.save : t.common.create}</Button>
+              <Button variant="outline" onClick={handleClose}>{t.common.cancel}</Button>
+              <Button onClick={save} disabled={saving}>{saving ? t.common.loading : editing ? t.common.save : t.common.create}</Button>
             </div>
           </div>
         </DialogContent>
       </Dialog>
+
+      <AlertDialog open={!!deleteTarget} onOpenChange={(v) => !v && setDeleteTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t.common.confirmDelete}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t.common.deleteDescription} "{deleteTarget?.title}"? {t.common.deleteIrreversible}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t.common.cancel}</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              {t.common.delete}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
