@@ -5,9 +5,11 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { DataTable, Column } from "@/admin/components/DataTable";
 import { ImageUpload } from "@/admin/components/ImageUpload";
 import { AdminProduct, AdminBrand, apiProducts, apiBrands } from "@/admin/api/stubs";
+import { useUnsavedChanges } from "@/admin/hooks/useUnsavedChanges";
 import { Plus, Filter } from "lucide-react";
 import { toast } from "sonner";
 import { useAdminI18n } from "@/admin/i18n";
@@ -23,19 +25,24 @@ export default function AdminProducts() {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<AdminProduct | null>(null);
   const [form, setForm] = useState(emptyProduct);
+  const [initialForm, setInitialForm] = useState(emptyProduct);
   const [filterBrand, setFilterBrand] = useState("all");
   const [filterType, setFilterType] = useState("all");
+  const [saving, setSaving] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<AdminProduct | null>(null);
+
+  const isDirty = open && JSON.stringify(form) !== JSON.stringify(initialForm);
+  useUnsavedChanges(isDirty);
 
   const load = () => {
     setLoading(true);
-    Promise.all([apiProducts.list(), apiBrands.list()]).then(([p, b]) => {
-      setData(p); setBrands(b); setLoading(false);
-    });
+    Promise.all([apiProducts.list(), apiBrands.list()])
+      .then(([p, b]) => { setData(p); setBrands(b); setLoading(false); })
+      .catch(() => { toast.error(t.common.errorLoading); setLoading(false); });
   };
   useEffect(load, []);
 
   const types = useMemo(() => [...new Set(data.map((p) => p.type).filter(Boolean))], [data]);
-
   const filtered = useMemo(() => {
     let result = data;
     if (filterBrand !== "all") result = result.filter((p) => p.brandId === filterBrand);
@@ -43,34 +50,60 @@ export default function AdminProducts() {
     return result;
   }, [data, filterBrand, filterType]);
 
-  const openCreate = () => { setEditing(null); setForm(emptyProduct); setOpen(true); };
-  const openEdit = (p: AdminProduct) => { setEditing(p); setForm(p); setOpen(true); };
+  const openCreate = () => { setEditing(null); setForm(emptyProduct); setInitialForm(emptyProduct); setOpen(true); };
+  const openEdit = (p: AdminProduct) => { setEditing(p); setForm(p); setInitialForm(p); setOpen(true); };
+
+  const handleClose = () => {
+    if (isDirty && !confirm(t.common.unsavedWarning)) return;
+    setOpen(false);
+  };
 
   const save = async () => {
     if (!form.name.trim()) { toast.error(t.products.nameRequired); return; }
     if (!form.brandId) { toast.error(t.products.brandRequired); return; }
-    const brandName = brands.find((b) => b.id === form.brandId)?.name || "";
-    const payload = { ...form, brandName };
-    if (editing) { await apiProducts.update(editing.id, payload); toast.success(t.products.productUpdated); }
-    else { await apiProducts.create(payload); toast.success(t.products.productCreated); }
-    setOpen(false); load();
+    setSaving(true);
+    try {
+      const brandName = brands.find((b) => b.id === form.brandId)?.name || "";
+      const payload = { ...form, brandName };
+      if (editing) { await apiProducts.update(editing.id, payload); toast.success(t.products.productUpdated); }
+      else { await apiProducts.create(payload); toast.success(t.products.productCreated); }
+      setOpen(false); load();
+    } catch {
+      toast.error(t.common.errorSaving);
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const remove = async (p: AdminProduct) => {
-    if (!confirm(`${t.common.confirmDelete} "${p.name}"?`)) return;
-    await apiProducts.delete(p.id); toast.success(t.products.productDeleted); load();
+  const confirmDelete = async () => {
+    if (!deleteTarget) return;
+    try {
+      await apiProducts.delete(deleteTarget.id);
+      toast.success(t.products.productDeleted); load();
+    } catch {
+      toast.error(t.common.errorDeleting);
+    }
+    setDeleteTarget(null);
   };
 
   const duplicate = async (p: AdminProduct) => {
-    const { id, ...rest } = p;
-    await apiProducts.create({ ...rest, name: `${rest.name} (copy)` });
-    toast.success(t.products.duplicated); load();
+    try {
+      const { id, ...rest } = p;
+      await apiProducts.create({ ...rest, name: `${rest.name} (copy)` });
+      toast.success(t.products.duplicated); load();
+    } catch {
+      toast.error(t.common.errorSaving);
+    }
   };
 
   const bulkDelete = async (ids: string[]) => {
     if (!confirm(`${t.common.confirmDelete} ${ids.length} ${t.common.items}?`)) return;
-    await Promise.all(ids.map((id) => apiProducts.delete(id)));
-    toast.success(`${ids.length} ${t.common.items} deleted`); load();
+    try {
+      await Promise.all(ids.map((id) => apiProducts.delete(id)));
+      toast.success(`${ids.length} ${t.common.items} deleted`); load();
+    } catch {
+      toast.error(t.common.errorDeleting);
+    }
   };
 
   const columns: Column<AdminProduct>[] = [
@@ -96,7 +129,7 @@ export default function AdminProducts() {
 
   return (
     <div className="space-y-6 max-w-7xl">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-2xl md:text-3xl font-display font-bold text-foreground tracking-tight">{t.products.title}</h1>
           <p className="text-muted-foreground mt-1">{t.products.subtitle} · {data.length} {t.common.items}</p>
@@ -108,18 +141,17 @@ export default function AdminProducts() {
         </motion.div>
       </div>
 
-      {/* Filters */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }} className="flex flex-wrap gap-3 items-center">
         <Filter className="h-4 w-4 text-muted-foreground" />
         <Select value={filterBrand} onValueChange={setFilterBrand}>
-          <SelectTrigger className="w-44 h-9 text-sm"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="w-36 sm:w-44 h-9 text-sm"><SelectValue /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t.products.allBrands}</SelectItem>
             {brands.map((b) => <SelectItem key={b.id} value={b.id}>{b.name}</SelectItem>)}
           </SelectContent>
         </Select>
         <Select value={filterType} onValueChange={setFilterType}>
-          <SelectTrigger className="w-40 h-9 text-sm"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="w-32 sm:w-40 h-9 text-sm"><SelectValue /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t.products.allTypes}</SelectItem>
             {types.map((tp) => <SelectItem key={tp} value={tp}>{tp}</SelectItem>)}
@@ -132,22 +164,25 @@ export default function AdminProducts() {
         )}
       </motion.div>
 
-      <DataTable data={filtered} columns={columns} onEdit={openEdit} onDelete={remove} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
+      <DataTable data={filtered} columns={columns} onEdit={openEdit} onDelete={(p) => setDeleteTarget(p)} onDuplicate={duplicate} onBulkDelete={bulkDelete} loading={loading} />
 
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={(v) => { if (!v) handleClose(); else setOpen(v); }}>
         <DialogContent className="sm:max-w-lg max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-display">{editing ? t.products.editProduct : t.products.newProduct}</DialogTitle>
             <DialogDescription>{t.products.subtitle}</DialogDescription>
           </DialogHeader>
+          {isDirty && (
+            <div className="px-3 py-1.5 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 text-xs">
+              {t.common.unsavedChanges}
+            </div>
+          )}
           <div className="space-y-4 mt-2">
             <div>
               <Label>{t.products.brand} *</Label>
               <Select value={form.brandId} onValueChange={(v) => set("brandId", v)}>
                 <SelectTrigger className="mt-1.5"><SelectValue placeholder={t.products.selectBrand} /></SelectTrigger>
-                <SelectContent>
-                  {brands.map((b) => <SelectItem key={b.id} value={b.id}>{b.name}</SelectItem>)}
-                </SelectContent>
+                <SelectContent>{brands.map((b) => <SelectItem key={b.id} value={b.id}>{b.name}</SelectItem>)}</SelectContent>
               </Select>
             </div>
             <div><Label>{t.common.name} *</Label><Input value={form.name} onChange={(e) => set("name", e.target.value)} className="mt-1.5" /></div>
@@ -156,8 +191,6 @@ export default function AdminProducts() {
               <div><Label>{t.products.volume}</Label><Input value={form.volume || ""} onChange={(e) => set("volume", e.target.value)} placeholder="0.75L" className="mt-1.5" /></div>
               <div><Label>{t.products.abv}</Label><Input value={form.abv || ""} onChange={(e) => set("abv", e.target.value)} placeholder="12%" className="mt-1.5" /></div>
             </div>
-
-            {/* Image upload */}
             <div>
               <Label>{t.common.image}</Label>
               <ImageUpload value={form.image || ""} onChange={(v) => set("image", v)} className="mt-1.5" />
@@ -166,15 +199,31 @@ export default function AdminProducts() {
                 <Input value={form.image || ""} onChange={(e) => set("image", e.target.value)} className="h-7 text-xs" placeholder="https://..." />
               </div>
             </div>
-
             <div><Label>{t.products.shopUrl}</Label><Input value={form.shopUrl || ""} onChange={(e) => set("shopUrl", e.target.value)} className="mt-1.5" /></div>
             <div className="flex justify-end gap-2 pt-3 border-t">
-              <Button variant="outline" onClick={() => setOpen(false)}>{t.common.cancel}</Button>
-              <Button onClick={save}>{editing ? t.common.save : t.common.create}</Button>
+              <Button variant="outline" onClick={handleClose}>{t.common.cancel}</Button>
+              <Button onClick={save} disabled={saving}>{saving ? t.common.loading : editing ? t.common.save : t.common.create}</Button>
             </div>
           </div>
         </DialogContent>
       </Dialog>
+
+      <AlertDialog open={!!deleteTarget} onOpenChange={(v) => !v && setDeleteTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t.common.confirmDelete}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t.common.deleteDescription} "{deleteTarget?.name}"? {t.common.deleteIrreversible}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t.common.cancel}</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              {t.common.delete}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

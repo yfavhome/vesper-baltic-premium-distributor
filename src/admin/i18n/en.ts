@@ -95,6 +95,13 @@ export const adminEn = {
     orEnterUrl: "or enter URL",
     emailSent: "Notification sent",
     emailFailed: "Notification failed",
+    errorLoading: "Failed to load data",
+    errorSaving: "Failed to save",
+    errorDeleting: "Failed to delete",
+    unsavedChanges: "You have unsaved changes",
+    unsavedWarning: "You have unsaved changes. Discard them?",
+    deleteDescription: "This will permanently delete",
+    deleteIrreversible: "This action cannot be undone.",
   },
   brands: {
     title: "Brands",
